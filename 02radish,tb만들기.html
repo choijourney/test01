@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chicken radish</title>
+</head>
+
+<body>
+    <p>
+    <h1> 치킨무는필수다</h1>
+    </p>
+    치킨먹을때 무없으면 큰일난다
+    <a href="chicken.html">치킨</a>
+    <!-- a href로 로컬저장소의 html파일을 링크 연결시킬수있다 -->
+
+
+
+    <!-- thead,tbody,tfoot 는 표를 논리섹션으로 분리하는 작업외에는 하는일이없다 
+표에 tfoot이 없는경우가 많다 thead는 꼭필요하다 tbody도 쓴다 표가 복잡하다면 thead와 tbody는꼭 지정-->
+    <table>
+        <!-- rowspan은 row줄이 합쳐짐 첫째가로줄 둘째가로줄합쳐짐
+    colspan은 colmn이 합쳐짐 세로줄이 합쳐짐
+밑에 빈th 에 여자신발사이즈표 가 가로로길게 2칸차지 -->
+        <thead>
+            <tr>
+                <th></th>
+                <th colspan="2"> 여자신발사이즈표</th>
+            </tr>
+            <tr>
+                <td>한국mm</td>
+                <td>유럽eu</td>
+                <td>영국uk</td>
+            </tr>
+            <!--th 는 헤더 ex)여자신발사이즈표 
+        tr 을쓰면 한줄로 묶인다 row  
+        td 테이블 데이터셀을 줄인말 단일셀을 얘기함  -->
+        </thead>
+        <tbody>
+            <tr>
+                <td>220</td>
+                <td>36</td>
+                <td>2.5</td>
+            </tr>
+            <tr>
+                <td>225</td>
+                <td>36.5</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>230</td>
+                <td>37</td>
+                <td>3.5</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
+<!-- table도 css로 크기,색상등 꾸밀수있다-->
