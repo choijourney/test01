@@ -1,0 +1,120 @@
+h1 {
+    text-align: center;
+    font-weight: 400;
+    color: magenta;
+    text-decoration: cyan underline;
+    letter-spacing: 15px;
+    font-size: 80px;
+    font-family: 평창평화체, '평창 평화체 light';
+    font-size: 4rem;
+    margin-bottom: 0;
+}
+
+h1+h2 {
+    margin-top: 10px;
+}
+
+/* letterspacing글자간격  */
+
+h2 {
+    color: #ff8fab;
+    font-family: 'BMHANNAPro';
+    margin: 0;
+}
+
+@font-face {
+    font-family: 'BMHANNAPro';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.0/BMHANNAPro.woff') format('woff');
+    font-weight: lighter;
+    font-style: normal;
+}
+
+
+@font-face {
+
+
+    font-family: 'NeoDunggeunmoPro-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/NeoDunggeunmoPro-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    line-height: 2;
+}
+
+@font-face {
+    font-family: 본명조;
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NotoSerifKR.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 본명조;
+
+}
+
+/* 웹폰트 쓰는법!!!!!!
+@import 로웹폰트쓰는법- html style에 @import주소 적고 
+css fontfamily 적기.  import주소에 single+day이런식으로 돼있는데 
++빼고 적으면됨
+font-family:'single Day';   <-이런식. */
+
+/* lineheight줄간격기본값은1 */
+a {
+    text-decoration: none;
+}
+
+button {
+    font-weight: 200;
+    font-size: 20px;
+}
+
+/* body {color: pink; } */
+
+* {
+    color: #ff8fab;
+}
+
+/* *공백없이페이지전체선택 */
+
+#마요르카로 {
+    background-color: khaki;
+    color: darkorchid;
+}
+
+.tag {
+    background-color: r bisque;
+    font-size: 18px;
+}
+
+/* html에서 어느요소든 (span,p등) class=tag 쓰고 css에서
+.tag 로 같은요소가 아니어도 여러요소를 한번에 꾸밀수있다
+alt클릭 ->다중선택 */
+
+/* 클래스는 한요소에 여러개의 클래스명이 적용될수있고 이름중복도 가능하다
+그러나 id는 한요소에 한개만 적용가능하다
+<p id="attendance>길동 </p>
+<p calss="friend">길동 </p> 
+한요소가 여러 클래스,한개의 아이디를 동시에 가지는것은가능*/
+
+.Roboto {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+/*.Ro ro 대소문자주의!!!! class쓸때!!!*/
+
+body,
+footer {
+    width: 70%;
+    margin: 0 auto;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+section {
+    margin-top: 0;
+    margin-bottom: 0;
+}

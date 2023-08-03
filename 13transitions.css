@@ -1,0 +1,52 @@
+.circle {
+    width: 300px;
+    height: 300px;
+    background-color: magenta;
+    transition: 1s 1s;
+}
+
+.circle:hover {
+    background-color: cyan;
+    border-radius: 50%;
+}
+
+/* transition 서서히변하게해줌 1s->1초안에서서히변함 (주로hover와함께쓰임)
+transition:background-color 3s 1s    ->어떤효과를지정해서 시간지정도 가능하고
+지연시간도가능 마우스커서를 올리면 바로변하는게 아니라 1초후에 변하기시작함
+예를들면 1초기다렸다가 3초간변함 
+transition:background-color 3s, border-radius 1s; */
+
+section div {
+    height: 100px;
+    width: 100px;
+    background-color: turquoise;
+    margin: 20px 0;
+    transition: margin-left 3s;
+}
+
+section:hover div {
+    margin-left: 500px;
+}
+
+/* timing기능 일정한속도로 최대한 서서히 바뀔수도 있고 빨리 시작됐다가 천천히 끝날수도
+있다 transition-timing-function:ease;ease-in;ease-out;ease-in-out;linear;
+step-start;step-end;steps(4,jump-end);cubic-bezier(0.1,0.7,1.0,0.1); */
+div:nth-of-type(1) {
+    transition-timing-function: ease-in;
+}
+
+div:nth-of-type(2) {
+    transition-timing-function: ease-out;
+}
+
+div:nth-of-type(3) {
+    transition-timing-function: cubic-bezier(0.7, 0, 0.84, 0);
+}
+
+div:nth-of-type(4) {
+    transition-timing-function: cubic-bezier(0.85, 0, 0.15, 1);
+}
+
+/* easings.net 이라는웹사이트에서 cubic-bezier() 코드를 복사해올수있다 */
+/* transition:background-color 1s, ease-in 0.5s, border-radius 0.5s; 이렇게
+한줄에 쓸수있지만 비추. 나눠서 적는게 변경할때 더편하다고함 */

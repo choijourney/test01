@@ -1,0 +1,28 @@
+section {
+    width: 80%;
+    height: 800px;
+    /* background-image: url("https://images.unsplash.com/photo-1687287707109-6c48c3d92c12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60"); */
+    margin: 0 auto;
+    background: center/40% no-repeat url("https://images.unsplash.com/photo-1687287707109-6c48c3d92c12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60"), black;
+    /* background-size: 40%; */
+    /* background-position: center;
+    background-repeat: no-repeat; */
+}
+
+/* background:center/40% no-repeat url(),color;  =>이중백그라운드이미지
+background-image:url() 에는 컬러가 안먹힘.  background에 쓰기 */
+
+
+/* unsplash ->사진무료사이트bb 오른쪽마우스클릭 주소복사 */
+/* background-size:cover 가젤좋음 contain은옆에 반복(repeat)될수있음 
+하지만 반복을조정할수있음 background-repeat:repeat;no-repeat;space;*/
+/* background-position:top;bottom;left;center;  */
+
+h1 {
+    font-size: 100px;
+    color: white;
+}
+
+/*속기법  background-image: center/cover url("https://images.unsplash.com/photo-1687287707109-6c48c3d92c12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60"); 
+속기법에서 위치/크기 슬래쉬가 꼭필요함. */
+/* background: center/20% no-repeat url("https://images.unsplash.com/photo-1687287707109-6c48c3d92c12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60");  */

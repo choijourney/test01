@@ -1,0 +1,31 @@
+.pokemon {
+    /* div 클래스 */
+    display: inline-block;
+    text-align: center
+}
+
+.pokemon img {
+    display: block;
+}
+
+/*  클래스 지정없이 오리지널 보편적으로 많이쓰임
+div {
+    display: inline-block;
+    text-align: center
+}
+
+img {
+    display: block;
+} */
+
+/* span숫자를 이미지 가운데로 옮기고 싶어서 text-align을 쓴다 (text-align은 블록
+   만 적용가능하다.  
+   div를 세로정렬말고 가로세로로 바둑판정렬을 하고싶어서 display를 inline-block으로
+   했다. 그런데 그렇게 했더니 div안에 img,span이 같이 text-align으로 center정렬이
+   돼서 img는 center에있고 span은 그옆에있다. 이때 img를 display:block 으로 바꿔줘야
+   span이 다음줄로 가고 혼자 오롯이 center를 받는다. 
+
+
+inline-block -  내부적으로는 block 엘리먼트의 규칙을 따르면서 (패딩,마진,width다가능)
+외부적으로 inline 엘리먼트의 규칙을 따르게 되는 것. 
+   */

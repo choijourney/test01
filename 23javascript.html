@@ -1,0 +1,135 @@
+<!-- ctrl + shi + j = 콘솔열기  
+ 콘솔 clear 단축기 ctrl+L 
+shift + enter 치면 줄바꾸기★ 
+ modulo 모드라고도부른다 % 계산을 하는데 나머지수 계산을 해준다 19%4= 3  
+19에 4가 4번들어가고 3이 남는다  
+  ** 곱하기두번은 제곱해준다 2**4=16  
+ NaN = Not a Number   0/0  1+NaN = NaN 의미없는계산.숫자가 아닌것들도 가끔(?)
+    숫자패밀리로 쳐준다..?
+
+    변수      
+        let numdog=5; 
+    let numcat=1;
+tatal=numdog + numcat 
+6  변수를지정해주면 기억을한다 대소문자구분확실히★★★★★★
+score=5;
+score+=10
+15
+score-=5
+10
+numlives=4; 게임에서 목숨값같은
+numlives+=3;
+7
+numlives++
+7
+numlives
+8
+numlives--;
+8
+numlives
+7
+result=++numblives;
+8
+++numblives;
+9
+
+ const (constant) 상수 ; 변함없는수 한번지정하면 절대바뀌지않는다
+luckynum=7
+const=luckynum
+luckynum++;
+type error
+luckynum
+7 -->
+<!-- var 변수 let과 같은기능 작은차이가 있다고함 
+ let currentYear; let isGameOver=true; is를쓰면 불리언이라는게 확실해보여서 is
+를많이씀 연결된두단어를쓸때두번째단어첫글자는대문자로많이씀 
+변수이름을 의미있게 잘짓기
+ string 문자열 ''"" 둘중아무거나쓰기 "i say 'go away'" 'she said "i hate you"'
+ .method   "(dumbo Octopus)"[0]
+"(dumbo Octopus)".length
+14
+"lol"+ "lol"
+"lollol"     접합
+let firstName= River ; let lastName=phoenix;
+firstName + "" + lastName
+"River phoenix"
+let fullName = firstName+""+lastName   (다음줄undefined생략)
+fullName
+"River phoenix"
+1+"hi"
+"1hi"
+let result= 1+"hi" 
+result
+"1hi"
+"1998"따옴표안에있으면 숫자도 문자열로봄 
+let year= "1998"
+year+ 1;
+"19981"-->
+
+<!-- method메서드종류많음 .trim() 좌우 여백을 지워줌 괄호 필수
+"    hello world    ".trim()
+"hello world"
+ let greeting= " hello again   "
+ greeting.trim().toUpperCase()
+ "HELLO AGAIN"
+
+
+인수 let msg="haha that is so funny!"
+msg.slice(5)
+"that is so funny!""
+msg.slice(5,10)
+"that "
+msg.slice(-6)
+"funny!"
+ .replace 글자바꿈
+msg.replace('haha','lol')
+"lol that is so funny!"
+ "lol".repeat(3)
+"lollollol" 
+
+ template literals`````백틱 문자열이아닌 디폴트로 계산해서 결과가나온다 
+`hello ${1 + 2 + 9}`
+"hello 12"  달러기호나 중괄호는사라진다
+'hello ${1 + 2 + 9}'
+"hello ${1 + 2 + 9}"
+let product='artichoke';
+let price=3.99;
+price=2.25;
+let qty=5;
+`you bought ${qty} ${product.toUpperCase}. Total is: $${price*qty}`
+"you bought 5 ARTICHOKE. Total is: $11.25"
+`고객님께서는 ${상품} ${수량}개를 고르셨습니다. 가격은 ${수량*가격} 입니다.`
+'고객님께서는 수박 3개를 고르셨습니다. 가격은 29700 입니다.'
+ 
+ Null; let userId=null; 내가 값을모를때 0이나 false처럼 사용함
+undefined; 내가설정하는게 아닌 아무것도 정의된게없다고 JS가 답을못찾았을때 뜨는 오류메시지 -->
+<!-- round올림,floor내림 어려워서일단패스.. -->
+<!-- 10>9 A<a 문자도 유니코드 값을보고 크기 true가능하다  -->
+<!-- 등호 갯수따라 다름 == / === 
+    1 !=2  true    1 != '2' true   1 !='1' false  1=='1' true 이중등호를 입력하면
+    양쪽을 같은 유형으로 변환한 다음 비교한다 그래서 이중등호를 사용하지않는다
+     1 !=='1' true
+    1==='1' false   삼중등호는 엄격하게타입을구분함 삼중등호 사용하기   
+
+  console.log("hello")
+    hello
+ console.log(1+4, "hi", true)
+5 "hi true"
+alert("hi there")
+undefined
+prompt("please enter a number")
+'9'           <9는사이트에서팝업뜬창에내가입력한값>
+let userInput=prompt("please enter a number")
+undefined
+userInput
+'99'           <99는사이트에서팝업뜬창에내가입력한값>
+userInput+1
+'991'           '99'를문자열로봤나 991로출력하는..
+parseInt(userInput)
+99             숫자로변환하는방법
+parseInt("101")
+101                임의로 "101"을 지정해보았다
+parseInt("101kkkk")
+101               kk문자를넣어도 숫자만 골라 보여준다
+parseInt(userInput)+1
+100-->

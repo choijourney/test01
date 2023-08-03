@@ -1,0 +1,79 @@
+@font-face {
+    font-family: 'UhBeeJJIBBABBA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeJJIBBABBA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family:
+        'UhBeeJJIBBABBA';
+}
+
+h1 {
+    width: 400px;
+    height: 70px;
+    background-color: #8338ec;
+    padding-left: 25px;
+
+}
+
+div {
+    width: 400px;
+    height: 180px;
+    background-color: #3a86ff;
+    padding-top: 15px;
+}
+
+#one {
+    background-color: #ff006e;
+    border-style: solid;
+    box-sizing: border-box;
+    border-width: 1px;
+    border-color: black;
+    border-radius: 10px;
+    margin-left: 40px;
+}
+
+/* borderstyle실선,점선등 / box-sizing:border-box 테두리가 안튀어나오게 아래박스랑
+크기를 맞춰줌  */
+
+#two {
+    background-color: #fb5607;
+    border-color: black;
+    border-width: 1px;
+    border-style: dashed;
+    border-left-color: #8338ec;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+#three {
+    background-color: #ffbe0b;
+    border: 1px solid black;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin-top: 4px;
+    padding-top: 0%;
+}
+
+/* border-left,bottom,top 스타일,컬러,굵기바꿀수있음 */
+/* border-radius 테두리깎기 px이나 %씀 50%쓰면 원형만들수있음 */
+button {
+    background-color: #3a86ff;
+    padding: 10px 15px 10px;
+    border-radius: 20%;
+    margin-top: 10px;
+}
+
+/* 사방패딩=>padding:10px    좌우패딩=>padding:5px 10px 
+위,좌우합한값,아래 => 1px 2px 2px;   위,우,아래,좌(시계방향) => 1px 1px 0 2px;*/
+
+/*여백 margin 패딩이 박스안여백이라면 마진은 바깥여백
+사용방법은 패딩이랑같음 */
+
+/* body 기본속성 여백이 있음 일단 0으로만들고 작업후에 필요시 여백을 추가하는게 좋음  */
+span {
+    margin-left: 20px;
+}

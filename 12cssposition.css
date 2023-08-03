@@ -1,0 +1,49 @@
+div {
+    width: 100px;
+    height: 100px;
+    background-color: #3d405b;
+    border: 2px solid black;
+    margin: 10px;
+    display: inline-block;
+}
+
+#middle {
+    background-color: #81b29a;
+}
+
+#static #middle {
+    position: static;
+    top: 100px;
+}
+
+/* position:static =>static이 '고정된'이라는뜻 top px을바꿔봤자 고정됐기때문에 변화없음  */
+
+#relative #middle {
+    position: relative;
+    top: 100px;
+    left: -100px;
+}
+
+/* relative -> 원래위치에서 상대적인위치로 옮겨짐 */
+#absolute #middle {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+}
+
+#absolute {
+    position: relative;
+}
+
+/* absolute 가장가까이위치한 조상이있다면 조상을 기준으로하거나 조상이가까이없다면 
+초기컨테이닝블록 즉 <body>를 기준으로 상대적인 위치에 배치된다 */
+
+#fixed #middle {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+/* fixed로지정되면 그자리에 계속 유지된다 초기컨테이닝블록의 상대적위치. 
+스크롤을 움직여도 계속 같은자리에있다*/
+/* sticky; 라고 fixed랑 비슷한 position 있는데 실패.. */

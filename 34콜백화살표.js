@@ -1,0 +1,232 @@
+//콜백과 배열
+//배열메서드 중 처음배울 forEach 함수를 인수로 받아들인다. forEach는 for of루프가 등장
+//하기전엔 자주쓰였다 forEach는 배열안의 아이템 각각에 대해 함수와 코드를 한번씩 실행한다
+//어떤 함수를 넣든 상관없이 함수가 한번씩 호출되고 각각의 아이템이 함수에 자동으로 전달됨
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+function print(elment) {
+    console.log(elment)
+}
+numbers.forEach(print)
+//숫자를 각각 출력하고싶다면 forEach를 쓴다.그다음 콜백을 넣는다. 그래서 이 함수들을 따로
+//정의해볼것이다. 아니면 numbers와indexof를 이용해 직접 출력하는방법도있다.
+print(numbers[0])
+//forEach가 더쓰기편하니까 forEach를쓴다
+//forEach인수안에 함수print를 넣고. 이게 elment를 호출해 배열의 숫자들을 출력한다.
+//forEach를 써서 이미 정의한 함수를 전달하는건 일반적이지 않다. 보통은 
+numbers.forEach(function (el) {
+    console.log(el)
+})
+//인수안에 함수를 넣어서 이렇게 쓴다. 이게 일반적인 방식이다.
+//그러나 for of가 더 짧고 깔끔해서 for of를 더많이쓴다
+for (let el of numbers) {
+    console.log(el);
+}
+
+numbers.forEach(function (el) {
+    if (el % 2 === 0)
+        console.log(el)
+})
+//콘솔보면 2,4,6,8,10.. 짝수나옴
+
+const movies = [
+    {
+        title: 'Amadeus',
+        score: 99
+    },
+    {
+        title: 'Stand By Me',
+        score: 85
+    }, {
+        title: 'parasite',
+        score: 95
+    }
+
+]
+
+movies.forEach(function (movie) {
+    console.log(`${movie.title}- ${movie.score}/100`)
+})
+// Amadeus- 99/100
+// Stand By Me- 85/100
+// parasite- 95/100      이렇게 나온다.
+//console.log(movie) 만 입력했을땐 객체 전체가나왔다.
+
+
+// map - 콜백배열메서드중 하나. 콜백함수의 반환값을 이용하여 새배열을 만든다
+//콜백함수를 써서 배열의 요소당 1번씩 실행한다는 점에서 forEach와 비슷한데
+//다른점은 그 반환값을 이용해서 새로운 배열을 만든다.
+//보통 데이터의 일부만 가져오거나 요소를 두배로 늘린다거나 그럴때 필요. 원래배열을 기반으로
+//새로운배열을 생성한다면 map을쓰는게낫다.
+const number = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+const doubles = number.map(function (numb) {
+    return numb * 2;
+})
+//모든요소가 이 함수식에 대입되고 변환돼나온다. number자체를 변경하지않고
+//새로운 배열을 만들어낸다 [2,4,6,8,10,12..] 그리고 그배열을 변수에 저장한다
+
+
+const moviee = [
+    {
+        title: 'Amadeus',
+        score: 99
+    },
+    {
+        title: 'Stand By Me',
+        score: 85
+    }, {
+        title: 'parasite',
+        score: 95
+    }
+
+]
+const title = moviee.map(function (movi) {
+    return movi.title.toUpperCase()
+}
+)
+
+//화살표함수   인터넷익스플로러에선 실행안됨 map쓸때 사용하면 편함 왜냐면 map()괄호안에
+//들어갈함수는 보통 1회성이라 화살표함수로 간결하게 써주면 좋다
+// const add=function(x,y){
+//     return x+y;
+// }    일반함수식을 화살표함수로 간결하게 쓸수있다. function을빼고 => 화살표만추가하면됨
+const add = (x, y) => {
+    return x + y;
+}
+const square = (num) => {
+    return num * num
+}
+//결정할 인수나 매개변수가 없다해도 빈괄호는 필요하다
+const rollDie = () => {
+    return Math.floor(Math.random() * 6) + 1
+}
+//인수가 한개면 괄호가 없어도 괜찮다. 그러나 0개거나 2개부터는 괄호꼭필요.
+const cube = num => {
+    return num ** 3
+}
+
+//화살표함수의 반환 :암시적반환 이라고도함   오직 화살표함수에서만 가능. 특정상황에서 
+//return(반환)키워드를 뺄수있다..! return을 지우고 식 앞뒤로 괄호를 쓴다
+const rollDi = () => (
+    Math.floor(Math.random() * 6) + 1
+)
+//여기서 더 짧게 괄호없이 한줄로 만들수도 있다.
+const add1 = (x, y) => x + y
+//암시적반환 즉 return을 지울때는 표현식이 딱 하나만 있어야함
+//모든 함수에 다쓸수 있진 않다고함..
+
+const movie1 = [
+    {
+        title: 'Amadeus',
+        score: 99
+    },
+    {
+        title: 'Stand By Me',
+        score: 85
+    }, {
+        title: 'parasite',
+        score: 95
+    }
+
+]
+const newmovie = movie1.map(function (movie2) {
+    return `${movie2.title}- ${movie2.score / 10}`
+}
+)
+
+const newmovi = movie1.map(movie2 =>
+    (`${movie2.title}- ${movie2.score / 10}`)
+)
+
+//화살표가 있을때=> return과 {}가 없는지 보면 암시적반환인지 알수있다.
+
+
+//setTimeout과 setinterval 이 함수들은 실행을 연기하고 대기하고 중단하거나 추후 날짜
+//로 실행을 연기하거나 기본적으로 작업일정을 정한다. 인수안에 함수와 밀리초숫자쓴다
+console.log('HELLO!!')
+setTimeout(() => {
+    console.log('...ard you still there?')
+}, 3000)
+console.log('GOOD BYE!')
+//콘솔에서 3초뒤 ..are you still there? 가 뜬다.대박
+
+// setinterval은 콜백을 매 특정 밀리초마다 호출하는 함수다.즉, 간격(인터벌)을 두고
+//작업을 반복한다.
+const Id2 = setInterval(() => {
+    console.log(Math.random())
+}, 2000)
+//setTimeout과같이 인수안에 함수와 밀리초숫자를 쓴다. 콘솔에 2초간격으로 랜덤숫자가 나온다
+//이 함수는 자주 쓰이지는 않지만 그래도 어떤작업을 인터벌을 두고 실행해야하는 상황은 반드
+//시 생긴다. setInterval에 Id를 줘서 서로 다른 인터벌로 실행되는  setInterval
+//함수를 여러개 호출할수있다. 그리고 이 Id를 사용해서 중단하고싶은 함수를 지정할수있다.
+//콘솔에 Id2를 치면 1이라고 나오는데 첫번째 setInterval이라는뜻. 중단하고싶으면
+//clearInterval(Id2) 라고치면된다. 페이지를 닫으면 브라우저가 계속출력을 하진않겠지만
+//창이 열려있다면 계속 출력을 할테니까 clearInterval이 필요하다.
+
+
+//filter 메서드  원본배열을 바꾸지않고 새배열을 만든다 인수에 콜백을 해서 콜백이 참이나
+//거짓을 반환해야한다 (불리언 함수.) 그리고 그 콜백이 true값을 반환하면 그 요소는 마지막
+//에 만들어지는 필터링된 배열에 추가된다 아닌경우엔 무시됨
+//filter는 평점이 가장 높은 아이템이나 새로운아이템등을 필터링하려고 할때 유용하다
+const number1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+number1.filter((n) => {
+    return n < 10
+})
+//콘솔에 number1.filter부터 끝까지 복사해서 입력해보면 새로운배열 1부터9까지 만들어준다. 
+
+const movie3 = [
+    {
+        title: 'Amadeus',
+        score: 99,
+        year: 1984
+    },
+    {
+        title: 'Stand By Me',
+        score: 85,
+        year: 2013
+    }, {
+        title: 'parasite',
+        score: 95,
+        year: 2019
+    }
+
+]
+const goodMovies = movie3.filter(mo => {
+    return mo.score > 95
+})
+// const goodMovies = movie3.filter(mo => mo.score > 95) 암시적반환으로짧게ver.
+const recentMovies = movie3.filter(mo => mo.year > 2010)
+const recentTitle = recentMovies.map(mo => mo.title)
+//map을 써서 title만 빼왔다. filter는 >기호로 참이면 새배열을 만든다.
+movie3.filter(mo => mo.score > 90)
+    .map(mo => mo.title)
+//filter와 map을 한번에 쓸수있다. 한줄에 쓰면좋지만 코드가 길면 들여쓰기를할수도있다
+
+
+//colt test 49:filter exercise  답3개 
+function validUserNames(usernames) {
+    return usernames.filter(n => n.length < 10)
+
+}
+//const new 했더니 오류. neww로 바꿈. 
+function validUserNames(usernames) {
+    const neww = usernames.filter(function (n) {
+        return n.length < 10
+    });
+    return neww
+}
+//숏버전
+const validUserNames = usernames => usernames.filter(n => n.length < 10)
+
+//every 와 some   불리언메서드로 항상 참이나 거짓값을 반환.
+const exams = [80, 98, 92, 78, 70, 90, 89, 84, 81, 77]
+exams.every(scor => scor >= 75)
+//이중 하나가 콜백에서 거짓을 반환하면 every 전체가 false 반환. 모두 true면 true반환.
+exams.some(scor => scor >= 92)
+//이중 하나가 true면 모두 true. 최소 한번 이상 참이 반환되는지 여부를 확인.
+
+//colt test:50 som/every exercise
+function allEvens(arr) {
+    return arr.every(ar => ar % 2 === 0)
+}
+//숏버전     
+const allEvens = arr => arr.every(ar => ar % 2 === 0)   
