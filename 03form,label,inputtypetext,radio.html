@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>race registration</title>
+</head>
+<!-- form  체크박스,이메일,패스워드 같은 요소들을 감싸고있는 눈에안보이는 컨테이너, 투명네모테두리가 
+    있다고 생각하면됨  폼요소는 폼을 제출했을때 폼데이터를 어디로 보낼지 지시함 데이터를 폼에서 
+내서버로 보내라는 구체적인 지시를 내릴수있음 어디든 보낼수있는건 아니지만 상당한유연성을 발휘함
+부모 폼요소라는 폼요소가 있는데 데이터를 어떻게 어디로 전송할지 부모가 정함-->
+
+<body>
+    <p>
+    <h1>Race Registration!</h1>
+    </p>
+    <!-- action - 폼이 제출됐을때 데이터를 보낼 위치와 시간은을 지정함-->
+    <form action="https://google.com/search">
+        <section>
+            <label for="FirstName">First Name</label>
+            <input type="text" name="FirstName" id="FirstName" required>
+            <label for="LastName">LastName</label>
+            <input type="text" name="LastName" id="LastName" required>
+        </section>
+        <!-- input 체크박스,색상선택기,날짜선택기등 20가지정도되는 입력란을 만들수있다
+        type이라는 속성하나를 변경하는데 이 type이 작동방식을 바꾼다
+    input은 닫는태그가 없는 요소이다 label과 연결을해줘야하는데 
+    input의 id와 label의 for를 똑같이 써주면됨 id는 중복되선안됨 요소마다 다른id를써야함-->
+        <section>
+            <h3>test input things</h3>
+            <p>
+                <label for="color">choose your coloer</label>
+                <input id="color" type="color" name="color">
+            </p>
+            <p>
+                <label for="number">pick the number</label>
+                <input id="number" type="number" name="num" step="2" placeholder="number" min="1" max="100">
+            </p>
+            <!-- number에도 최소값과 최대값을 정할수있음 step은 2씩 숫자가움직임 1,3,5..  
+                숫자범위를 작게해놓으면 인풋박스가 작아지는데 css로 수정가능-->
+            <p>
+                <label for="time">enter the time</label>
+                <input type="time" name="time" id="time">
+            </p>
+        </section>
+        <!-- input은 인라인이라 p로 줄을 나눠도됨 label과 input을 다른줄에쓰고싶다면 p로 나눠도됨 
+        name -서버로 데이터를 전송할때 사용돼서 알아보기쉽게 써야함 인풋입력값을 적고 제출하면
+    주소내용에 password=colt1&number=0 이런식으로 name과 입력한값으로 이용된다
+password같은게 url에 표시되면 안됨 get이라는 메서드를 써서 그런건데 데이터가 url에 표시되지않고
+전송되는 post메서드를 나중에 배울거임-->
+
+        <h3>Select a Race:</h3>
+
+        <div>
+            <input type="radio" name="select race" id="Fun Run 5k" value="Fun Run 5k">
+            <label for="Fun Run 5k">Fun Run 5k</label>
+        </div>
+        <div>
+            <input type="radio" name="select race" id="Half Marathon" value="Half Marathon">
+            <label for="Half Marathon">Half Marathon</label>
+        </div>
+        <div><input type="radio" name="select race" id="Full Marathon" value="Full Marathon">
+            <label for="Full Marathon">Full Marathon</label>
+        </div>
+        <div>
+            <label for="Email">Email</label>
+            <input type="text" name="Email" id="Emai" required>
+            <label for="Passw">Password</label>
+            <input type="text" name="Password" id="Passw" required>
+        </div>
+        <div>
+            <label for="agegr">Select Age Group</label>
+            <select name="agegroup" id="agegr">
+                <option value="under 18" selected>under 18</option>
+                <option value="18~50">18~50</option>
+                <option value="51~80">51~80</option>
+            </select>
+        </div>
+        <button>Register!</button>
+    </form>
+    <!--  button form안에 있으면 action주소로 제출하고 form밖에있으면 아무일도일어나지않음 
+form 안에 button이 있어도 buttod type="button" 을쓰면 제출안됨
+    js로 button에 관한 기능이있다고함  -->
+
+
+    <!-- <label>enter the time
+<input type="time" name=""> 
+</label>       label안에 input을 써서 중첩시켜도 되는데 중첩을안쓰는게 표준이고 더흔함 -->
+
+    <input type="submit" value="click">
+    <!-- ↑잘안씀  제출하는버튼이생김 디폴트는 submit이적힌 버튼이고 value를적으면 글자가 바뀐다
+      value - input박스에 표시되는 글자 -->
+
+    <form action="https://www.google.com/search">
+        <input type="text" name="q">
+        <button>serch naver</button>
+    </form>
+    <!--  name에 q를 넣으니 검색창주소로 연결이 돼서
+입력값에 엽기떡볶이를 입력하면 google.com/search/q=엽기떡볶이 이렇게 넘어감 
+
+form에 input만 있고 버튼은 없는경우에 엔터치면 제출 -->
+    <form action="www.naver.com">
+        <div>
+            <input type="checkbox" id="purple" name="보라" checked>
+            <label for="purple">보라색</label>
+        </div>
+        <div>
+            <input type="checkbox" id="red" name="빨강">
+            <label for="red">빨강색</label>
+        </div>
+        <!-- checkbox는 label 처리를 꼭해야함 안그럼 무엇과 관련돼있는지 알아보기힘듦 
+checked를 써서 디폴트를 체크된상태로 만들수도 있다 -->
+
+        <p><label for="m">m</label>
+            <input type="radio" name="size" id="m" value="m">
+            <label for="l">l</label>
+            <input type="radio" name="size" id="l" value="l">
+            <label for="xl">xl</label>
+            <input type="radio" name="size" id="xl" value="xl">
+        </p>
+        <button>제출</button>
+        <!-- radio name을 똑같이 써줘야 묶여서 여러 라디오버튼 중 한개만 선택가능하다 
+value 사용자한텐 안보이고 폼이제출되면 내용이뭔지 m인지 l인지 value값으로 알수있다 -->
+        <label for="num">숫자를 골라주세요</label>
+        <select name="number" id="num">
+            <option value="">--좋아하는숫자--</option>
+            <option value="1" selected>1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+
+        <!-- select안에 option. value는 url주소에 number/1 나타나는 내용
+첫번째 value는 플레이스홀더라 아무내용도없어서 빈value 
+selected로 디폴드값을 정할수있다 -->
+    </form>
+    <!--name은중요함 모든input에다써야함서버로데이터를전송할때 무슨내용인지알수있음-->
+    <h3>유튜브검색</h3>
+    <form action="https://www.youtube.com/results">
+        <input type="text" name="search_query">
+        <button>유튜브검색</button>
+    </form>
+    <h3>네이버검색</h3> <!--네이버검색주소 따기힘들었음 휴-->
+    <form action="http://search.naver.com/search.naver">
+        <input type="text" name="query">
+        <button>네이버검색</button>
+    </form>
+    <h3>구글검색</h3>
+    <form action="https://www.google.com/search">
+        <input type="text" name="q">
+        <button>구글검색</button>
+    </form>
+    <h2>what would you like?</h2>
+    <form action="/drink">
+        <div>
+            <input type="checkbox" id="coffee" name="coffee">
+            <label for="coffee">coffee</label>
+        </div>
+        <div>
+            <input type="checkbox" id="milktea" name="milktea">
+            <label for="milktea">milktea</label>
+        </div>
+        <div>
+            <input type="checkbox" name="coke" id="coke">
+            <label for="coke">coke</label>
+        </div>
+        <p>
+        <h2>where would you sit?</h2>
+        <label for="next to window"> next to window</label>
+        <input type="radio" name="sit" id="next to window" value="next to window">
+        <label for="upstairs">upstairs</label>
+        <input type="radio" name="sit" id="upstairs" value="upstairs">
+        <label for="outside">outside</label>
+        <input type="radio" name="sit" id="outside" value="outside">
+        </p>
+        <div>
+            <label for="music-select">
+                <h2> choose music! </h2>
+            </label>
+            <select name="music" id="music-select">
+                <option value="">choose music!</option>
+                <option value="적재-나랑별보러가지않을래">적재-나랑별보러가지않을래</option>
+                <option value="여자아이들-퀸카" selected>여자아이들-퀸카</option>
+                <option value="아이브-kitch">아이브-kitch</option>
+                <option value="nmix-lovemelikethis">nmix-lovemelikethis</option>
+            </select>
+        </div>
+        <!-- range 슬라이더를 만들어서 사용자가 그범위내에서 값을 선택하게 함 최소값과 최대값 조정가능 
+    음량조절 가로로 길쭉한바 생각하면됨 100으로설정하고 제출하면 url에 volume/100 뜸 -->
+        <p>
+            <label for="volume">
+                <h2> 원하는음량</h2>
+            </label>
+            <input type="range" id="volume" name="volume" min="0" max="100" step="2" value="50">
+
+            <!--step은 2씩칸이옮겨진다는거고 value는 50이디폴트라는말-->
+        </p>
+        <div><label for="requests">
+                <h2> 기타고객요청</h2>
+            </label>
+            <textarea name="requests" id="requests" cols="50" rows="10" placeholder="요기에적어주세용"></textarea>
+        </div>
+        <button>submit</button>
+
+        <!-- textarea 텍스트잔뜩써놓게해놓은박스 엔터를치면서 타이핑할수있고 rows는 세로길이를, cols는
+    가로길이 조정을 해줌 아니..여태배운건 row가로 column세로인데 여기선 또 바뀌네  -->
+    </form>
+
+    <!-- html의 빌트인 유효성검사 이메일이면 @들어가고 url이면 ://이들어가야 제출됨 이게 유효성검사 -->
+    <h2>Validations Demo</h2>
+    <form action="/brunch">
+        <label for="userid">Enter user ID</label>
+        <input type="text" name="userid" id="userid" minlength="5" maxlength="13" required>
+        <p>
+            <!-- required 쓰면 칸이채워져야 제출이된다 필수값으로 쓰고싶을때 required -->
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" minlength="8" maxlength="13" required>
+        </p>
+        <!-- minlength, maxlength 최소글자수,최대글자수 범위내로 써야 제출됨  필수값으로만들기위해 required -->
+        <p>
+            <label for="email">email</label>
+            <input type="email" name="email" id="email" required>
+        </p>
+        <label for="url">Url</label>
+        <input type="url" name="url" id="url" required>
+
+        <button>submit</button>
+
+    </form>
+
+</body>
+
+</html>
