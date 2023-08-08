@@ -60,13 +60,7 @@ wrap-reverse; 반대방향.   flex-wrap=줄바꿈이라보면됨
     /* flex-grow: 1; */
 }
 
-/* div:nth-of-type(2) {
-    align-self: center;
-}
 
-div:nth-of-type(3) {
-    align-self: flex-end; 
- } */
 
 /* div:nth-of-type(1) {
     flex-grow: 1;
@@ -115,27 +109,46 @@ justify-content와 align-items 둘다 center로 쓰면 중앙정렬이 된다.�
  글자크기가 다를경우에 각글자를 잇는 밑줄을 긋는다고 생각하고 그 밑줄에 맞춰 정렬된다
  hello 만봐도 h와 e가 다른데 밑줄에 맞춰 정렬이된다 */
 
-/* align-content가 작동하려면 flex-wrap이 필수 안그럼작동안함 
-수직을 주축으로할때 가로요소 사이 공간을 조정 
-space-between; 요소간중간여백*/
-/* align-self:flex-end;center;등 한요소씩만움직일때씀 nth-of-type()과함께 하나씩쓸때좋음 */
+/* align-content  wrap이 작동됐을때 교차축으로 이동시킴  flex-wrap이 필수 안그럼작동안함  wrap이 작동돼서 
+ ㅁ ㅁ ㅁ  이렇게퍼져있을때  ㅁㅁㅁ    align-content:center를 써서 중앙으로 모아주거나                             
+ ㅁ ㅁ                      ㅁㅁ     flex-start 교차축시작점, flex-end 교차축끝으로보냄                             
+ align-content:space-between; 요소간중간여백 수직을 주축으로할때 가로요소 사이 공간을 조정 
+ 줄바꿈없이 단일행,열이라면 align-content는아무것도 바꾸지않음
+    */
+
+/* align-self 는 align-items와 비슷, 교차축을 기준으로 단일 요소의 위치를 바꿈 
+ align-self:flex-end;center;   div:nth-of-type(3) {align-self:center} 이런식으로 요소한개를 옮김*/
 
 /* flex-basis 요소가 한줄로 늘어서있을때 flex-basis가 너비의기준이됨 width를지정해도
-무시됨 너비를 조정하면되는데 flex-basis를 쓰는이유는? 가로주축에 걸쳐있기때문 하지만 세로
-로바꾼다면 세로로길어짐 즉,요소가 배치될때 최초크기임 주축의 방향에따라 너비도,높이도됨
-남는공간이 있을때 (예를들어nowrap일때) 너비나 높이가 계속커질수있다*/
-/* div:nth-of-type() {flex-grow:1;} flex요소를 크기를늘려준다 nth-of-type을이용해
-한개의요소만 키울수도있고 flex-grow:1; 전체크기를 균등하게 차지할수있다 창을줄이더라도
-비율은유지된다 창을계속줄이면 flex-wrap이적용돼있기때문에 요소들이 아래칸으로내려간다
-nowrap일경우(줄바꿈이없을경우)flex-grow 비율을 1;2; 요소마다따로따로 설정해놔도 
-flex-basis가 500px처럼 크다면 한줄의 총너비의 한계때문에 500px까지 
-커지진못하고 비율도 1;2; 로되지않고 동일한크기에서 멈춘다 */
-/* max-width:300px;요소들이늘어나다가 300px이넘어가면 더이상안늘어나고 좌우공간에뒷배경이
-보인다 flex-grow로 비율을 크게설정해도 max-width를 정해놓으면 더이상늘어남
-min-width 너무작아지는것을 방지할수있다 */
+무시됨 너비를 조정하면되는데 flex-basis를 쓰는이유는? 주축이 가로면 너비, 세로면 높이가 변한다
+예를들어 flex-direction:row고 width:200px;  flex-basis:400px 이면 width는 무시되고 너비는 400px이됨
+반대로 column일때 height:200px; flex-basis:300px 이면 높이는 300px이된다.
+wrap(줄바꿈)일땐 basis를 700px처럼 크게설정하면 줄바꿈이 되고 
+nowrap 일땐 남는공간 안에서 너비나 높이가 커질수있다*/
+
+/* div:nth-of-type(1) {flex-grow:1;} flex요소 크기를늘려준다 nth-of-type을이용해
+한개의요소만 키울수도있다 나머지박스들은 크기가 그대로인데 1번박스만 남은공간을 다차지한다
+아니면 전체크기를 균등하게 차지할수도있다 창을줄이더라도 비율은유지된다 
+flex-wrap이적용돼있을때 창을계속줄이면 요소들이 아래칸으로내려간다
+
+max-width:300px;요소들이늘어나다가 300px이넘어가면 더이상안늘어나고 좌우공간에뒷배경이
+보인다 flex-grow로 크기를 크게설정해도 max-width를 정해놓으면 더이상늘어나지않는다
+min-width 너무작아지는것을 방지할수있다
+
+flex-grow를  초록박스1; 보라박스2; 로정하면 원래 초록박스가 200px일때 250px로 ,
+보라박스는 300px에서 400px로 커진다 초록 50px 보라 100px 커진거니까 2배 커짐
+
+nowrap일경우(줄바꿈이없을경우) flex-grow를 설정해놔도 flex-basis를 500px로 정하면 
+한줄의 총너비의 한계때문에 500px까지 커지진못하고 비율도 1; 2; 로되지않고 동일한크기에서 멈춘다 */
+
 /* flex-shrink 컨테이너에 충분한공간이없을때 요소들이 줄어드는비율을 정함 
-flex-grow와 반대. nth-of-type()을통해 한개만 줄일수도있음. 한요소를 0으로 정하면 
-그요소만 빼고 나머지들은 줄어듦*/
-/* flex속기법 3개- flex-grow flex-shrink flex-basis; 2개 grow shrink; 2개인데 px이나
-em이라면 grow basis; 1개 grow;  basis만 % px em 단위가있고 grow shrink단위없음
-colt says flex속기 유용하다함*/
+flex-grow와 반대. nth-of-type(1){flex-shrink:2}을통해 한개만 줄일수도있음. 그럼 1번박스가
+2비율만큼 줄어든다  한 박스를 0으로 정하면 그박스만 빼고 나머지들은 줄어듦*/
+
+/* flex속기법  flex: 2 2 10%; 
+3개- flex-grow flex-shrink flex-basis  2개 flex-grow flex-shrink 
+2개인데 2번째오는숫자단위가 px이나 em이라면 flex-grow flex-basis 
+단위없는 숫자 1개 grow;     flex: em,%,min-content 이단위들이쓰이면 1개 basis 
+basis만 % px em 단위가있고  grow, shrink단위없음
+잘 보면 grow가 보통 맨 앞에오고 단위가 붙으면 무조건 basis.
+colt says flex속기 유용*/
