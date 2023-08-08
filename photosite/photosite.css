@@ -1,0 +1,21 @@
+img {
+    width: 30%;
+    /* margin: 1.6666666%; */
+    margin: calc(10%/6);
+}
+
+nav {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    border-bottom: 2px solid #f1f1f1;
+    width: 30%;
+    margin-left: calc(10%/6);
+    padding: 1.2em 0;
+}
+
+/* 30 + 30 + 30
+
+10%       ->사진3개,10%여백    -> 10%여백을 사진사이에 넣으려면 10%/6 6개의좌우여백 */
+/* photosite.html에 <img><img> 화이트스페이스가 없어야함 안그러면띄어쓰기됨
+<span><span>도 공백없이 쓰려면 붙여써야함 인라인요소기때문 */
