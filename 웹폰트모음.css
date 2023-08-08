@@ -1,3 +1,10 @@
+단조 깔끔하면서간지남 @font-face {
+    font-family: 'Danjo-bold-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/Danjo-bold-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 하트체 @import url('https://fonts.googleapis.com/css2?family=Single+Day&display=swap');
 
 네오둥근고딕 @font-face {
