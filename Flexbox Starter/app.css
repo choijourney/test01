@@ -1,3 +1,5 @@
+/* flexbox 컨테이너를 만들고 그안에 요소크기,요소들 사이에 공간을 정하고  
+균등하게 만들지말지 보기좋게 배치를 하고 창크기에따라 변화하도록 만든다     */
 body {
     font-family: 'Open Sans', sans-serif;
 }
@@ -6,11 +8,16 @@ h1 {
     text-align: center;
 }
 
+/* flex-direction   flexbox 안에는 가로,세로축이있다 본축은 가로축
+flexbox 기본!  @좌-우정렬이 기본    flex-direction으로 바꿀수있는데
+ 일단 기본은 flex-direction:row; 좌-우임   우-좌로 바꾸고싶으면 row-reverse; 
+ 상-하 column   하-상 column-reverse;  */
 #container {
     background-color: #003049;
     width: 90%;
     /* height: 500px; */
     margin: 0 auto;
+    /* margin auto 가운데정렬 */
     border: 5px solid #003049;
     display: flex;
     flex-direction: row;
@@ -20,6 +27,29 @@ h1 {
     /* align-content: space-between; */
 }
 
+/* justify-content   요소를 시작점으로 정렬. 기본값은 justify-content:flex-start;
+ flex-direction이 row 가로일때는 왼쪽, column 세로일땐 위에서부터 정렬.    
+ justify-content:flex-end; 당구점수판처럼 왼쪽에있던 요소를 오른쪽으로 밀어준다
+ row가로배치일땐 오른쪽, column세로배치일땐 아래로 밀어줌 
+ justify-content:center 가운데정렬    
+ justify-content:space-between   바깥쪽여백을다없애고 요소사이에만 여백을 동등하게줌  
+ space-around; 요소의둘레에 똑같은 면적의 여백을 줌=맨왼쪽맨오른쪽여백크기가 반쪽임
+space-evenly; 요소사이와 맨왼쪽오른쪽까지도 모두 동일크기의 여백을줌=모든여백크기가동일
+ */
+
+
+/* flex-direction:column 했을때 200px인 박스가 5개고 height이 500px이라 박스크기가 자동으로 작아진다
+만약 height을 1200px로 늘리면 200px이 남는다.이렇게 유연하게 자동으로 크기가 조절된다. 
+height을 500px로 하고 flex-direction:column 으로 상-하 정렬로 만들고 
+
+flex-wrap:wrap  을하면 왼쪽에 상-하 정렬돼있던 박스들이 오른쪽으로 
+ㅁ  ㅁ  ㅁ     이런식으로 이동한다(좌-우).  여기서 wrap-reverse쓰면 우-좌.
+ㅁ  ㅁ   
+wrap-reverse; 반대방향.   flex-wrap=줄바꿈이라보면됨
+ flex-direction:row; flex-wrap:wrap ->좌에서우 가기본축이니까  상-하 정렬생김 
+ ㅁ ㅁ ㅁ ㅁ  이런식.  wrap-reverse쓰면 하-상으로 바뀜 좌-우는안바뀜  
+ ㅁ ㅁ
+ nowrap; 디폴트.   wrap은 교차축의방향으로 정렬생김. */
 #container div {
     width: 200px;
     /* max-width: 300px; */
@@ -67,27 +97,24 @@ main .maincontent {
 
 /* html에 인라인으로 썼던 5개색깔박스 안나타나다가 css에 width,height 쓰니 나타남
  블록요소니 처음에 세로로 나열됐는데 display:flex; 하니까 갑자기 가로로바뀜 */
-/* flexbox 기본!   @좌-우정렬이 기본    flex-direction으로 바꿀수있는데
- 일단 기본은 flex-direction:row; 임   우-좌로 바꾸고싶으면 flex-direction:row-reverse; 
- 상-하 column   하-상 column-reverse; 
- */
-/* justify-content:flex-start; -기본정렬    flex-end; -끝을컨테이너끝과맞춰줌
-ex) flex-direction:row; flex-end; 일때 오른쪽끝변과맞춰끝남 
-center; 는 요소를 주축을따라 중앙으로보냄
-space-between; 은 바깥쪽여백을다없애고 요소사이에만 여백을 동등하게줌  
-space-around; 요소의둘레에 똑같은 면적의 여백을 줌=맨왼쪽맨오른쪽여백크기가 반쪽임
-space-evenly; 요소사이,요소와컨테이너 사이에도 모두 동일크기의 여백을줌=모든여백크기가동일*/
+
 /* flex-direction:row-reverse; 가되면 우-좌정렬이됨 주축이 '우'니까 
 justify-content:flex-end 는 콘텐츠를 왼쪽끝으로 보냄 주축에따라 바뀜=flex-direction에
-따라바뀜 주축이 row면 row로보냄 column이면 column으로 보냄
-  */
-/*flex-direction:column; flex-wrap:wrap ->요소가 위에서 아래로 우로 열이생기면서정렬 
-  wrap-reverse; 반대방향.위에서아래는 같지만 우에서 좌로정렬  flex-wrap=줄바꿈이라보면됨
- flex-direction:row; flex-wrap:wrap ->좌에서우 가기본축 위에서아래로 정렬생김 
- nowrap; 디폴트.   wrap은 교차축의방향으로 정렬생김. 주축이 세로라면 교차축인 가로정렬.*/
-/* align-items:flex-start 디폴트. flex-end; 교차축의끝으로감.   center;중앙 
-교차축으로 보냄 가로면 세로로보내고 세로면 가로로보냄
- baseline; 텍스트밑에줄을긋는다생각하고 그기준선에맞춰정렬*/
+따라바뀜 */
+
+/* align-items: 교차축을 따른다 justify-content와 반대
+flex-start 디폴트. 교차축의 시작점을 기준
+flex-end; 교차축의끝으로감.   center;중앙 
+flex-difection:row로 좌-우 기본정렬 돼있던 박스를 justify-content로 center로 보내면 맨윗줄 가운데로 간다.
+이상태에서 align-items:flex-end; 를쓰면 교차축맨아래로 가니까 맨아랫줄 가운데로 간다.
+이런식으로 교차축으로 이동시키는 역할을한다.
+justify-content와 align-items 둘다 center로 쓰면 중앙정렬이 된다.박스크기들을 다르게 해도 중앙정렬유지된다
+
+ align-items:baseline; 박스안에 텍스트가 있으면 박스들은 중앙정렬이지만 텍스트는 윗줄에 들쭉날쭉있다
+ 그럴때 baseline을쓰면 텍스트기준정렬 되면서 텍스트가 맨윗줄로 가고 박스도 맨윗줄로 간다 
+ 글자크기가 다를경우에 각글자를 잇는 밑줄을 긋는다고 생각하고 그 밑줄에 맞춰 정렬된다
+ hello 만봐도 h와 e가 다른데 밑줄에 맞춰 정렬이된다 */
+
 /* align-content가 작동하려면 flex-wrap이 필수 안그럼작동안함 
 수직을 주축으로할때 가로요소 사이 공간을 조정 
 space-between; 요소간중간여백*/
