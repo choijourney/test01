@@ -1,0 +1,64 @@
+div {
+    width: 100px;
+    height: 100px;
+    background-color: #3d405b;
+    border: 2px solid black;
+    margin: 10px;
+    display: inline-block;
+}
+
+#static #middle {
+    position: static;
+    top: 100px;
+    background-color: darkgoldenrod;
+}
+
+/* position:static =>static이 '고정된'이라는뜻 top px을바꿔봤자 고정됐기때문에 변화없음 
+원래는 top:100px 을지정하면 요소위에 100px만큼 공간이생김 */
+
+#relative #middle {
+    position: relative;
+    top: 100px;
+    left: -100px;
+    background-color: rgb(248, 76, 18);
+}
+
+/* relative -> 원래위치를 기준으로 옮겨짐 */
+
+#absolute #middle {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    background-color: deeppink;
+}
+
+/* absolute  문서에서 공간을 차지하지않음. 그런데 top을 지정하면 
+가장가까이위치한 조상을 기준으로하거나 조상이없다면 
+초기컨테이너블록 즉 <body>를 기준으로 배치된다  
+#absolute #middle의 경우 #absolute section의 부모는 body라서 body기준으로 배치 */
+
+#absolute {
+    position: relative;
+}
+
+/* #absolute div를 기준으로 삼기위해 relative를 썼다  
+맨왼쪽에 마진은 div 마진을 10px로 설정해서임 */
+
+#fixed #middle {
+    position: fixed;
+    top: 0;
+    /* left: 0; */
+    background-color: #399749;
+}
+
+/* fixed  초기컨테이너블록을 기준으로  그자리에 계속 유지된다 
+스크롤을 움직여도 계속 같은자리에있다  문서에공간을차지하지않음 top을 지정하면 body를기준으로 배치*/
+
+#sticky {
+    position: sticky;
+    background-color: rebeccapurple;
+    top: 0;
+}
+
+/* sticky; 일반박스처럼 있다가 스크롤을 내리면 고정이됨  주의할점이 꼭 body 한단계아래 요소만 
+영향을 받는다 두단계아래여도 안됨   그래서 h2를 div #sticky위로 빼고 #sticky에 포지션 스티키를 씀*/

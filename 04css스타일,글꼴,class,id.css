@@ -98,6 +98,7 @@ button {
     color: #7f4f24;
 }
 
+/* id는 한페이지에 10개넘지않게 쓰는게 좋다함  */
 .tag {
 
     font-size: 18px;

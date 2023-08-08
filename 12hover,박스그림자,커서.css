@@ -1,0 +1,36 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #151b29;
+}
+
+/* display:flex   flex 컨테이너 만듦. 
+align-items:center 가로 센터.   justify-content:center  세로센터
+vh - viewport height 현재 실행중인 스크린 크기에 맞춰 상대적 크기를 반환 스크롤을 포함한길이. */
+button {
+    background: none;
+    color: #ffa260;
+    border: 2px solid;
+    padding: 1em 2em;
+    font-size: 1em;
+    transition: color 0.25s, border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+    /* border:2px solid 컬러; 컬러자리에 아무것도 안쓰면 그윗줄에 적은 #ffa260 컬러를 씀
+     all 0.25s; all써도되지만 colt쌤이되도록쓰지말라함 */
+}
+
+button:hover {
+    border-color: #f1ff5c;
+    color: white;
+    box-shadow: 0em 0.5em 0.5em -0.4em #f1ff5c;
+    /* box-shadow: x그림자 y그림자 블러 전체번짐 컬러   양수면 아래,오른쪽에 그림자가 생김. 
+    음수면 위와 왼쪽에 그림자생김 */
+    transform: translateY(-0.25em);
+    /* y축으로 0.25만큼 이동 */
+    cursor: pointer;
+    /* cursor:pointer 작은장갑낀손으로 바뀜 */
+}
+
+/* 호버를 쓸때 여백 설정 등을 설정하기보다 변형을 사용하는게 좋다 */

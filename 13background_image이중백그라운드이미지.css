@@ -1,0 +1,36 @@
+/* background image */
+section {
+    width: 80%;
+    height: 800px;
+    /*  좌우 auto 15%정도씩 여백생김 */
+    margin: 0 auto;
+
+    /* background-image: url("https://images.unsplash.com/photo-1687287707109-6c48c3d92c12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60"); 
+     배경에 이미지생김 */
+    /* background-size: 40%; contain; cover;
+contain - 비율을 유지하며 이미지잘림없이 전체가 나타나지만 이미지가 반복되어나타남
+cover  비율을 유지하며 꽉차게 나타나지만 박스크기를 넘어가면 잘림있음 
+그래서 cover를 선호하지만 반복을 조정하는 방법이있음
+background-repeat: no-repeat; round; repeat;  반복 갯수정할수있고 이미지로 패턴을 만들때 유용
+size를 contain으로 정하고 no-repeat하면 디폴트값보다 작아질수있음 (반복된이미지가없어져서) */
+    /* background-position: center; top;  배경의 시작점을 지정함 top으로 지정하면 윗부분 나타남*/
+    background: center/40% no-repeat url("https://images.unsplash.com/photo-1687287707109-6c48c3d92c12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60"), black;
+}
+
+/* background:center/40% no-repeat url(),color; =>이중백그라운드이미지,위특성들을 한번에 작성하는 속기법
+background: 속기법은 컬러하나만적어도되고 여러 특성을 한번에 적어도됨. 다른순서는 상관없는데 size를 쓰려면
+position 뒤에 / 와함께 center/cover 이런식으로 써야함. 
+40%니까 크기가 이미지크기가 작아지고 이미지가 반복되는데 no-repeat을 쓰면 작은 이미지 하나가 남음.
+작은이미지 상태에서 color를 설정하면 원래 반복된이미지가 있던 자리에 색깔이 설정돼서 이중백그라운드가된다.
+color대신 다른이미지를 넣어도됨
+
+background-image:url() 에는 컬러가 안먹힘.실험해봄  background에 쓰기 */
+
+
+h1 {
+    font-size: 100px;
+    color: white;
+}
+
+/* background-image:linear-gradient 그라데이션도 넣을수있다  
+  unsplash ->사진무료사이트bb 오른쪽마우스클릭 주소복사 */

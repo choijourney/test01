@@ -1,0 +1,214 @@
+/* h1,h2 {           h1과h2의 스타일을 다 브라운색으로적용
+    background-color: brown;
+} */
+
+
+p a {
+    color: #582f0e;
+}
+
+/* 자손선택 p문단안의 a 컬러를바꿈   자손은 자식,손자,모든후손을 말함
+a가 p의 한단계아래가 아니고 후손이어도 선택*/
+
+
+/* 직계자손선택 ->한단계아래를 선택하고 자식의 자손이있으면 자손까지선택한다
+직계를선택하고 그자손까지선택함   .*/
+footer>button {
+    color: brown;
+}
+
+
+/*속성선택자  주로 input,checkbox 등 속성을 갖는 요소들을 선택함. 대괄호를 사용
+input[type="password"]{          모든 패스워드타입요소의 컬러를 바꿈
+    color:orange;
+    background-color: black;}  
+*/
+input [type="password"] {
+    color: deepskyblue;
+}
+
+/*예를들어 많은버튼중에 버튼한개의 색상만 바꾸고싶을때 클래스를 줘서 색상을바꾸면됨  */
+.anything {
+    color: #582f0e;
+}
+
+span {
+    color: #6c584c;
+}
+
+/* 인접 형제 선택 */
+h1+p {
+    color: #6c584c;
+}
+
+/* h1+p -> h1과 p가 형제일때 h1다음의 p 하나만 컬러가바뀜  h1은 안바뀜*/
+/* 만약 형제가 아니면 작동안함 */
+
+/* 일반 형제 선택 */
+h1~h2 {
+    color: #5e503f;
+}
+
+/* h1,h2가 형제일때 h1다음의 h2는 모두 컬러가바뀜         */
+
+
+
+p[class="post"] {
+    color: #472d0d;
+}
+
+/* ↑  .post 와같은효과  만약 class=post가 p이외에 div나 nav 다른요소에도
+적용이 돼있는데 p에있는 post만 선택하고싶다면   p.post  이렇게하면 post가있는 p
+만 골라줌  */
+
+
+/* 의사(가상) 클래스 */
+/* hover 커서갖다대면 색바뀜,밑줄,윗줄 등등 
+.post a:hover{} <-클래스post안에 a만선택.   a:hover 이렇게 띄어쓰기없이 써야함!!! */
+button:hover {
+    background-color: #a99985;
+    color: antiquewhite;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button:active {
+    background-color: hsl(358, 97%, 31%);
+}
+
+/* active-> 버튼을누르면색이변함  앵커에도 쓸수있음 */
+
+input:checked+label {
+    color: rgb(192, 6, 6);
+}
+
+/* input이 checked면 label글자색을 빨강색으로 바꿈 */
+input[type="checkbox"]:checked {
+    box-shadow: 0 0 0 3px orange;
+}
+
+/* checkbox가 checked되면 box전체에 그림자효과를 주고 오렌지색으로 바꿈/
+
+/* box-shadow: 5px 5px gray;
+오른쪽으로 5px, 아래쪽으로 5px 위치에 회색의 그림자 생김
+
+box-shadow: 5px 5px 5px gray;
+이전 예제(ex01)에 5px의 블러 추가.그림자가 흐릿해짐
+
+box-shadow: 5px 5px 5px 5px gray;
+이전 예제(ex02)에 5px만큼 크기 늘림. 흐린그림자 크기커짐
+
+box-shadow: inset 5px 5px gray;
+ex01 예제와 똑같이 그림자를 생성하고, inset 키워드를 추가하여 그림자 방향을 안쪽으로바꿈 
+
+box-shadow: 5px 5px gray, 10px 10px 10px yellow;
+한꺼번에 여러개의 그림자를 생성할 수 있음 각 그림자는 콤마(,)로 구분
+5px의 회색 그림자에  10px의 블러 처리된 노란 그림자가 같이 생성됨*/
+
+
+
+/* 요소선택자 nth-of-type(3) -> 3번째요소 한개만 선택  / (3n) -> 3번째요소마다 선택 3,6,9..     
+   p:nth-of-type(n)     p 타입 중에 n번째를 지정하게 됨
+ 중간에 형제가 다른 요소가 끼어 있어도 사용 가능함. (태그 타입을 직접 지정하는 거여서)
+
+ <div class="sel1">      .sel1 ul:nth-of-type(1)   은가능하지만  nth-child는 sel1과 ul사이에
+ <span>1</span>                 span이껴있어서 안된다 nth-child의범위는 span, 즉 한단계아래까지(자식요소)
+ <ul>
+ <li>1</li>
+ <li>2</li>*/
+.sel0 span:nth-child(1) {
+    color: aqua;
+}
+
+.p1 span:nth-of-type(2n) {
+    background-color: #472d0d;
+}
+
+/*  
+    <ul>                 
+    <li>one</li>            
+    <li>two</li>           
+    <li>three</li>
+    <li>four</li>
+    </ul>
+    <ul>
+    <li>first</li>
+    <li>second</li>      
+    </ul>
+     */
+/* li:nth-of-type(2)   two,second 선택
+ul:first-of-type  첫요소선택 one,two,three,four 선택.
+li:first-of-type   첫 li  one,first 선택
+ul:last-of-type    마지막 요소선택  first와second 선택. 
+ul:nth-last-of-type(2)  역방향으로 요소선택  one,two,three,four 선택.*/
+.sel0 ul:first-of-type {
+    border: 1px solid rgb(79, 79, 134);
+}
+
+/* 의사클래스 :nth-child(n) 
+ 형제 사이에서의 순서에 따라 요소를 선택함.
+ 밑에 형제태그가 다 동일해야 사용가능 (중간에 다른 요소 있으면 안됨.)
+ span:first-child 첫번째 span요소만
+ span:last-child 마지막 span요소만
+ span:nth-child(2),
+span:nth-child(4) 2,4번째 span요소만
+ span:nth-child(even) 짝수번째만
+ span:nth-child(3n) 3마다 3,6,9.. 
+ span:nth-child(n + 3)  3번째 이후로 : 3[0+3] 4[1+3] 5[2+3] 마다
+ span:nth-child(5n + 1) 5씩마다 : 1[0+1] 6[5+1] 11[10+1] 
+ span:nth-last-child (1) 끝에서부터 선택. 1이면 마지막 span선택
+ 
+ p:nth-child(n+8):nth-child(n+15)
+ p태그를 8번부터 ~ 15번 까지를 선택할 수 있다 
+ 보통 자바스크립트에서 처리했을건데 CSS로 처리시 속도가 매우 향상*/
+
+
+
+/* 가상요소 pseudo elements */
+/* :before  요소 앞에 추가,  :after  요소 뒤에 추가  */
+.sel0:before {
+    content: "Hello";
+    margin-right: 20px;
+    font-weight: bold;
+    color: rgb(24, 82, 190);
+}
+
+/* content:url("images/circle.png"); images폴더의 png추가  이미지추가가능하다  
+css로 변경가능한 기능도있고, 크기는 불가능해서 background를 조절해야한다 */
+.sel0::after {
+    content: "Bye";
+    margin-left: 20px;
+    font-weight: bold;
+    color: rgb(24, 82, 190);
+}
+
+
+
+/* p의 첫글자는 모두 30px */
+p::first-letter {
+    font-size: 30px;
+}
+
+/*  p의 첫줄 색깔 바꿈
+p::first-line {
+    color: #432818;
+} */
+
+p::selection {
+    color: rgb(80, 20, 20);
+    background-color: #fcbf49;
+}
+
+/* :selection 커서로선택하는범위를 수정해줌 */
+
+/* 가상클래스나 가상요소는 :: 두개써야하는데 하나만써도 크롬은 인식함
+:은 */
+/* 우선순위 앞보다 뒷글,뒷링크 선택 */
+/* 우선순위 ID > Class > Element  */
+/* 우선순위 1위가 html inline이지만 쓰지말기 !important는 2순위(css)*/
+/* form{color:green;} -> button,input은 컬러적용안됨 원래 따로지정해줘야하기때문.
+이럴때 상위항목의 특성을 상속받도록 color:inherit; 쓰면 똑같이 적용됨
+상속이 적용안되는요소도 있음 테두리는 상속이불가 */
+/* 코드가 안먹힐땐 개발자옵션들어가서보면 이유가보임 */

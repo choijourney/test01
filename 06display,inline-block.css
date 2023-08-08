@@ -1,0 +1,71 @@
+h1 {
+    background-color: rgb(160, 161, 92);
+    border: 1px solid black;
+    display: inline-block;
+    width: 300px;
+    height: 50px;
+    padding: 50px;
+    margin: auto;
+}
+
+/* h1은원래 블록요소인데 display:inline 인라인으로 바꿀수있다 인라인은 띄어쓰기없이 한줄에 나란히있는것 */
+
+.second {
+    font-size: 30px;
+}
+
+/* 박스에서 글자가 두줄이 되길래 font-size 줄임 */
+
+.imspan {
+    background-color: rgb(56, 34, 5);
+    color: beige;
+    border: 1px solid black;
+    display: block;
+    padding: 10px;
+    width: 70%;
+    height: 10px;
+    margin: auto;
+}
+
+/*
+인라인요소였던 span에게 display:block 썼더니 블록이됐다
+인라인요소는 원래 width,height 너비높이 지정이 안된다. 패딩은 지정가능 마진은 좌우만 가능*/
+/* 블록요소는 width,height 너비높이,패딩,마진 다 지정가능  */
+span {
+    background-color: rgb(56, 44, 22);
+    color: bisque;
+    border: 1px solid black;
+    width: 70%;
+    padding: 60px;
+    margin: 50px;
+}
+
+/* span은인라인요소라 width 안커짐  패딩은 커짐
+패딩만든상태에서 백그라운드컬러를 없애면 투명네모가 생김
+margin은 좌우로만 영향을줌 위아래영향X*/
+
+
+div {
+    height: 200px;
+    width: 200px;
+    background-color: rgb(29, 23, 3);
+    border: 5px solid black;
+    display: inline-block;
+    margin: 30px;
+}
+
+/* display:inline-block 중요!! 
+ 마치 하이브리드 모드처럼 동작하는데 기본적으로 inline 처럼 줄바꿈 없이 한 줄에 나란히 배치되지만
+ block 처럼 width와 height 너비높이, 마진,패딩 지정이 모두 가능.
+  다시 말해서, 외부적으로 inline  규칙을 따르고
+  내부적으로는 block 의 규칙을 따름 
+대표적인 inline-block 요소로 <button>이나 <input>, <select> 가있음  */
+
+
+/* display:none; 요소를 숨길수있다 개발옵션에선 글,코드가 보이지만 사이트에선 안보인다
+
+display:none vs visibility : hidden
+display:none와 visibility : hidden은 둘 다 요소를 보이지 않게 하는 속성이라는 점에서 같지만, 
+UI적으로 볼 때 둘은 완전히 다름. display:none은 화면 상 어떤 영역을 차지하지 않고 완전히 삭제된 것처럼
+ 보이게한다 그러나 visibility:hidden은 해당 요소가 보이지 않을 뿐 요소가 존재하는 영역은 확실히 보이게 
+ 됩니다.*/
