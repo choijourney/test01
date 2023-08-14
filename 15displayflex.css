@@ -150,3 +150,5 @@ nowrap일경우(줄바꿈이없을경우) flex-grow를 설정해놔도 flex-basi
 basis만 % px em 단위가있고  grow, shrink단위없음
 잘 보면 grow가 보통 맨 앞에오고 단위가 붙으면 무조건 basis.
 colt says flex속기 유용*/
+
+/* box-sizing: border-box;  너비가 100px이라면 테두리까지포함한 너비가 100px이 되게끔함 */
