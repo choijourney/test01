@@ -1,13 +1,4 @@
-/* 부트스트랩 다운로드와 링크헤드적기가 있는데 다운로드는 사이트가 종료될위험도
-있기때문.  링크넣을경우 내css링크 앞에 넣기 뒷줄이 우선적용되기때문
- 
-
-container => 자동여백이 생겨서 글이 센터로 예쁘게 정렬됨
-"container-fluid"  =>컨테이너는있는상태지만 여백거의없이 가로풀로 글자정렬 
-
- <div class="container-sm,md,lg,xl"> 100% wide until smll(md,lg,xl) breakpoint 
-보통 container나 fluid를 많이씀 너비가좁을땐fulid , 넚을땐 container
-
+/*  
  <button type="button" class="btn btn-primary btn-sm">Primary</button> 
 아웃라인,호버,글씨크기 조정가능 부트캠프에 이쁜거많음 
  disabled => 버튼비활성화 버튼색도 희미해짐 
@@ -15,7 +6,7 @@ container => 자동여백이 생겨서 글이 센터로 예쁘게 정렬됨
  class="lead" =>리드텍스트. 글씨와 줄간격이 조금더 커지고 예뻐짐  
  class="blockquote" 인용문이 살짝커지고 좀더굵어짐  
  class="blockquote text-right,center"  글자오른쪽,중앙정렬 
- class="blockquote-footer" 맨앞에 대쉬, 회색글씨로 변함 
+ class="blockquote-footer" 글 맨앞에 대쉬, 회색글씨로 변함 
  class="mb-0" 아래에 여백을 추가하는방법 
 
  class="text-right text-primary" primry색상으로 기본값인 파란색적용

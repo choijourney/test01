@@ -1,0 +1,137 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+    font-size: 6em;
+    text-align: center;
+}
+
+/* nav안에 앵커,ul,앵커 이 세부분을 flex박스를 만들어
+space-between으로 나눴다 앵커 맨왼쪽,ul은 가운데,앵커 오른쪽 배치. */
+nav {
+    font-size: 1.5em;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 원래 li는 블록이라 한줄에 쓰려고 inline을 썼다  */
+ul,
+li {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+/* ul도 flex박스를 만들어 space-evenly로 li간 여백을 주었다 중첩 flex 쌉가능~
+ul flex박스 원래크기가 작아서 flex:1; 속기법으로 grow(너비크기를 키움) 로 너비를 키워주는데 
+적당한 크기를 위해서 max-width를 50% 로하면 딱적당히 센터에 자리잡음 
+flex박스크기를 확인하면서 만들고싶으면 border를 만들어서 확인할수있음
+*/
+ul {
+    /* border: 1px solid red; */
+    flex: 1;
+    max-width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/* 미디어쿼리는 반응형웹사이트(하나의웹사이트로 pc,스마트폰,태블릿 등 접속하는 디스플레이
+종류에따라 화면의크기가 자동으로 변하도록 만든웹페이지) 스타일을 수정함 메뉴를 없애거나 
+수정할수 있고 뷰포트크기를 바꾸고 방향을바꿈
+  화면크기가 변할때 스타일을 바뀌도록 반응형웹을 구현할수있다
+  미디어쿼리는 @media 로 시작하고 괄호안에 미디어기능을 다양하게 넣을수있다
+  미디어쿼리 레벨에따라 기능이다르다 가장많이 쓰는 기능은 너비이고 가끔 높이를쓴다
+  orientation(방향)을 이용해서 가로나 세로로 방향을 바꿀수있다
+  
+  뷰포트는 웹페이지가 사용자에게 보여지는 영역을말함 현재창에서 문서를 볼수있는부분*/
+
+/* @media (min-width:600px) and (max-width:800px) {
+    h1 {
+        color: purple;
+    }
+}  최소너비 600px부터 , 최대너비 800px까지 h1색깔 보라색
+
+
+ @media (max-width:1500px) {
+    h1 {
+        color: yellow;
+    }
+}  최대너비 1500px까지 h1색깔 노랑색
+
+
+@media (max-width:1000px) {
+    h1 {
+        color: orange;
+    }
+}  최대너비 1000px까지 h1색깔 오렌지색
+
+
+@media (max-width:500px) {
+    h1 {
+        color: red;
+    }   최대너비 500px까지 h1색깔 빨강색
+} 
+
+ @media (min-width:800px) 최소 800px부터 색변경 
+(max-width:800px) 0~800px이하까지 색변경 
+(min-width:600px) and (max-width:800px) =>600~800px 사이만 색변경
+(max-width:1000px)orange (max-width:500px)red 색두개를 쓸때 순서를 높은숫자가 앞에
+써야함 1000px이 뒤에오면 500px설정은 묻히고 1000px설정만 적용된다 (뒤에오는게 처리되는 우선순위때문)
+반대로 min-width는 낮은숫자가앞*/
+
+h1 {
+    color: red;
+}
+
+@media (min-width:500px) {
+    h1 {
+        color: orange;
+    }
+}
+
+@media (min-width:1000px) {
+    h1 {
+        color: yellow;
+    }
+}
+
+@media (min-width:1500px) {
+    h1 {
+        color: green;
+    }
+}
+
+/* @media (orientation:landscape) {
+    body {
+        background-color: magenta;
+    }  
+} 폰 (방향:가로) 일때 마젠타색으로 변함 . 꼭가로가 아니더라도 너비 780px부터
+변함. */
+
+@media (max-width:768px) {
+    h1 {
+        font-size: 4em;
+    }
+
+    /* 원래 h1크기는 6em이었는데 , 너비 0~ 최대 768px까지 4em */
+    nav,
+    ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* 중단점 768이 되면 nav와 ul이 세로배열,센터로 위치하게. 0~ 768px  */
+
+}
+
+/* 중단점 576이되면 h1 폰트크기 3em으로 더작아지게. 0~576px */
+@media (max-width:576px) {
+    h1 {
+        font-size: 3em;
+    }
+}
+
+/* 중단점! 
+576px까지는 모바일버전 세로화면이고 576 ~ 768px은 모바일버전 가로화면,태블릿도 해당
+하지만 언제나 이 중단점이 맞는건아니고 이 너비에 맞지않는 모바일기기도 있음 */

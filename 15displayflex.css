@@ -1,5 +1,6 @@
-/* flexbox 컨테이너를 만들고 그안에 요소크기,요소들 사이에 공간을 정하고  
-균등하게 만들지말지 보기좋게 배치를 하고 창크기에따라 변화하도록 만든다     */
+/* display:flex
+ flexbox 컨테이너를 만들고 그안에 요소크기,요소들 사이에 공간을 균등하게 만들지말지  
+ 정하고 보기좋게 배치를 하고 창크기에따라 변화하도록 만든다     */
 body {
     font-family: 'Open Sans', sans-serif;
 }
@@ -22,9 +23,6 @@ flexbox 기본!  @좌-우정렬이 기본    flex-direction으로 바꿀수있�
     display: flex;
     flex-direction: row;
     justify-content: center;
-    /* flex-wrap: wrap; */
-    /* align-items: flex-start; */
-    /* align-content: space-between; */
 }
 
 /* justify-content   요소를 시작점으로 정렬. 기본값은 justify-content:flex-start;
@@ -38,32 +36,30 @@ space-evenly; 요소사이와 맨왼쪽오른쪽까지도 모두 동일크기의
  */
 
 
-/* flex-direction:column 했을때 200px인 박스가 5개고 height이 500px이라 박스크기가 자동으로 작아진다
-만약 height을 1200px로 늘리면 200px이 남는다.이렇게 유연하게 자동으로 크기가 조절된다. 
-height을 500px로 하고 flex-direction:column 으로 상-하 정렬로 만들고 
+/* flex-direction:column  컨테이너 height은 500px인데,  200px인 박스가 5개면 세로높이가 1000px이필요하니까
+ 박스크기가 자동으로 작아진다 만약 height을 1200px로 늘리면 200px이 남는다.이렇게 유연하게 자동으로 크기가 조절된다.*/
 
-flex-wrap:wrap  을하면 왼쪽에 상-하 정렬돼있던 박스들이 오른쪽으로 
-ㅁ  ㅁ  ㅁ     이런식으로 이동한다(좌-우).  여기서 wrap-reverse쓰면 우-좌.
+/* flex-wrap:wrap  을하면 왼쪽에 상-하 정렬돼있던 박스들이 오른쪽으로 
+ㅁ  ㅁ  ㅁ     이런식으로 이동한다(좌-우).  여기서 wrap-reverse쓰면 우-좌. 반대방향.
 ㅁ  ㅁ   
-wrap-reverse; 반대방향.   flex-wrap=줄바꿈이라보면됨
+ flex-wrap=  교차축의방향으로 정렬생김.  줄바꿈이라보면됨
  flex-direction:row; flex-wrap:wrap ->좌에서우 가기본축이니까  상-하 정렬생김 
  ㅁ ㅁ ㅁ ㅁ  이런식.  wrap-reverse쓰면 하-상으로 바뀜 좌-우는안바뀜  
  ㅁ ㅁ
- nowrap; 디폴트.   wrap은 교차축의방향으로 정렬생김. */
+ nowrap; 디폴트.줄바꿈없음    */
+
 #container div {
     width: 200px;
-    /* max-width: 300px; */
-    /* min-width: 100px; */
+    /* max-width: 300px;  최대 너비 300px이라 basis(최종너비)가 600px이어도 300까지만커짐*/
+    /* min-width: 100px; 최소너비 100px까지만 작아짐*/
     height: 200px;
-    text-align: center;
     flex-basis: 600px;
-    /* flex-grow: 1; */
+    /* flex-grow: 1;  전체박스크기를 1비율로 크게만듦 */
+    /* width를200px로정했지만 flex-basis가 600px이니까 최종너비는 600px. */
 }
 
-
-
 /* div:nth-of-type(1) {
-    flex-grow: 1;
+    flex-grow: 1;      1번박스를 1비율만큼 크게하고,2비율만큼 줄어들게
     flex-shrink: 2;
 }
 
@@ -77,16 +73,19 @@ main {
     border: 5px solid black;
     height: 500px;
     display: flex;
+    /* 색깔없는 테두리만있는 컨테이너박스를 만듦 */
 }
 
 main .sidebar {
     background-color: #6930c3;
     flex: 1 2 300px;
+    /* 속기법으로 grow:1 shrink:2 basis:300px로 작은 사이드박스 2개를 만듦  */
 }
 
 main .maincontent {
     background-color: #80ffdb;
     flex: 2 1 800px;
+    /* 속기법으로 grow:2 shrink:1 basis:800px 인 큰메인박스 1개 만듦  */
 }
 
 /* html에 인라인으로 썼던 5개색깔박스 안나타나다가 css에 width,height 쓰니 나타남
@@ -112,21 +111,20 @@ justify-content와 align-items 둘다 center로 쓰면 중앙정렬이 된다.�
 /* align-content  wrap이 작동됐을때 교차축으로 이동시킴  flex-wrap이 필수 안그럼작동안함  wrap이 작동돼서 
  ㅁ ㅁ ㅁ  이렇게퍼져있을때  ㅁㅁㅁ    align-content:center를 써서 중앙으로 모아주거나                             
  ㅁ ㅁ                      ㅁㅁ     flex-start 교차축시작점, flex-end 교차축끝으로보냄                             
- align-content:space-between; 요소간중간여백 수직을 주축으로할때 가로요소 사이 공간을 조정 
- 줄바꿈없이 단일행,열이라면 align-content는아무것도 바꾸지않음
-    */
+ align-content:space-between; 요소간중간여백 수직이 주축일때 가로요소 사이 공간을 조정 */
 
 /* align-self 는 align-items와 비슷, 교차축을 기준으로 단일 요소의 위치를 바꿈 
- align-self:flex-end;center;   div:nth-of-type(3) {align-self:center} 이런식으로 요소한개를 옮김*/
+ align-self:flex-end;center;   div:nth-of-type(3) {align-self:center} 3번박스만 센터로.
+ 이런식으로 요소한개를 옮김*/
 
-/* flex-basis 요소가 한줄로 늘어서있을때 flex-basis가 너비의기준이됨 width를지정해도
-무시됨 너비를 조정하면되는데 flex-basis를 쓰는이유는? 주축이 가로면 너비, 세로면 높이가 변한다
+/* flex-basis  가 너비의기준이됨 width를지정해도 무시됨 너비를 조정하면되는데
+ flex-basis를 쓰는이유는? 주축이 가로면 너비, 세로면 높이가 변한다
 예를들어 flex-direction:row고 width:200px;  flex-basis:400px 이면 width는 무시되고 너비는 400px이됨
 반대로 column일때 height:200px; flex-basis:300px 이면 높이는 300px이된다.
 wrap(줄바꿈)일땐 basis를 700px처럼 크게설정하면 줄바꿈이 되고 
 nowrap 일땐 남는공간 안에서 너비나 높이가 커질수있다*/
 
-/* div:nth-of-type(1) {flex-grow:1;} flex요소 크기를늘려준다 nth-of-type을이용해
+/*flex-grow   div:nth-of-type(1) {flex-grow:1;} flex요소 크기를늘려준다 nth-of-type을이용해
 한개의요소만 키울수도있다 나머지박스들은 크기가 그대로인데 1번박스만 남은공간을 다차지한다
 아니면 전체크기를 균등하게 차지할수도있다 창을줄이더라도 비율은유지된다 
 flex-wrap이적용돼있을때 창을계속줄이면 요소들이 아래칸으로내려간다
@@ -141,8 +139,8 @@ flex-grow를  초록박스1; 보라박스2; 로정하면 원래 초록박스가 
 nowrap일경우(줄바꿈이없을경우) flex-grow를 설정해놔도 flex-basis를 500px로 정하면 
 한줄의 총너비의 한계때문에 500px까지 커지진못하고 비율도 1; 2; 로되지않고 동일한크기에서 멈춘다 */
 
-/* flex-shrink 컨테이너에 충분한공간이없을때 요소들이 줄어드는비율을 정함 
-flex-grow와 반대. nth-of-type(1){flex-shrink:2}을통해 한개만 줄일수도있음. 그럼 1번박스가
+/* flex-shrink 요소들이 줄어드는비율을 정함  flex-grow와 반대.
+ nth-of-type(1){flex-shrink:2}을통해 한개만 줄일수도있음. 그럼 1번박스가
 2비율만큼 줄어든다  한 박스를 0으로 정하면 그박스만 빼고 나머지들은 줄어듦*/
 
 /* flex속기법  flex: 2 2 10%; 
