@@ -1,0 +1,284 @@
+/* reset CSS - 내가 적용하지 않았는데도 자동으로 margin이 들어간 경우가 있다. 이는 웹브라우저마다
+디폴트갑으로 스타일이 적용되어 있기때문에 브라우저마다의 기본 디폴트 스타일값이 아닌 동일한 CSS스타일
+을 보여주기위해 브라우저디폴트값을 초기화 해주어야한다. html에 link로 추가해도되지만 link가 많으면 
+복잡해보이기때문에 초기화 코드를 찾아 CSS스타일시트에  @import를 사용해 리셋파일을 추가한다 */
+
+/* @import "resetcss.css"  같은폴더안에없어서 작동안함 */
+
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+
+/* 위에는 css 리셋이었고 아래부터 시작 */
+
+html {
+    box-sizing: border-box;
+    /* border-box; 박스 너비가 100px이라면 테두리 너비까지 포함해서 100px로 만듦 */
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    background-color: #60a9ff;
+    display: flex;
+    /* flex로 박스를 만들기전엔 background-color가 .panel div크기만큼(거의body크기만큼) 컸는데 
+    flex박스를 만드니 박스사이즈만큼 백그라운드컬러가 줄었다. */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* 최소높이 100vh (뷰포인트height)  100vh 이하로는 작아질수없다. */
+
+}
+
+/* class에서 띄어쓰기의 의미  <div class="panel pricing-table">
+ class에서 띄어쓰기를 쓰면 여러 클래스를 만든다. panel 과 pricing-table 두개의 클래스를 만들었다 */
+
+.panel {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px 25px;
+    width: 100%;
+    /* 부모요소의 100% 너비 */
+    max-width: 960px;
+    /* 최대너비를 960px로. 그이상커지지않는다 */
+    display: flex;
+    flex-direction: column;
+    /* 모바일버전을 먼저만들거니까 세로column 부터 만든다 */
+    text-align: center;
+    text-transform: uppercase;
+
+}
+
+.pricing-plan {
+    border-bottom: 1px solid #e1f1ff;
+    /* 각 div마다 pricing-plan이라는 class를 지정해놓음. border-bottom으로 div 사이에 밑줄을 넣는다   */
+}
+
+.pricing-plan:last-child {
+    border-bottom: none
+        /* 마지막 div밑에는 줄이 필요없어서 none */
+}
+
+.pricing-img {
+    margin-bottom: 25px;
+    max-width: 100%;
+    /* 부모요소의 100%  */
+}
+
+.pricing-header {
+    color: #888;
+    font-weight: 600;
+    letter-spacing: 1px;
+    /* letter-spacing 글자간 간격  */
+}
+
+.pricing-features {
+    margin: 50px 0 25px;
+    color: #016ff9;
+    /* 위 좌우 아래 */
+}
+
+.pricing-features-item {
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 15px 0;
+    border-top: 1px solid #e1f1ff;
+    /* border-top으로 li에 윗선을 그어준다  */
+}
+
+.pricing-features-item:last-child {
+    border-bottom: 1px solid #e1f1ff;
+    /* 마지막 li 밑선을 그어준다 그 밑 span과 구분하기위해*/
+}
+
+.pricing-price {
+    color: #016ff9;
+    display: block;
+    /* span을 block으로 만든다  */
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.pricing-button {
+    border: 1px solid #9dd1ff;
+    border-radius: 10px;
+    color: #348efe;
+    display: inline-block;
+    /* 앵커는 inline이니까 inline-block으로 바꿔준다 */
+    padding: 15px 35px;
+    text-decoration: none;
+    /* 앵커밑줄을 없앤다 */
+    margin: 25px 0;
+    transition: background-color 200ms ease-in-out;
+    /* background-color가 0.2초간  ease-in-out 천천-보통-천천 으로 변한다 */
+}
+
+.pricing-button:hover,
+.pricing-button:focus {
+    background-color: #e1f1ff;
+    /* hover - 마우스를 갖다대면  focus -클릭하면  */
+}
+
+.pricing-button.is-featured {
+    /* 특히 더 바꿀게 있는경우 클래스를 두개써서 바꾼다 */
+    background-color: #48aaff;
+    color: white;
+}
+
+.pricing-button.is-featured:hover,
+.pricing-button.is-featured:focus {
+    background-color: #269aff;
+}
+
+/* 위까지 모바일버전  지금부터 pc버전  */
+
+@media (min-width: 900px) {
+    .panel {
+        flex-direction: row;
+    }
+
+    .pricing-plan {
+        border-bottom: none;
+        /* div아래에 있던 밑줄을 없앰  */
+        border-right: 1px solid #e1f1ff;
+        /* 플렉스박스를 가로로 만들거니까 div 오른쪽에 줄을만들어 div사이에 구분선을 긋는다 */
+        padding: 25px 50px;
+        /* padding을넣어 div내용들을 조금 줄여줌 */
+    }
+
+    .pricing-plan:last-child {
+        border-right: none;
+        /* 맨오른쪽엔 구분선이 필요없으니 none으로 지움 */
+    }
+}

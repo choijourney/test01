@@ -4,6 +4,9 @@ css fontfamily 적기.  import주소에 single+day이런식으로 돼있는데
 +빼고 적으면됨  font-family:'single Day';  
 @font-face 면 css에 한번입력하고 font-family에 font 이름 입력하면됨 */
 
+/* class에서 띄어쓰기의 의미   <div class="panel pricing-table">
+ class에서 띄어쓰기를 쓰면 여러 클래스를 만든다. panel 과 pricing-table 두개의 클래스를 만들었다 */
+
 h1 {
     text-align: center;
     font-weight: 400;
