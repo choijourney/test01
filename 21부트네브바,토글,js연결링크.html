@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- 부트스트랩 introduction에 부트스트랩,자바스크립트 링크있음 -->
+<!-- 부트스트랩 introduction에 부트스트랩,자바스크립트 링크있음 
+부트스트랩 네브바가 유명하다고.!. -->
 
 <head>
     <meta charset="UTF-8">
@@ -8,34 +9,54 @@
     <title>bootstrap nav bars</title>
     <!-- <link link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> -->
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="boots/bootstrap.css">
 </head>
 
 <body>
     <h1 class="display-1 text-center">Navbars</h1>
     <h2 class="display-4">are so cool</h2>
+    <!-- 네비게이션바의 메인 네임 만들기  유데미사이트의 왼쪽상단에 udemy, 부트스트랩사이트의 b 같은.
+    navbar-light은 글자색-->
     <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand" href="#">Navbar</a>
     </nav>
+    <!-- fixed-top 으로 상단고정가능. sticky-top은 제자리에있다가 스크롤을 내리면 상단고정. -->
     <nav class="navbar navbar-expand-sm navbar-dark bg-primary sticky-top">
-
+        <!-- collapse로 감춰진내용을 expand를써서 나타나게함 -->
         <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" date-bs-target="#expandme">
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#expandme">
+            <!-- 감춰졌을때 내용을 보려면 토글이 필요. 햄버거모양 토글아이콘을 누르면 감춰진 내용이 나타나게끔.
+     토글아이콘과 감춰진내용을 연결해야 작동된다  data-target엔 연결하려는 div의 id를 입력 , 
+     data-toggle엔 "collapse" 입력  하면 연결이된다. -->
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="expandme">
+            <!-- collapse는 감추는기능이라 collapse만쓰면 네브바에 앵커로 추가한 내용이 감춰진다
+            감춰진내용을 navbar-expand-lg 로 확장시킨다 -->
             <div class="navbar-nav">
                 <a href="home" class="nav-item nav-link">home</a>
                 <a href="home" class="nav-item nav-link">about</a>
                 <a href="home" class="nav-item nav-link">contact</a>
             </div>
+            <!-- ms-auto = 마진레프트-auto  auto: 왼쪽여백풀로줘서 오른쪽끝으로 보낸다 -->
             <form class="d-flex ms-auto" role="search">
                 <input class="form-control" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-light" type="submit">Search</button>
             </form>
-
+            <!-- d-flex = 자신은 block특성이고 자식들은 inline으로 배치된다는것 
+    <div class="border d-flex">        블록특성
+      <div class="border">영역1</div>    인라인
+      <div class="border">영역1</div>    인라인
+    </div>
+    자식요소들은 block요소들인데도 인라인으로 바뀌어 가로로 자기크기만큼 줄어들어 배치된다  -->
         </div>
+
+        <!-- nav바 내용에 ul,li를 이용해 쓸수있지만 a앵커를 쓰는게 짧아서 보기에낫다
+ class="nav-item nav-link active disabled"  nav-item,nav-link는 nav바 만들때 필요함 정확히모르지만 암튼
+필요함  active는 현재 어떤링크에 있는지 보여주기위함. 
+disabled 클릭불가능 회색으로변함 -->
     </nav>
+
     <div class="container">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, consequuntur cupiditate optio, quos
         reprehenderit incidunt ducimus fugit ad rerum architecto error vero voluptatibus. Voluptatum eos eligendi
@@ -200,30 +221,29 @@
         explicabo, iure libero provident ducimus quasi incidunt, hic quas nostrum! Culpa beatae fugit minima
         doloremque architecto.
     </div>
-
-
-
-    <!--에밋 a.nav-item.nav-link = <a href="" class="nav-item" 에밋  -->
-    <!-- class="collapse navbar-collapse" 세로로있던 네브바들을 가로로만들어줌 네브바를
-사라지게하는기능도있어서 디폴트 네브바가없음 네브클래스에 navbar-expand-sm 이렇게
-꼭적어야함 -->
-    <!-- toggle 네브바햄버거기능(가로작대기3개)너무어려움부트스트랩찾기 -->
-    <!-- d-flex = 자신은 block특성이고 자식들은 inline으로 배치됐다는것 -->
-    <!-- ms-auto =>margin left-왼쪽여백풀로주기  ml인줄알았는데 ms..였음-->
-    <!-- nav class=fixed-top 맨위고정  fixed-bottom도가능
-    sticky-top 네브바위에 글이있어도 맨위고정-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    <!-- 부트스트랩용 js연결링크 -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
-        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
 </body>
 
 </html>
+<!-- margin: m  padding: p
+t : top
+b : bottom
+s : left
+e : right
+x : x축 -> left , right
+y : y축 -> top , bottom 
+ms-auto  왼쪽여백오토 -->
+
+
 <!-- 왼쪽 목차 맨오른쪽 토글 -->
 <!--  <nav class="navbar navbar-dark bg-dark navbar-expand-md">
     <a href="#" class="navbar-brand">CANDY</a>
