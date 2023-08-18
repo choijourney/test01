@@ -31,6 +31,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navlinks">
+      <!-- collapse는 감추는기능 감췄다가 body바로아랫줄에 navbar-expand-md 미디움중단점부터 나타나게함   -->
       <ul class="navbar-nav">
         <li class="nav-item">
           <a href="" class="nav-link">HOME</a>
@@ -46,7 +47,7 @@
     </div>
   </nav>
   <section class="container-fluid px-0">
-    <!--fluid 가로전체차지. 패딩좌우0  -->
+    <!--fluid 가로전체차지. 그래도 아주약간의 디폴트 패딩이 있어서 패딩좌우0  -->
     <div class="row align-items-center">
       <!-- 가로축기준. align-items는 교차축으로 이동하니까 세로 중앙 이동.  
         col로 공간분배를 할수있는데 row가 있어야 col을 쓸수있어서 class="row" 를 먼저입력.-->
@@ -67,25 +68,33 @@
       <div class="col-lg-6">
         <!-- 공간분배 라지px이상  6.  -->
         <img class="img-fluid" src="imgs/hand2.png" alt="img">
-        <!-- 이미지 가로전체차지 6이정해놓은크기니까 6차지. -->
+        <!--  row크기가 변할때 이미지크기도같이변함 -->
       </div>
     </div>
   </section>
 
   <section class="container-fluid px-0">
-    <!-- align-items 나 justify쓸때는 row 옆에쓴다 -->
+    <!-- align-items 나 justify쓸때는 row가 꼭필요하다. row먼저 쓰고 align-items를 쓴다 -->
     <div class="row align-items-center content">
       <div class="col-md-6 order-2 order-md-1">
+        <!-- order 순서를 말함.  순서2였다가 xs ~ 미디움중단점까지 순서 1로 바뀜.   -->
         <img class="img-fluid" src="imgs/milk.png" alt="">
+        <!-- class="img-fluid" row크기가 변할때 이미지크기도같이변한다 예를들어 col-4가되면 이미지도 4크기로변함 -->
       </div>
-      <!-- 항상 row밑에 col(5:5분배)쓰기  -->
+
       <div class="col-md-6 text-center order-1 order-md-2">
+        <!-- 순서 첫번째였다가 미디움중단점부터 미디움중단점부터 두번째순서로 바뀜.  -->
         <div class="row justify-content-center">
-          <!-- <div class="col-1"></div>  h2와p의글자를 가운데로 옮기려는 여백 -->
+          <div class="col-1"></div>
+          <!-- h2와p의글자를 가운데로 옮기려는 여백 col-1-->
           <div class="col-10 col-lg-8 blurb mb-5 mb-md-0">
+            <!-- blurb는 클래스이름.
+              6크기 안에서 중첩col-10 을써서 글자가 가로로 돼있었는데 세로형으로 만들어준다 -->
             <h2>MUSEUM OF CANDY</h2>
             <img src="imgs/lolli_icon.png" alt="" class="d-none d-lg-inline">
+            <!-- d:display   아이콘 없다가 lg px부터 inline요소로.  -->
             <p class="lead">
+              <!-- lead- 글자크기와 줄간격이 커짐 -->
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, iste molestiae beatae, maiores deserunt in
               voluptatibus aspernatur architecto excepturi delectus soluta? Ipsa, deleniti dolorem hic consequatur
               repellat
@@ -93,16 +102,19 @@
               autem
               nam ex deserunt debitis eaque ratione! Nobis, quidem assumenda.
             </p>
-            <!-- <div class="col-1"></div> h2와p의글자를 가운데로 옮기려는 여백 -->
+            <!-- h2와p의글자를 가운데로 옮기려는 여백 col-1  -->
+            <div class="col-1"></div>
           </div>
         </div>
       </div>
     </div>
     <div class="row align-items-center content">
+      <!-- content는 클래스이름 -->
       <div class="col-md-6 text-center">
         <div class="row justify-content-center">
-          <!-- <div class="col-1"></div>  h2와p의글자를 가운데로 옮기려는 여백 -->
+          <div class="col-1"></div>
           <div class="col-10 col-lg-8 blurb mb-5 mb-md-0">
+            <!-- blurb는 클래스이름   중단점 xs~ s 일때 아래여백5 /  중단점 미디움이상 아래여백0-->
             <h2>MUSEUM OF CANDY</h2>
             <img src="imgs/lolli_icon.png" alt="" class="d-none d-lg-inline">
             <p class="lead">
@@ -113,7 +125,8 @@
               autem
               nam ex deserunt debitis eaque ratione! Nobis, quidem assumenda.
             </p>
-            <!-- <div class="col-1"></div> h2와p의글자를 가운데로 옮기려는 여백 -->
+            <!-- h2와p의글자를 가운데로 옮기려는 여백 col-1 -->
+            <div class="col-1"></div>
           </div>
         </div>
       </div>
@@ -121,16 +134,18 @@
         <img class="img-fluid" src="imgs/gumball.png" alt="">
       </div>
     </div>
+
     <div class="row align-items-center content">
+      <!-- content는 클래스이름 -->
       <div class="col-md-6 order-2 order-md-1">
-        <img class="img-fluid" src="imgs/sprinkles.png" alt="">
+        <img class="img-fluid" src="imgs/sprinkles.png" alt="img">
       </div>
-      <!-- 항상 row밑에 col(5:5분배)쓰기  -->
       <div class="col-md-6 text-center order-1 order-md-2">
         <div class="row justify-content-center">
-          <!-- <div class="col-1"></div>  h2와p의글자를 가운데로 옮기려는 여백 -->
+          <div class="col-1"></div>
+          <!-- h2와p의글자를 가운데로 옮기려는 여백 col-1 -->
           <div class="col-10 col-lg-8 blurb mb-5 mb-md-0">
-            <!-- mb-5 mb-md-0 아래여백5 미디움일때 아래여백0 -->
+            <!--중단점 xs~ s 일때 아래여백5 /  중단점 미디움이상 아래여백0 -->
             <h2>MUSEUM OF CANDY</h2>
             <img src="imgs/lolli_icon.png" alt="" class="d-none d-lg-inline">
             <p class="lead">
@@ -141,7 +156,8 @@
               autem
               nam ex deserunt debitis eaque ratione! Nobis, quidem assumenda.
             </p>
-            <!-- <div class="col-1"></div> h2와p의글자를 가운데로 옮기려는 여백 -->
+            <div class="col-1"></div>
+            <!-- h2와p의글자를 가운데로 옮기려는 여백 -->
           </div>
         </div>
       </div>
@@ -158,18 +174,13 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
     integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
     crossorigin="anonymous"></script>
-  <!-- class="navbar-brand" => navbar메인이름 글씨가큼-->
-  <!-- data-target과 id를 똑같이해야함 -->
-  <!-- button class에 ms mr 정상작동함 mr-auto해야 왼쪽으로감 -->
-  <!-- container만 쓰면 사이트 센터부분에만 내용이 차는데 container-fluid 쓰면
-  사이트 전체화면을 쓸수있다  -->
+
+
+  <!-- container 쓰면 사이트 센터부분에만 내용이 차는데 container-fluid 쓰면
+   가로전체를 차지한다  -->
   <!-- img-fluid 쓰면 큰그림도 유동적으로 화면에맞게 작게 조정된다 -->
-  <!-- text-center글자를 가운데로 d-none숨겨줌 d-lg-block lg크기부터나타남
-  d=display -->
-  <!-- 미디어쿼리는 화면크기에따라 스타일을 선택적으로 적용 -->
-  <!-- img class="d-none d-lg-inline 이미지없음 라지크기되면보여줌  img=inline요소 -->
-  <!--class=order-1 order-md-2  원래order-1인데 미디움크기부터 2로 순서바꿔 -->
-  <!-- 항상 <row></div> 영향을 미치는 곳에 내용을적어야 원하는결과가나온다  -->
+  <!-- mb-md-0   중단점 미디움이상 아래여백 0    -->
+
   <script>
     $(function () {
       $(document).scroll(function () {
@@ -178,8 +189,8 @@
       })
     })
   </script>
-  <!-- ↑자바스크립트,j쿼리 함께씀 toggleClass 대문자꼭확인★★★★★
-     function)위치조심 잘확인하기  -->
+  <!--스크롤이 네브바 높이 보다 커지면 함수작동.    .scrolled클래스를 css에서 백그라운드컬러 생기게 설정했음
+     ↑자바스크립트,j쿼리 함께씀 .toggleClass 대소문자확인★    -->
 </body>
 
 </html>
