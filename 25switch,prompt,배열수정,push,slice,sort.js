@@ -155,7 +155,7 @@ if (age >= 20) {
 
 
 
-// 배열[] Arrays - 값의 순서가 있는 집합 (배열엔 인덱스가 있다)   
+// 배열[] Arrays - 인덱스가 있는 집합 (값의 순서가 있는 집합)
 let days = ['monday', 'tuesday', 'wednesday']
 days.length
 3
@@ -246,9 +246,9 @@ false
 // 대소문자가 일치되지않으면 false가된다
 
 // 배열의 indexOf / 어떤요소가 배열에 있는지 없는지를 쉽게 알아낸다
-"Blue".indexOf('e')
+"blue".indexOf('e')
 3
-"Blue".indexOf('0')
+"blue".indexOf('0')
     - 1    //없는 문자면 -1을 출력
 comboparty["rusty", "wyatt", "blue", "kitty"]
 comboparty.indexOf('rusty')
@@ -319,11 +319,11 @@ colors
     (8)['red', 'red-orange', 'deleted!!', 'yellow-green', 'forestgreen', 'green', 'blue', 'violet']
 // 2위치의 2개인 orange, yellow 사라지고 'deleted'생김
 
-let days = ['monday', 'tuesday', 'wednesday']
+let days1 = ['monday', 'tuesday', 'wednesday']
 undefined
-days.splice(1, 2)
+days1.splice(1, 2)
     (2)['tuesday', 'wednesday']
-days
+days1
 ['monday']
 // 1자리에 tuesday부터 2개가 사라짐 monday만남음
 
@@ -338,7 +338,6 @@ days
 //그리고 각문자열의 UTF 16코드 유닛값을 비교한다 이기초 코드넘버는 각문자열마다 주어짐
 
 let scores = [1, 70, 100, 2500, 9, -12, 9, 34]
-undefined
 scores.sort()
     (8)[-12, 1, 100, 2500, 34, 70, 9, 9]
 
@@ -357,19 +356,19 @@ console.log(array1.toString());
 //js는 배열안의 내용엔 관심이 없고 다른메모리의 배열이니까 false를 출력한다
 [1, 2, 3] === [1, 2, 3] false
 
-let nums = [1, 2, 3]
+let nums1 = [1, 2, 3]
 undefined
-let numsCopy = nums;
+let numsCopy = nums1;
 undefined
 numsCopy
     (3)[1, 2, 3]
-nums.push(4)
+nums1.push(4)
 4
-nums
+nums1
     (4)[1, 2, 3, 4]
 numsCopy
     (4)[1, 2, 3, 4]
-nums === numsCopy
+nums1 === numsCopy
 true
 // 같은메모리에서 참조하게 let으로 연결해서 이제는 true가뜬다
 // 배열을 쓸때는 같은 참조를 따르는 배열인지 확인해야한다

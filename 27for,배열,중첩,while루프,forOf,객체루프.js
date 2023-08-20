@@ -75,14 +75,14 @@ for (let i = 동물.length - 1; i >= 0; i -= 1) {
 //colt test iterating arrays 
 const people = ["Scooby", "Velma", "Daphne", "Shaggy", "Fred"];
 for (let i = 0; i < people.length; i++) {
-    console.log(people[i].toUpperCase());   
+    console.log(people[i].toUpperCase());
 }
 // 대문자로바꾸는자리 (people[].toUpperCase())
 
 
 //중첩for루프   대체로 중첩된 배열을 반복해야할때 사용된다
 for (let i = 1; i <= 10; i++) {
-    console.log(`i is: ${i}`)         
+    console.log(`i is: ${i}`)
     for (let j = 1; j < 4; j++) {
         console.log(`      j is ${j}`)
     }
@@ -132,8 +132,8 @@ for (let i = 0; i < seatingChart.length; i++) {
 for (let i = 0; i < seatingChart.length; i++) {
     const row = seatingChart[i];         //바깥배열 하나 벗기고 변수저장 
     console.log(`Row #${i + 1}`)         // Row #1  출력    
-    for (let j = 0; j < row.length; j++) {  
-        console.log(row[j])     
+    for (let j = 0; j < row.length; j++) {
+        console.log(row[j])
     }
 }
 //Row #1
@@ -180,9 +180,9 @@ while (true) {                  //무한반복
         break;
 } console.log('ok you win!')
 //@ prompt에 사용자입력값이 뜨게 인수input을 넣고 이걸 다시 변수 input으로 저장한다
-   //변수input이 실행된다 prompt사용자입력값을 출력하며 true를 받고 무한으로 실행된다 
+//변수input이 실행된다 prompt사용자입력값을 출력하며 true를 받고 무한으로 실행된다 
 //if조건에 맞으면 break가 실행되고 콘솔로그 실행.
- 
+
 //input.toLowerCase()믿고 prompt창에'sTop copying me' 입력하면 소문자로 바꿔서 break 
 //실행할줄 알았는데 아님 why? 그럼 .toLowerCase를 왜씀? 
 //무튼 stop copying me 소문자로 입력하면 break 됨
@@ -202,7 +202,7 @@ const subreddits = ['books', 'funny', 'pics', 'soccer', 'cringe']
 for (let i = 0; i < subreddits.length; i++) {
     console.log(`visit reddit.com/r/${subreddits[i]}`)
 }
-// ↑ for루프    /  ↓for of루프 쓰기 더 간편하지만 for루프가 필요할때도있다
+// ↑ for루프    /  ↓for of루프 쓰기 더 간편하지만 인덱스구하기가 어려워서 for루프가 필요할때도있다 
 for (let sub of subreddits) {
     console.log(`visit reddit.com/r/${sub}`)
 }
@@ -288,23 +288,23 @@ Object.entries(testScores)
     //이 Object메서드는 배열로 답을받아서 for of로 반복을 만들면 된다
 
     //for of로 Object.entries를 반복했는데 안된다   
-// for (let testS of Object.entries(testScores)) {
-//     for (let tes of tests){
-//     console.log(tes)
-//     }
-// }     오류뜸
+    // for (let testS of Object.entries(testScores)) {
+    //     for (let tes of tests){
+    //     console.log(tes)
+    //     }
+    // }     오류뜸
 
-//Object.entries를 반복하는 방법들
-// for (const [key, value] of Object.entries(testScores)) {
-//     console.log(`${key} ${value}`); 
-//   }
+    //Object.entries를 반복하는 방법들
+    // for (const [key, value] of Object.entries(testScores)) {
+    //     console.log(`${key} ${value}`); 
+    //   }
 
-//   Object.entries(testScores).forEach(([key, value]) => {
-//     console.log(`${key} ${value}`);})
+    //   Object.entries(testScores).forEach(([key, value]) => {
+    //     console.log(`${key} ${value}`);})
 
 
-//testScores의 평균값내기
-let total = 0;
+    //testScores의 평균값내기
+    let total = 0;
 let scores = Object.values(testScores)     //Object.values  값을 배열로 만든다
 for (let score of scores) {                //배열을 for of로 반복시킨다
     total += score;                        //total과 반복시킨 score를 더한다 
@@ -312,11 +312,11 @@ for (let score of scores) {                //배열을 for of로 반복시킨다
 console.log(total / scores.length)
 //total += scores;점수합계/ 평균값을 구하려면 객체안에 몇개의 아이템이있는지 알아야한다
 // 객체에는 .length가 없다 그래서 배열의 길이를 이용한다 scores.length
-//  total/scores.length = 평균값     
+//  total/scores.length = 평균값
 
 
-// let total=0; 
-// for (let score of  Object.values(testScores)  ) {                
-//     total += score;                        
+// let total=0;
+// for (let score of  Object.values(testScores)  ) {
+//     total += score;
 // }                                                      이렇게해도 되지만 위 방법이 더깔끔
 // console.log(total / Object.values(testScores).length)

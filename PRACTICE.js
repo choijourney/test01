@@ -7,3 +7,24 @@
 // console.log(`${msg},${person}!"`)
 // greet1('"Hello','Barry')
 //이렇게 "Hello,Barry!" 나왔음 
+
+
+// function sumArray(arr) {
+//     let sum = 0;
+//     for (let i = 0; i < arr.length; i++) {
+
+//         sum += arr[i]
+//         return sum
+//     }
+
+// }
+
+const days = {
+    1: 'Monday',
+    2: 'Tuesday',
+    3: 'Wednesday',
+    4: 'Thursday',
+    5: 'Friday',
+    6: 'Saturday',
+    7: 'Sunday'
+}
