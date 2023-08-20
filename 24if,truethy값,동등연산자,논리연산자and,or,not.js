@@ -50,9 +50,9 @@ if (age < 5) {
 // } else {
 //     console.log("password cannot contain spaces!공백이 없어야합니다.")
 // }   
-//이렇게 식을 쓰면 비밀번호를 한글자만쓰고 공백이없을때 콘솔로그로 
+//★★이렇게 식을 쓰면 비밀번호를 한글자만쓰고 공백이없을때 콘솔로그로 
 //비밀번호는 최소 6글자이상이어야합니다 와 굿잡! 이 함께 뜬다. 그렇게 하지 않기위해선
-//아래 식처럼 네스팅해서 if안에 if를 넣으면 된다
+//    아래 식처럼 네스팅해서 if안에 if를 넣으면 된다★
 
 const password = prompt("비밀번호를 쳐주세요!");
 if (password.length >= 6) {
@@ -88,21 +88,22 @@ if (0) {                     //const없이 if로 시작
 // ↑ 경우 0=truthy 인데 답은 falsy가 나온다 null,undefined,naN 모두. 이 부정적단어들
 // 빼고는 모든 양수,-1음수,공백을 인수에 쓰면 truthy로나온다
 
+
 //동등연산자 와 일치연산자 == /===
-// !== 네거티브   1!=='1' true   1과 '1'은같지않다 문자따로숫자따로    ===와비슷
+// !== 네거티브   1!=='1' true   숫자와 문자열을 구분한다    ===와비슷
 // 1!='1' false 문자와숫자를 같은형으로 일치시킨후비교   ==와비슷  1=='1' true
-// 가끔 심각한오류를 발생시킨다 null==undefined; 0==false; 는전혀다른데true라고한다
+// 가끔 심각한오류를 발생시킨다 null==undefined; 0==false; 는전혀다른데 true라고한다
 // 그래서 !== , === 를 주로쓰라고한다
 
 
 //논리연산자 논리함수 and &&
 // const Id = prompt("Enter your Id");
-// if (Id.length >= 6 && Id.indexOf(' ') === -1) {
+// if (Id.length >= 6 && Id.indexOf(' ') === -1) {     Id글자글이가 6보다 크거나같거나, 공백이없을때
 //     console.log("valid Id")
 // } else {
 //     console.log("Id를 다시정해주세요")
 // }
-// && =and 두명령을 하나의명령문으로 묶는다 양쪽 다 참이어야 true 
+// && =and 두명령을 하나의명령문으로 묶는다 명령모두 다 참이어야 true 
 
 //colt test 24 logical and mystery
 // const mystery = 'Pppppp7'

@@ -1,0 +1,128 @@
+<!-- method메서드종류많음  
+let msg = "leave me alone right now" 
+msg.toUpperCase()     괄호가꼭필요하다
+"LEAVE ME ALONE RIGHT NOW"
+msg
+"leave me alone right now"
+.toUpperCase 는 비파괴 메서드인데 그 뜻은 원본 msg는 그대로라는것이다
+let angryMsg = msg.toUpperCase()
+angryMsg
+"LEAVE ME ALONE RIGHT NOW"   다른변수이름에 저장해서 쓸수있다  
+
+반대로 toLowerCase() 는 대문자를 소문자로 만들어준다 괄호필수다
+
+
+
+.trim()  좌우 공백을 지워줌 괄호 필수   비파괴메서드 원본은그대로이다.
+사용자입력값에 좌우공백이 들어있을때 걸러줄수있다.
+"    hello world    ".trim()
+"hello world"
+ let greeting= " hello again   "
+ greeting.trim().toUpperCase()
+ "HELLO AGAIN"
+
+
+.slice()  문자열을 잘라준다  비파괴메서드 원본은 그대로이다
+ let msg="haha that is so funny!"
+msg.slice(5)   인덱스5인 t부터시작해서 끝까지출력
+"that is so funny!"
+msg
+"haha that is so funny!"
+msg.slice(5,10)   인덱스5인 t부터시작해서 10인 i 전까지 출력
+"that "
+msg.slice(-6)    마지막 6글자가 나옴.
+"funny!"
+
+ .replace 글자바꿈    /원본은그대로이다.
+msg.replace('haha','lol')
+"lol that is so funny!"
+msg.replace('h','H')
+"Haha that is so funny!"  첫글자 h만 적용된다
+
+ "lol".repeat(3)  반복한다  /원본은그대로이다.
+"lollollol" 
+
+
+ template literals 템플릿 리터럴  `````백틱과 ${} 를 이용해 문자열로 만든다
+                  ${}중괄호안에 메서드사용도 가능하다 
+`hello ${1 + 2 + 9}`
+"hello 12"          ${}이부분이 계산되고 문자열로 바뀐다
+'hello ${1 + 2 + 9}'
+"hello ${1 + 2 + 9}"   따옴표를쓰면 $부분이계산되지않고 같은모양이 출력된다
+let product='artichoke';
+let price=2.25;
+let qty=5;
+`you bought ${qty} ${product.toUpperCase}. Total is: $${price*qty}`  
+"you bought 5 ARTICHOKE. Total is: $11.25"
+
+ 
+
+ Null;        
+ let userId=null; 내가 값을모를때 0이나 false처럼 사용함. 일부러 값을 지정하지않는다는 의미
+
+undefined; 내가설정하는게 아닌 아무것도 정의된게없다고 JS가 답을못찾았을때 뜨는 오류메시지 
+
+
+
+.floor() 내림  숫자에서 소수점뒤를 없앤다
+Math.floor(23.99)  //23 
+
+.ceil() 올림  소수점이있으면 무조건 올림한다
+Math.ceil(34.01)  //35
+
+.round()  반올림  
+Math.round(4.9)  // 5
+
+.abs() 절대값 음수를 양수로 바꿈
+Math.abs(-456)  // 456
+
+.pow() 제곱
+Math.pow(2,5)  // 32
+
+
+Math.random();  0 ~ 1 사이 소수점 숫자를 임의로 생성함 1은 제외.
+Math.floor(Math.random()*5)   -> 0 ~ 4 까지 랜덤 정수가 나온다. 
+Math.floor(Math.random()*5)+1   -> 1을 더해서 1 ~ 5 까지 정수를 나오게 한다
+Math.floor(Math.random()*3)+20   ->    20 ~ 22까지만 숫자를 나오게하고싶으면.!
+랜덤소수에 *3하면 0,1,2가 나옴 +20 하면 20,21,22 가나온다
+
+
+
+ 10>9  A<a 문자도 유니코드 값을보고 크기비교 가능하다 (불리언가능)  
+
+
+ 이중등호 와 삼중등호  == / === 
+ 1=='1' true   0=='' true  0==false true   이중등호를 입력하면
+    양쪽을 같은 유형으로 변환한 다음 비교한다 그래서 이중등호를 사용하지않는다 
+ 1==='1' false  0===false false  삼중등호는 엄격하게타입을구분함 삼중등호 사용하기   
+1!='1' false 이중등호와같이 같은유형으로 변환후 비교한다 
+1!=='1' true 삼중등호와같이 엄격하게 구분한다
+
+
+콘솔 경고창 에러창
+  console.log("hello")  콘솔에 () 괄호안 내용을 출력함
+    hello
+ console.log(1+4, "hi", true)
+5 "hi" true
+
+console.warn("UH OH WARNINIG!")    콘솔창에 경고메시지 뜨게함
+UH OH WARNINIG!
+console.error("error!!")   콘솔창에 에러메시지 뜨게함
+error!!
+
+
+
+let userInput=prompt("please enter a number")
+userInput
+'99'           <99는팝업창에내가입력한값. 문자열로 반환>
+userInput+1
+'991'           '99'는 문자열이니 991로출력하는..
+
+parseInt(userInput)  문자열을 숫자로 변환해줌
+99             
+parseInt("101")
+101               
+parseInt("101kkkk")
+101               kk문자를넣어도 숫자만 골라 보여준다
+parseInt(userInput)+1
+100                                                   -->
