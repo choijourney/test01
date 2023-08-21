@@ -3,11 +3,11 @@
 let greet = function () { console.log('hiii') }
 //이 함수를 변수에 저장했으니 함수를 인수로 쓸수있음
 
-function callTwice(func) {
+function callTwice(func) {  //(func)에는 함수가들어올것이라고 가정함
     func();
     func();
 }
-//여기서는 func을 2번 실행하려고 괄호를 2번 추가했음
+// func에 들어온 함수를 2번 실행하려고 괄호를 2번 추가했음 
 
 function rollDie() {
     const roll = Math.floor(Math.random() * 6) + 1
@@ -15,23 +15,23 @@ function rollDie() {
 }
 callTwice(rollDie)
 //숫자나 문자를 적는것처럼 callTwice()인수자리에 함수rollDie를 써보았다
-//(rollDie())이렇게 쓰면 아예다른작업이 되는게 함수를 바로 실행해서 5같은 임의의숫자
-//를 나오게 한다음 바로 그숫자를 callTwice(5) 이렇게 쓴다
-//우리가 할작업은 rollDie 함수식을 전달해서 callTwice 함수식에서 두번 실행하게 만드는거다
-//콘솔에서 실행해보면 1,3 /2,5/ 이렇게 func() 2번이 잘실행된다(첫째줄함수) 
+//(rollDie())이렇게 쓰면 rollDie()를 실행해서 5같은 임의의숫자가 나오고
+// 그숫자가 callTwice(5) 인수자리에 가서 func은 함수가 아니라는 오류가 뜬다.
+//callTwice(rollDie) 적으면 func()을 적어놨기때문에 rollDie() 알아서 중괄호가 붙어서 rollDie()함수가 실행된다.
+//1,3 숫자 두개가 출력된다.
 function callTenTimes(f) {
     for (let i = 0; i < 10; i++) {
         f()
     }
 }
 //이번엔 10번실행시키기위해 for루프를 만든다 그다음 함수f가 전달하는 값을 실행시키게한다
-// 콘솔에 callTenTimes(rollDie)를 입력하면 주사위 10번굴린 결과가 나온다.
+// callTenTimes(rollDie)를 입력하면  주사위 10번굴린 결과가 나온다.
 
 //반환함수 
 function makeMysteryFunc() {
     const rand = Math.random();
-    if (rand > 0.5) {
-        return function () {
+    if (rand > 0.5) {           //랜덤숫자가 0.5보다 큰지확인
+        return function () {      //함수반환 (숫자,문자,값을반환하듯 함수를반환)
             console.log('CONGRATS, I AM A GOOD FUNCTION')
             console.log('YOU WIN A MILLION DOLLARS!')
 
@@ -47,19 +47,18 @@ function makeMysteryFunc() {
         }
     }
 }
-//랜덤숫자가 0.5보다 큰지 확인.그다음에 return이 오고 함수를 반환하는데, 방법은 몇가지가
-//있지만 제일 쉬운건 return과 한줄에서 선언하는것.그다음 이전시간에 배웠던 함수표현식 
-//즉 값이다. 이 값을 캡쳐해서 변수에 넣거나 또는 반환할수 있다. 임의의 숫자에따라서
-//두 함수중 하나를 반환하게됨 콘솔에서 makeMysteryFunc()을 입력해보니 반환이 잘된다. 
+// 콘솔에서 makeMysteryFunc()을 입력하면 0.5보다 값이 큰지 비교후 함수반환
 //저장해서 쓰려고 const mystery= makeMysteryFunc() 
 // mystery()
 // CONGRATS, I AM A GOOD FUNCTION
 // YOU WIN A MILLION DOLLARS!     콘솔에써보니작동
 
 function isBetween(num) {
-    return num >= 50 && num <= 100
+    return num >= 50 && num <= 100   //불리언 출력
 }
-//전달된 입력값이 50~100 사이인지 알려주는 isBetween이라는 함수/이 함수는 50,100으로 
+isBetween(50)  //true 
+isBetween(10)  //false
+//전달된 입력값이 50~100 사이인지 불리언으로 알려주는 isBetween이라는 함수/이 함수는 50,100으로 
 //정해놔서 다른숫자를 쓰고싶을때마다 식을 다시써야하는데 그럴필요없이 팩토리함수를 쓸수있다
 //팩토리함수는 함수를 만들어주는 함수이다
 function makeMysteryFunc(min, max) {
@@ -76,12 +75,17 @@ function makeMysteryFunc(min, max) {
 //이용하면됨.
 
 const isChild = makeBetweenFunc(0, 10)
-isChile(40)
+// ƒ (num) {
+//         return num >= 0 && num <= 10;
+//     }                  makeBetweenFunc에 0,10 min,max를 입력해서 isChild 변수에 저장.             
+isChild(40)   // isChild(40)을 해보면 false 출력.
 false
 const isAdult = makeMysteryFunc(19, 50)
-
+isAdult(30)
+ture
 const isSenior = makeMysteryFunc(51, 120)
 //이 3개의 const는 makeMysteryFunc라는 팩토리함수를 씀
+
 
 //메서드 정의하기 / 
 [1, 2, 3, 4, 5].indexOf(5)
@@ -89,8 +93,6 @@ const isSenior = makeMysteryFunc(51, 120)
 //5의 indexOf위치는 4
 //모든메서드는 함수이기도하다. 
 //특성이나 객체값(value)으로 함수를 사용할수 있다. ↓처럼
-//const math={multiply:function(x,y){return x*y;}} 여기서 객체는 오른쪽중괄호
-//콘솔에 Math를 입력해서 화살표를 열면 왼쪽특성,오른쪽함수로 저장이되있다.
 
 const MyMath = {
     PI: 3.14159,
@@ -99,8 +101,10 @@ const MyMath = {
     },
     cube: function (num) {
         return num ** 3
-    }
+    },
+    multiply: function (x, y) { return x * y; }
 }
+
 //MyMath 라는 객체리터럴을 만들었다 콘솔에서   
 MyMath.PI
 3.14159
@@ -113,8 +117,8 @@ MyMath['cube'](4)
 64
 //이렇게도 쓸수있지만 이상한구문이다 보통은 메서드로 실행한다.
 //자주써서 js에서 단축키,속기법을 만들었다.
-//콜론과 함수대신에 add나 multiply와같은 특성이름을쓰고 괄호와 중괄호를 쓴다
-const MyMath = {
+//콜론과 fucntion만 지우면된다
+const MyMath1 = {
     PI: 3.14159,
     square(num) {
         return num * num;
@@ -123,7 +127,8 @@ const MyMath = {
         return num ** 3
     }
 }
-//콜론과 fucntion만 지우면됨. 객체안에 있으니 쉼표는 있어야함.
+// 객체안에 있으니 쉼표는 있어야함.
+
 
 // this 키워드
 //메서드에 있는 객체를 가리킬때 this키워드를 사용함 
