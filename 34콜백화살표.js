@@ -1,28 +1,33 @@
-//콜백과 배열
-//배열메서드 중 처음배울 forEach 함수를 인수로 받아들인다. forEach는 for of루프가 등장
+//배열메서드 
+//forEach 함수를 인수로 받아들인다. 배열메서드이다.  forEach는 for of루프가 등장
 //하기전엔 자주쓰였다 forEach는 배열안의 아이템 각각에 대해 함수와 코드를 한번씩 실행한다
-//어떤 함수를 넣든 상관없이 함수가 한번씩 호출되고 각각의 아이템이 함수에 자동으로 전달됨
+//어떤 함수를 넣든 상관없이 각각의 아이템이 함수에 자동으로 전달됨
+//콜백함수-다른 코드의 인수로서 넘겨주는 실행 가능한 코드
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 function print(elment) {
     console.log(elment)
 }
 numbers.forEach(print)
-//숫자를 각각 출력하고싶다면 forEach를 쓴다.그다음 콜백을 넣는다. 그래서 이 함수들을 따로
-//정의해볼것이다. 아니면 numbers와indexof를 이용해 직접 출력하는방법도있다.
-print(numbers[0])
-//forEach가 더쓰기편하니까 forEach를쓴다
-//forEach인수안에 함수print를 넣고. 이게 elment를 호출해 배열의 숫자들을 출력한다.
-//forEach를 써서 이미 정의한 함수를 전달하는건 일반적이지 않다. 보통은 
-numbers.forEach(function (el) {
-    console.log(el)
+//숫자를 1~15까지 각각 출력하고싶다면 numbers.forEach를 쓴다. 그다음 콜백을 넣는다.
+//콜백은 괄호안에 인수로 함수를 넣는다는 말과 같다.
+//그래서 function print 함수를 만들고 forEach(print) 인수자리에 써주면  1~15 숫자들을 출력해준다
+//아니면 numbers와indexof를 이용해 숫자하나씩 출력하는방법도있다.
+print(numbers[0])  //1  
+
+
+//forEach를 써서 이미 정의한 함수를 전달하는건 일반적이지 않다. 보통 인수안에 함수를 넣어서 쓴다.
+numbers.forEach(function (el) {  //forEach를 쓰면 숫자들이 인수에 자동전달
+    console.log(el)      //전달된 숫자 출력
 })
-//인수안에 함수를 넣어서 이렇게 쓴다. 이게 일반적인 방식이다.
-//그러나 for of가 더 짧고 깔끔해서 for of를 더많이쓴다
+// 이게 일반적인 방식이다. forEach의 인수안에 함수는 1회성이다. 한가지 목적만을 위해 존재한다.
+//변수에  저장이 안된다. 
+
+// for of가 더 짧고 깔끔해서 for of를 더많이쓴다
 for (let el of numbers) {
     console.log(el);
 }
 
-numbers.forEach(function (el) {
+numbers.forEach(function (el) {   //(el)은 매개변수
     if (el % 2 === 0)
         console.log(el)
 })
@@ -43,7 +48,7 @@ const movies = [
 
 ]
 
-movies.forEach(function (movie) {
+movies.forEach(function (movie) {     //(movie)는 매개변수
     console.log(`${movie.title}- ${movie.score}/100`)
 })
 // Amadeus- 99/100
@@ -53,16 +58,16 @@ movies.forEach(function (movie) {
 
 
 // map - 콜백배열메서드중 하나. 콜백함수의 반환값을 이용하여 새배열을 만든다
-//콜백함수를 써서 배열의 요소당 1번씩 실행한다는 점에서 forEach와 비슷한데
-//다른점은 그 반환값을 이용해서 새로운 배열을 만든다.
+//콜백함수를 써서 배열안의 요소당 1번씩 실행한다는 점에서 forEach와 비슷한데
+//다른점은 그 반환값을 이용해서 새로운 배열을 만든다. 
 //보통 데이터의 일부만 가져오거나 요소를 두배로 늘린다거나 그럴때 필요. 원래배열을 기반으로
 //새로운배열을 생성한다면 map을쓰는게낫다.
-const number = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-const doubles = number.map(function (numb) {
+const number = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]   //기존배열은 바뀌지않고 그대로이다
+const doubles = number.map(function (numb) {     //새배열을 만들어내고 다른변수에 저장한다
     return numb * 2;
 })
-//모든요소가 이 함수식에 대입되고 변환돼나온다. number자체를 변경하지않고
-//새로운 배열을 만들어낸다 [2,4,6,8,10,12..] 그리고 그배열을 변수에 저장한다
+//배열의 요소들이 numb매개변수에 한번씩 대입돼고
+//새로운 배열을 만들어낸다 [2,4,6,8,10,12..] 그리고 그배열을 새변수에 저장한다
 
 
 const moviee = [
@@ -81,7 +86,7 @@ const moviee = [
 ]
 const title = moviee.map(function (movi) {
     return movi.title.toUpperCase()
-}
+}      //['Amadeus','Stand By Me','Parasite']
 )
 
 //화살표함수   인터넷익스플로러에선 실행안됨 map쓸때 사용하면 편함 왜냐면 map()괄호안에

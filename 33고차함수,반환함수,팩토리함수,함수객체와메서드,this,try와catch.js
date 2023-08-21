@@ -87,7 +87,7 @@ const isSenior = makeMysteryFunc(51, 120)
 //이 3개의 const는 makeMysteryFunc라는 팩토리함수를 씀
 
 
-//메서드 정의하기 / 
+//함수객체와 메서드 / 
 [1, 2, 3, 4, 5].indexOf(5)
 4
 //5의 indexOf위치는 4
@@ -117,10 +117,10 @@ MyMath['cube'](4)
 64
 //이렇게도 쓸수있지만 이상한구문이다 보통은 메서드로 실행한다.
 //자주써서 js에서 단축키,속기법을 만들었다.
-//콜론과 fucntion만 지우면된다
+//콜론과 function만 지우면된다
 const MyMath1 = {
     PI: 3.14159,
-    square(num) {
+    square(num) {     //콜론과 function지운 속기법
         return num * num;
     },
     cube(num) {
@@ -136,17 +136,14 @@ const cat = {
     name: 'Blue Steele',
     color: 'grey',
     breed: 'scottish fold',
-    meow() {
-        console.log('THIS IS:', this)
-        console.log(`${this.name} says MEOW~~`);
+    meow() {                //속기법으로 쓴 키값 함수객체
+        console.log(this.color)      //콘솔보면 grey 출력
+        console.log('THIS IS:', this)  //THIS IS: {name: 'Blue Steele', color: 'grey', breed: 'scottish fold', meow: ƒ}
+        console.log(`${this.name} says MEOW~~`); //Blue Steele says MEOW~~  
     }
 }
 const meow2 = cat.meow;
-//console.log(color) 혹은 name은 오류난다 (cat.meow()를 실행하면 색은정의할수없다고
-// 나옴)  color혹은 name특성에 접근할수있도록 앞에 this.를 넣는다
-// console.log(this.color);
-// cat.meow()
-// - grey
+//console.log(color) this를 안붙이고 color만 쓰면 오류남. 값을 출력하려면 특성앞에 this 를 꼭붙여야함 
 
 //this키워드는 보통 객체를 가리키는데 항상그렇진않는다 함수를 호출하는 방법에따라다름
 //위예시들에서 this는 객체를(중괄호) 가리키는데, 이상하지만 다른 예가 있다.
@@ -154,7 +151,7 @@ const meow2 = cat.meow;
 // meow2()
 // says MEOW~~
 //cat.meow를 const 저장했는데 답이 sasys MEOW~~가 나옴. 
-//meow2앞에 window. 가생략된건데 window에서 name을 찾지못하니 ${}값은못찾고
+//meow2앞에 window 가생략된건데 window에서 .name을 찾지못하니 ${}값은못찾고
 //says MEOW~~만 나온것
 
 //cat.meow()
@@ -168,16 +165,14 @@ const meow2 = cat.meow;
 //cat.meow()에서 객체는 .왼쪽인 cat을 가리키고 meow2()에는 .이 없는데 그앞에
 //window가 있는데 생략됐다고 보면 window가 왜나왔는지 이해가된다. 디폴트값이다.
 
-//const meow2 = cat.meow(); 또하나궁금했던게 cat.meow뒤에()가 안붙어서
-//작동이 안됐나 생각해봤었는데 실행해보니 괄호붙이면 아예 const로 선언이안됨.
 
 //alert같은객체도 윈도우 안에있다.
-function scream() {
+function scream() {    //속기법 함수객체
     console.log('Ahhh')
 }
 scream()
     - Ahhh
-window.scream()
+window.scream()   // 방금만든 함수객체 scream도 윈도우안에 객체로 있다
     - Ahhh
 
 window.alert('really?')
@@ -185,8 +180,7 @@ window.alert('really?')
 
 
 //Try/Catch 사용하기 -항상 함께일하고 오류및 예외를 처리한다
-//오류를 잡아내서 코드실행이 중단되지 않게하는 역할. 떄로는 코드가 잘못되어 오류가날수있다
-//그 오휴가 외부로 퍼져나가 모든것을 망치기 전에 잡아내서 멈춰야한다
+//오류를 잡아내서 코드실행이 중단되지 않게하는 역할. 
 try {
     hello.toUpperCase()
 }
@@ -194,7 +188,7 @@ catch {
     console.log('error!!')
 }
 console.log('after')
-//hello는 저장되지않았고 ''문자열도 아니니 오류가난다
+//hello는  문자열인데''을안써서  오류가난다
 //오류가 날것같으면 try문과 catch문으로 감싸주면된다 try하나만으론 안됨
 //catch란 뭔가 잘못되어 try문에서 오류나면 실행하는 코드문이다
 //try,catch를 안썼을때 마지막줄 console.log를 실행하면 hello.toUpperCase 에서 
@@ -206,11 +200,11 @@ function yell(msg) {
         console.log(msg.toUpperCase().repeat(3));
     }
     catch (e) {
-        console.log(e);
+        console.log(e);    //콘솔보면 TypeError가뜸
         console.log('pleas pass a string next time!')
     }
 }
 //yell(135)숫자를 넣으면 toUpperCase땜에 오류가난다 이럴때 try와 catch를사용한다
 //msg가 문자열이 아닌 상황을 처리하기위한 방법중 하나이다.
 //colt쌤은 뭔가 잘못되면 catch에 오류뜬내용을 엑세스한다 그리고 console.log로 출력.
-//'문자열을넣으세요'라고 출력하는게 최선의방법은아니다 사실 앞뒤가 안맞지만 그냥 예시이다.
+//'문자열을넣으세요'라고 출력하는게 최선의방법은아니다 사실 앞뒤가 안맞지만 그냥 예시.
