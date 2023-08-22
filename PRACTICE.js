@@ -9,6 +9,8 @@
 //이렇게 "Hello,Barry!" 나왔음 
 
 
-const Id2 = setInterval(() => {
-    console.log(Math.random())
-}, 2000)
+
+const evens = [2, 4, 6, 8];
+
+evens.reduce((sum, num) => 'a')
+'a'

@@ -215,16 +215,16 @@ const movie3 = [
     }
 
 ]
-const goodMovies = movie3.filter(mo => {
+const goodMovies = movie3.filter(mo => {  // 95초과인 영화들 타이틀,스코어,년도 객체배열 출력
     return mo.score > 95
 })
 // const goodMovies = movie3.filter(mo => mo.score > 95) 암시적반환으로짧게ver.
 const recentMovies = movie3.filter(mo => mo.year > 2010)
 const recentTitle = recentMovies.map(mo => mo.title)
 //map을 써서 title만 빼왔다. filter는 >기호로 참이면 새배열을 만든다.
-movie3.filter(mo => mo.score > 90)
+const gooMovi = movie3.filter(mo => mo.score > 90)
     .map(mo => mo.title)
-//filter와 map을 한번에 쓸수있다. 한줄에 쓰면좋지만 코드가 길면 들여쓰기를할수도있다
+//filter와 map을 한번에 쓸수있다. 한줄에 쓰면좋지만 코드가 길면 들여쓰기를 해도된다.
 
 
 //colt test 49:filter exercise  답3개 
@@ -242,7 +242,9 @@ function validUserNames(usernames) {
 //숏버전
 const validUserNames = usernames => usernames.filter(n => n.length < 10)
 
-//every 와 some   불리언메서드로 항상 참이나 거짓값을 반환.
+
+
+//every 와 some메서드   불리언메서드로 항상 참이나 거짓값을 반환.
 const exams = [80, 98, 92, 78, 70, 90, 89, 84, 81, 77]
 exams.every(scor => scor >= 75)
 //이중 하나가 콜백에서 거짓을 반환하면 every 전체가 false 반환. 모두 true면 true반환.
