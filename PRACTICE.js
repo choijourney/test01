@@ -8,13 +8,7 @@
 // greet1('"Hello','Barry')
 //이렇게 "Hello,Barry!" 나왔음 
 
-const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 
-const new= numbers.forEach(function (el) {
-    return (el)
-})
-
-const number = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]   //기존배열은 바뀌지않고 그대로이다
-const doubles = number.map(function (numb) {     //새배열을 만들어내고 다른변수에 저장한다
-    return numb * 2;
-})
+const Id2 = setInterval(() => {
+    console.log(Math.random())
+}, 2000)
