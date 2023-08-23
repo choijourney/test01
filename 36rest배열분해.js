@@ -1,30 +1,53 @@
-//rest 매개변수
-function sum() {
+//rest  ... 점세개를 이용하는게 스프레드와 같지만 기능은 다르다.
+//rest 를 알려면 arguments를 알아야한다 
+
+function sum(a) {    //인수가 하나니까 
+    return a;
+}
+sum(3)   //3     
+sum(3, 5) //5   5는 무시되고 3만 출력
+//인수자리에 딱한개의 숫자만 입력할수있다  그런데 어떤경우 인수로 (3,5,6,7,8)을 쓰고싶을때
+//arguments를 사용할수있다
+
+function sum() {    //인수갯수를 신경쓰지않고 많이써도됨
     console.log(arguments)  //여기 arguments는 내장키워드
 }
 // sum(1,2,3)     콘솔에 sum(1,2,3)입력하면 arguments[1,2,3]배열이나옴
 // Arguments[1, 2, 3, callee: ƒ, Symbol(Symbol.iterator): ƒ]
-//arguments를 사용하면 인덱스를 사용해 인수에 접근할수 있다. 유사 배열객체 인데 배열은
-//아니다 그래서 배열 메서드를 사용할수 없다. .map .reduce같은 / 또, 인수는 전체를 담기
-//때문에 나머지 매개변수처럼 인수의 일부만 사용할수없다. 배열메서드를 사용하거나
-//인수 일부만 사용할때는 나머지 매개변수를 사용하는게 좋다.
+// 0: 1             
+// 1: 2            펼쳐보면 인덱스와 함께 나온다
+// 2: 3
+// callee: ƒ sum()
+// length: 3
+
+//arguments는  인수자리에 개수상관없이 여러인수를 쓸수있다
+//함수로 전달되는 인수들의 값을 가지고 있는 배열과 유사한 형태의 객체로 
+//그 함수의 내부에서 접근할 수 있다.
+//length 프로퍼티가(특성) 있어 배열과 유사하게 동작하지만 유사 배열 객체이므로 .map .reduce같은 
+//배열 메서드를 사용할 수는 없다.  
+console.log(arguments[0])  //인수에 접근하려면 인덱스를 쓰면된다
+arguments[0] = 'K'  //재할당도가능하다
+
+// 인수자리에 개수상관없이 여러인수를 쓸수있고, 인수모두를 배열객체에 담기때문에 
+//rest처럼 남아있는 인수를 모을수없다.  rest아래참조
 function sum() {
     return arguments.reduce((total, el) => total + el)
 }
 //arguments가 배열이아니여서 reduce가 작동을 안함 이럴때 나머지연산자(rest)가 필요
 //나머지연산자(rest)는 점세개로 매개변수 목록에 들어간다
-// 그리고 남아있는 인수를 모두 모으고 배열로 나타낼수있다.  
+// 그리고 남아있는 인수를 모두 모으고 배열로 나타낸다.  
 
-// function sum1(nums){
+function sum0(...numb) {  //rest 나머지매개변수 (...)
+    console.log(numb)
+}
+sum0(33, 44, 55) //콘솔에입력하면   
+//[33,44,55]  numb배열이 생겼다  (...)으로 인수자리에 숫자 100개도쓸수있다. 
 
-// }
-// sum(3) 매개변수가 하나이다. (3,5)를 넣어도 매개변수는 3이다. 5는 무시된다.
 function sum1(...nums) {
     return nums.reduce((total, el) => total + el)
 }
-// nums배열이 생겼다. (...)으로 배열에 숫자 100개도쓸수있다. 
-// sum1(9,9,9)  콘솔결과 토탈값 잘작동함
-// 27
+// sum1(3,4,8)  인수에 3,4,8을 넣어보면
+// 15          더한값 15 출력   
 //(...nums)를 나머지(rest) 매개변수라고 부른다. 나머지값을 모두 모아준다.
 
 function raceResults(gold, silver, ...everyoneElse) {
@@ -36,33 +59,34 @@ function raceResults(gold, silver, ...everyoneElse) {
 //GOLD MEDAL GOES TO: 태미
 //SILVER MEDAL GOES TO: 토드
 //AND THANKS TO EVERYONE ELSE: 베리,시스코,나마스
+
 //골드와 실버 매개변수 두개를 호출했고 나머지는 모든참가자로 모았다.
-//이것이 바로 나머지연산자!!rest
+//이게 바로 나머지연산자 rest
 //여기서 골드는 인덱스 0 , 실버는 인덱스1, 모든참가자는 인덱스2
 //arguments키워드는 화살표함수에서 사용할수 없다. 그래서 이때도 나머지매개변수가 필요하다
-//스프레드와 모양은 같지만 다르다. 스프레드는 배열 안 숫자들을 반환해준다.
-//함수호출시 사용되거나 기타경우엔 배열을 목록으로 확창해주는 스프레드이다.
+//스프레드와 모양은 같지만 다르다. 스프레드는 배열 안에 요소들을 펼쳐서 반환해준다.
 //나머지매개변수는 나머지 매개변수를 모아서 반환해준다. 남아있는 인수를 모으는 역할을
 //하므로 항상 마지막에 있어야한다.
 
 
 //구조분해 중 개선된 새로운구문 배열분해 
-//배열이나 객체를 해체해서 별개의 변수형태로 만들수 있다
+const [] = 변수이름  //분해를 이용하는 짧은구문
+//배열이나 객체를 해체해서 별개의 변수로 만들수 있다
 const scores = [99, 98, 88, 96, 70, 86]
 const highScore = scores[0];
 const secondHighScore = scores[1];
 //인덱스로 불러내서 저장할수도있지만
 const [gold, silver, bronze, ...everyoneElse] = scores;
 // gold
-// 99      gold자리에 99 저장
+// 99      gold변수에 99 저장, everyoneElse변수에 [96,70,86]저장 
 // scores
-// [99, 98, 88, 96, 70, 86]    값의 순서대로 변수를 만들수 있다[gold,sliver,bronze..]
-// scores는 바뀌지않음
-//나머지연산자를 써서 나머지점수를 everyoneElse변수로 정했다.
-//모두 순서를 기반으로한다.  배열의 분해를 배워봤다.
+// [99, 98, 88, 96, 70, 86]    // scores는 바뀌지않음
+//나머지연산자를 써서 나머지점수 96,70,86를 everyoneElse변수로 정했다.
+//값의 순서대로 변수를 만들수 있다[gold,sliver,bronze..]
 
 
 //객체의구조 분해   많이쓰임  순서를 따르지않기땜에 배열구조분해보다 실용적
+//객체의 특성을 변수로 만든다
 const user = {
     email: 'harvey@gmail.com',
     password: 'ssssss333',
@@ -82,10 +106,12 @@ const lastName = user.lastName;
 //구조분해 구문을 이용하면된다.
 const { email, city, state, password } = user;
 //중괄호 안에는 개별 특성을 넣어줘야함  배열과는 달리 순서는 상관없다
-//한번에 4개의 변수를 만들었다. user객체는 그대로있고 따로 새변수를 만든것.
+//한번에 변수 네개를 만들었다. user객체는 그대로있고 따로 새변수를 만든것.
 //값을 객체에서 꺼내서 새이름도 지을수 있다.
+
 const { born: birthYear, died: deathYear } = user;
 //born이름이 birthYear로 바뀜. 콘솔에서 born을치면 not defined나오고 birthYear은 작동.
+
 const user2 = {
     이메일: 'Stacy@gmail.com',
     성: 'Stacy',
@@ -96,8 +122,8 @@ const user2 = {
 }
 const { 도시 = '서울', 주, 태어난달 = 1 } = user2
 //콘솔에 태어난달을 입력하면 undefined뜨는데(객체에 값을 입력안했으니) 
-//undefined는 오류가아님. 태어난달=디폴트값 을 정해줌 디폴트 1을 정해주고 콘솔입력하면
-//태어난달 1로 작동. 그러나 도시같이 이미 값을 갖고있는경우 디폴트를 '서울'로 
+//undefined는 오류가아님. 태어난달=디폴트 를 정해줌 디폴트 1을 정해주고 콘솔입력하면
+//태어난달 1로 출력. 그러나 도시같이 이미 값을 갖고있는경우 디폴트를 '서울'로 
 //정해도 'Tulsa' 로 출력.
 
 

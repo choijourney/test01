@@ -8,9 +8,16 @@
 // greet1('"Hello','Barry')
 //이렇게 "Hello,Barry!" 나왔음 
 
+const user = {
+    email: 'harvey@gmail.com',
+    password: 'ssssss333',
+    firstName: 'Harvey',
+    lastName: 'milk',
+    born: 1930,
+    died: 1978,
+    bio: 'Harvey Bernard Milk was an American politician',
+    city: 'San Francisco',
+    state: 'California'
 
-
-const evens = [2, 4, 6, 8];
-
-evens.reduce((sum, num) => 'a')
-'a'
+}
+const { bio, state, city } = user
