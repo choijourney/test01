@@ -130,7 +130,7 @@ const MyMath1 = {
 // 객체안에 있으니 쉼표는 있어야함.
 
 
-// this 키워드
+// this 키워드           this키워드와 화살표함수를 같이쓰면 이상하게작동한다.!!
 //메서드에 있는 객체를 가리킬때 this키워드를 사용함 
 const cat = {
     name: 'Blue Steele',
