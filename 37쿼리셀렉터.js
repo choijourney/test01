@@ -1,70 +1,77 @@
-//querySelector Dom에 최근에 추가된 메서드. 이 하나의 메서드를 이용해 Id, 클래스이름,
-//요소타입, 속성,css스타일 원하는  선택자를 이용해서 선택할수있다.
+//querySelector() Dom에 최근에 추가된 메서드. 인수에 Id, 클래스이름, 요소타입, 속성,
+//css스타일(예를들어'#red')까지  원하는  선택자를 이용해서 선택할수있다. 일치하는 첫번째 값을 반환.
 document.querySelector('p')   //를 콘솔입력해보면 첫번째 p 하나만 출력함.
 document.querySelector('#banner')  //아이디를 넣어줄때는 #을앞에붙임
 document.querySelector('.square')  //클래스는 .을앞에붙임 
 document.querySelector('img') //첫번째 이미지만 출력하는데 
 document.querySelector('img:nth-of-type(2)')  //nth-of-type을 써서
 //두번째 이미지도 찾을수있다.
-document.querySelector('a[title="Java"]')
+document.querySelector('a[title="Java"]')  //요소,속성과 속성이름으로 찾음
 // <a href=​"/​wiki/​Java" title=​"Java">​Java​</a>​
-//앵커태그안에 title을 쓰고 링크에 커서를 가져가면 title이름이 떠서 링크에대한설명을
-//볼수있다.  title은 []대괄호 안에 따옴표와 함께써준다.
-//앵커태그만이 아니라 타입과 속성으로 호출했다.(title이 속성. 앵커태그 안에있는 속성)
+//앵커태그안에 title을 쓰고 링크에 커서를 가져가면 title이름이 떠서 링크에대한설명을 볼수있다.
+
 
 //querySelectorAll도 같은 역할인데 모든요소반환 
 document.querySelectorAll('p')
 NodeList(2)[p, p]    // p를 넣었더니 p요소 모두반환
-//집합안에 있는 요소나 배열같은 객체가아니다. 그자체로 element객체. (무슨말인지모르겠음)
-//클릭해서 보면 html처럼 보이지만 html문자열을 이용해 만든 js객체이다.
+//반환값을보면 객체배열같이 보이지만 아니다.  element객체이다. 
+// html처럼 보이지만 html문자열을 이용해 만든 js객체이다.
 document.querySelectorAll('p a')  //p문단 안에있는 a앵커. 인덱스에 커서 올려보면
-// 해당 요소 색깔이 호버되면서 보여줌   /반복처리도 할수있음
+// 해당 요소 색깔이 호버되면서 보여줌    / ↓처럼 반복처리도 할수있음
 
-const links = document.querySelectorAll('p a');  // vscode입력 
+const links = document.querySelectorAll('p a'); //p문단안의 a앵커 
 for (let link of links) {
-    console.log(link.href)      //콘솔보면 모든 앵커 태그 출처가 출력
+    console.log(link.href)      //콘솔보면 선택된 모든 앵커 태그 출처가 출력
 }
 //querySelectorAll 많은요소니까 for of로 반복해야함
 
-//css인접선택자 +   / +기호를 사용하며 A+B A와B가 같은 층에있을때 A바로 뒤에 B를 선택
-//h1+h2{color:red}라면 h2만 빨강으로변경  h2를 모두 빨강으로 바꿔주는 ~ 인접형제선택도있음.
-//querySelectorAll을쓸때 +기호를 쓰는 인접선택자, nth-of-type도 사용할수있다
+
+//css인접선택자 +   / +기호를 사용하며 A+B A와B가 같은 층에있을때 A바로 뒤에 B를 한개만 선택
+//h1+h2{color:red}라면 h2만 빨강으로변경  h1뒤에나오는 h2를 모두 빨강으로 바꿔주는 ~ 인접형제선택도있음.
+//querySelectorAll('p+a') 이런식으로도 사용가능
 
 
-//innerText 
+//innerText  요소안에있는 텍스트를 골라 보여줌
 const h1 = document.querySelector('h1')
 console.dir(h1)
-// ▶h1    콘솔입력하면 객체가 나오는데 클릭해보면 특성들이 쭉나옴 
-document.querySelector('p').innerText   //콘솔입력하면
+// ▶h1      //객체가 나오는데  클릭해보면 특성들이 쭉나옴 이중에 innerText도있음
+document.querySelector('p').innerText
 //  'The Silkie (sometimes spelled Silky) is a breed of chicken named for its atypically fluffy plumage,
 //   which is said to feel like silk and satin...    p문단 텍스트 전부가 나옴.
-//객체의 모든 특성과 값도 검색할수 있다.
+//이외에 객체의 모든 특성과 값도 검색할수 있고 저장할수도있다.
+//예를들어 person.name='rachel' 이렇게 저장할수있다
 document.querySelector('p').innerText = 'lololol'
 'lololol'   //해당p를 가져다가 그안에 모든내용을 제거하고 lololol로바꿈
-//js를 이용해서 문단의 첫 텍스트를 바꿨다.
+//js를 이용해서 첫문단의 텍스트를 바꿨다.
+
 
 //textContent  - innerText와 유사
 document.querySelector('p').textContent
-//p문단 텍스트 전부나오는것은 innerText와 똑같으나 vscode에서 들여쓰기한 그대로 출력되서 
+//p문단 텍스트가 전부나오는것은 innerText와 똑같으나 vscode에서 들여쓰기한 그대로 출력되서 
 //줄바꿈이 이상하다.  차이점은 textcontent는 모든내용이 나오고 innertext는 숨겨진내용은
 //나오지않는다. 예를들어 어떤 span을 display-none으로 바꾸면 innertext와 사이트에서
-//안보이는데 개발자도구에서 보이고 textcontent에선 보인다. 삭제하는거랑 다르다. 
+//안보이는데 개발자도구와 textcontent에선 보인다. 
+//개발자도구에 Elements 에서 바꿀 요소를 클릭하고 아래 styles창에 element.style에 display:none;  
 
 const allLinks = document.querySelectorAll('a');
 for (let link of allLinks) {
     link.innerText = 'I am a link!!!'
 }  // 모든앵커태그가 'i am a link'로 바뀜
 
+
+//innerHTML 
 document.querySelector('h1').innerText = '<i>change</i>'
     - "<i>change</i>"
 //이탤릭체로 만드는 요소인 i 요소를 입력하면 텍스트로 <i>까지 그대로출력한다.
 //그냥 텍스트를 설정한거라서 i를 인식하지못하고 이렇게됨.
 document.querySelector('h1').innerHTML = '<i>change</i>'
 //이럴때 innerHTML을 쓰면 i를 태그요소로 보고 이탤릭체로 바꿔줌
-//또, 콘솔에 document.querySelector('p').innerHTML을 쓰면 태그,요소,텍스트를 포함한
+//또, 콘솔에 document.querySelector('p').innerHTML을 쓰면 요소,텍스트를 포함한
 //모든 내용이 나온다. 
 document.querySelector('h1').innerHTML += '<sup>Flash</sup>' //윗첨자가 생겼다
-//=는 안에있는 모든걸 덮어쓰고 +=는 추가한다
+//=는 안에있는 모든걸 덮어쓰고 +=는 추가한다   
+
+//태그 <p></p> 열기닫기를 태그라고부름   //요소 <p>내용들</p>  는내용들까지포함한게요소
 
 
 //attribute 속성

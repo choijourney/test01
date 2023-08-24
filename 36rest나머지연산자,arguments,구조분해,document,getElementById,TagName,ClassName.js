@@ -186,29 +186,34 @@ movie.map(({ title, score, year }) => {
 //DOM 이란 ? DOCUMENT Object Model  웹페이지를 구성하는 js 객체들의 집합.
 //최상위 가장 중요한 요소이자 가장 중요한 객체는 document 이다. 
 // li<ul<body<html<document 
-//콘솔에 document 를 입력하면 html 소스를 볼수있다
+//콘솔에 document 를 입력하면 html 코드를 볼수있다
 //console.dir(document) 를 입력하면 js객체가 나옴.  디렉토리의 dir로 문서객체구조를 출력함
 //열어보면 어마어마한 js객체가 있는데 건드리지않아야될 내용도 있으니 되도록 안건드는게 낫다.
 // 웹페이지의 모든콘텐츠를 객체로 나타낸다.
+//console.dir(document)를 입력해서 나온 js객체중에 all을 누르면 그 사이트를 구성하는 모든 요소들이 나온다
+//body,h1 등..모두.  document.all 을 입력하면 사이트를 구성하는 요소들의 배열이 나온다.
+//document.all[10] 인덱스를 이용해 10번째 요소 내용을 볼수있다 <b>Silkie</b>  
+//document.all[10].innerText='SILKIE'   내용을 바꿀수도있다  사이트에서 'SILKIE' 로 바뀐다
 
 
-//GetElementById  document에 쓰이며 뒤에 (문자열)을 입력하면 일치하는 Id를가진 요소를
-//찾아낸다 일치하는 Id가있으면 찾아내고 없으면 null로 나타냄
+//document.getElementById()  일치하는 id를 가진 요소를 페이지에서 찾아서 객체로 가져옴. 
+// 일치하는 Id가있으면 해당 값이 나타나고 없으면 null로 나타냄
 //id를 써야하고 클래스이름으로는 안됨
-document.getElementById('banner')
+document.getElementById('banner') //콘솔에 'banner'라는 Id를 입력하니 해당 요소인 img 출력
 //<img id=​"banner" src=​"https:​/​/​upload.wikimedia.org/​wikipedia/​commons/​thumb/​e/​e2/​Silky_bantam.jpg/​440px-Silky_bantam.jpg" alt>​
-//콘솔에 'banner'라는 Id를 입력하니 그안에 있는 img주소를 출력   HTML같아도 아님
+// ↑ HTML같아도 아님   html과 css는 js를만나면서 js객체로 들어가게된다 
+//그래서 모양은  html같아도 js 문서객체인것이다.
+
 const banner = document.getElementById('banner')   //const banner로저장 
-banner        //콘솔 banner 입력하니 img주소 출력
+banner        //콘솔 banner 입력하니 img 출력
 //<img id=​"banner" src=​"https:​/​/​upload.wikimedia.org/​wikipedia/​commons/​thumb/​e/​e2/​Silky_bantam.jpg/​440px-Silky_bantam.jpg" alt>​
 console.dir(banner)
 //- img#banner
-//console.dir(banner) //일치하는 id를 가진 요소를 페이지에서 찾아서 객체로 가져옴.
 //그안에 모든 특성이 포함돼있다
 //currentSrc: "http://images.unsplash.." 이런특성이 있는데 img소스. unsplash에서가져옴
-//tagName:"IMG" 중요하고 이미지 요소이거나 <img>태그를 말함.
+//tagName:"IMG"    중요함 이미지 요소를말함
 // children   을열어보면 자식요소에 대한 정보를 알수있다.
-// HTMLCollection(3)
+// HTMLCollection(3)         3개의 Elements로 이루어져있음
 // 0 input#toctogglecheckbox.toctogglecheckbox
 // 1 div.toctitle
 // 2 ul
@@ -216,9 +221,9 @@ console.dir(banner)
 
 //getElemetsByTagName / getElementsByClassName      Elements 복수형.
 //복수형인 이유는 한개이상을 선택하기땜
-document.getElementsByTagName('img')  //'IMG'대소문자구분없음
+document.getElementsByTagName('img')  //'IMG'대소문자구분안함
 // HTMLCollection(4) [img#banner, img.square, img.square, img.square, banner: img#banner]
-//배열처럼 생겼지만 배열이아님   대괄호랑 인덱스등의 배열구문을 쓸수있다.
+//배열처럼 생겼지만 배열이아님  인덱스 가능,  .length 가능 ,for of를 써서 반복가능. 
 const allImg = document.getElementsByTagName('img') //const allImg 로 저장
 //allImg      콘솔입력하면 배열같이생긴 애들이나오고 인덱스로 각요소를 출력할수있음
 //HTMLCollection(4)[img#banner, img.square, img.square, img.square, banner: img#banner]0: img#banner1: img.square2: img.square3: img.squarebanner: img#bannerlength: 4[[Prototype]]: HTMLCollection
@@ -227,10 +232,9 @@ const allImg = document.getElementsByTagName('img') //const allImg 로 저장
 // ↑ 텍스트가아닌 객체.
 console.dir(allImg[1])
 //▶ img.square    삼각형누르면 객체들이나옴.  
-//HTMLCollection은 배열이 아니기때문에 map같은거는 적용할수없다.
+//HTMLCollection은 배열이 아니기때문에 map같은 배열메서드는 적용할수없다.
 //인덱스사용가능하고,  .length가능 , for of를 써서 반복가능하지만 배열은 아님
 
-//const allImg=document.getElementsByTagName('img') 위에썼으니 주석처리하고
 for (let img of allImg) {
     console.log(img.src)   //src는특성이름 
 }
@@ -238,21 +242,21 @@ for (let img of allImg) {
 for (let img of allImg) {
     img.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/silky_bantam.jpg/440px-silky_bantam.jpg'
 }
-//다른 주소를 src''안에 넣어주면 이미지와 소스 변경. allImg였으니 모든이미지가 다바뀐다
+//다른 주소를 src에 쓰면 이미지와 소스 변경. img태그를 모두선택했으니  모든이미지가 다바뀐다
 // document.getElementsByTagName('p')     
-// HTMLCollection(2) [p, p]               이런식으로 전체 p,b,div
+// HTMLCollection(2) [p, p]               이런식으로 전체 p,b
 // document.getElementsByTagName('b')     가 몇개인지 알려주고
 // HTMLCollection(3) [b, b, b]            클릭해보면 index도 포함돼있다
-// document.getElementsByTagName('div')   (p는 2개의 element(요소)로 돼있음)
+
 
 //getElementsByClassName
 document.getElementsByClassName('square')
-HTMLCollection(3)[img.square, img.square, img.square]
-//('')안에 class이름을 넣어주면됨  그러면 해당 클래스 요소들 출력. 배열같지만 배열아님
+HTMLCollection(3)[img.square, img.square, img.square]  //3개의 Elements로 이루어져있음
+//인수안에 class이름을 넣어주면됨  그러면 해당 클래스 요소들 출력. 배열같지만 배열아님
 const squareImage = document.getElementsByClassName('square');
 for (let img1 of squareImage) {
-    img.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/silky_bantam.jpg/440px-silky_bantam.jpg'
+    img1.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/silky_bantam.jpg/440px-silky_bantam.jpg'
 }
 //for of를 써서 img소스를 바꿀수있다.
-//만약 ('ㄹㅇㄴㄹ')클래스이름 써야할곳에 없는 클래스를 쓰면 빈배열같은 [] 빈집합이 출력.
+//만약 인수자리에  없는 클래스를 쓰면 빈배열같은 [] 빈집합이 출력.
 //getElementsByTagName 처럼 인덱스 , .length , for of 로반복 가능. 
