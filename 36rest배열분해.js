@@ -105,10 +105,10 @@ const lastName = user.lastName;
 //이렇게해도 잘작동하나 선정하고싶은 특성이 여러개가 있을때마다 일일이 작성하려면 귀찮다
 //구조분해 구문을 이용하면된다.
 const { email, city, state, password } = user;
-//중괄호 안에는 개별 특성을 넣어줘야함  배열과는 달리 순서는 상관없다
 //한번에 변수 네개를 만들었다. user객체는 그대로있고 따로 새변수를 만든것.
-//값을 객체에서 꺼내서 새이름도 지을수 있다.
+//중괄호 안에는 개별 특성을 넣어줘야함  배열과는 달리 순서는 상관없다
 
+//값을 객체에서 꺼내서 새이름도 지을수 있다.
 const { born: birthYear, died: deathYear } = user;
 //born이름이 birthYear로 바뀜. 콘솔에서 born을치면 not defined나오고 birthYear은 작동.
 
@@ -128,25 +128,25 @@ const { 도시 = '서울', 주, 태어난달 = 1 } = user2
 
 
 //함수의 매개변수 분해
-// function fullName(user2) {
+// function fullName(user2) {             일반함수로 풀네임만들기
 //     return `${user2.성} ${user2.이름}`
 // }
-// - fullName(user2)  콘솔입력작동
+//  fullName(user2)  콘솔입력
 // 'Stacy Gonzalez'   구조분해를 이용해 같은결과를 만들수있음
 function fullName(user2) {
-    const { 성, 이름 } = user2;
-    return `${성} ${이름}`
+    const { 성, 이름 } = user2;       //객체구조분해를 해서 성,이름을 변수로만든다음
+    return `${성} ${이름}`          //변수 성,이름 반환    'Stacy Gonzalez' 
 }
 //처음작성이 더짧지만 매개변수를 자주쓸때는 이게낫다.
-//사용자정보를 사용할 계획이 없는경우에 도시,주,태어난해 등 다른정보는 출력하지않고
-//이름정보만 필요하다면 매개변수에서 구조분해를 할수있다.
-function fullName1({ 성, 이름, 동 = '토당동' }) {
-    return `${성} ${이름}`
-}
-//매개변수자리에 성,이름을 적어주고 리턴도 똑같다 성,이름만 적어주면됨.
-//user2 도 필요없다. 콘솔에 입력할때만 fullName1(user2) 쓰면됨 
-//동 = '토당동' 객체에 값이없을때 디폴트값설정할수 있다고했는데 안된다 이유가뭘까?
 
+//도시,주,태어난해 등 다른정보는 출력하지않고
+//이름정보만 필요하다면 인수자리에서 구조분해를 할수있다.
+function fullName1({ 성, 이름, 동 = '토당동' }) {   //동='토당동' 동을 추가해봤다
+    return `${성} ${이름} ${동}`
+}
+//매개변수자리에 {}중괄호안에 성,이름같은 특성을 쓰면됨
+//콘솔에 입력할때 fullName1(user2) 쓰면됨 
+//이름같이 이미Gonzalez로 값이있는경우 말고, 새로운 특성을 추가할때 기본값을 정할수있다 동='토당동'
 
 const movie = [
     {
@@ -165,28 +165,31 @@ const movie = [
     }
 
 ]
-movie.filter((movies) => movies.score >= 90)  //콘솔에 복붙입력
+movie.filter((movies) => movies.score >= 90)  //콘솔에 입력
 //이렇게해도 아마데우스,기생충.. 작동하지만 매개변수 자리에 구조분해를 이용해도됨
 movie.filter(({ score }) => score >= 90)
 //{}중괄호안에 매개변수score를 써서 더짧게만듦
+// 0  score: 99        인덱스와함께 90점 이상인 영화의 배열객체출력
+//  title: "Amadeus"
+//  year: 1984
 movie.map(movie1 => {
     return `${movie1.title} (${movie1.year}) is rated ${movie1.score}`
 })
-//예전에 배운대로 map을써도 되지만 매개변수를 이용하면
+//예전에 배운대로 map을써도 되지만 매개변수분해를 이용하면
 movie.map(({ title, score, year }) => {
     return `${title} (${year}) is rated ${score}`
 })
-//title,score,year을 중괄호에 한번에 쓰고 movie1은 지움. 그러면 같은결과.
-//movei1을 작성하지않아도 되니 더 낫다
+//title,score,year을 중괄호에서 구조분해함
+//movei1을 작성하지않아도 되니 짧고 더 낫다
 
 
-//DOM 이란 ?   문서오브젝트  DOCUMENT
-//최상위 가장 중요한 요소이자 가장 중요한 객체는 document 이다.
-//콘솔에 document 를 입력하면 소스를 볼수있다
-//console.dir 을 입력하면 더 자세한 소스를 볼수있다 디렉토리의 dir로
-//문서객체구조를 출력할수있다.열어보면 어마어마한 js객체가 있는데 건드리지않아야될
-//내용도 있으니 되도록 안건드는게 낫다.
-//consoe.dir(document)를 입력하면 웹페이지의 모든콘텐츠를 객체로 나타낸다.
+//DOM 이란 ? DOCUMENT Object Model  웹페이지를 구성하는 js 객체들의 집합.
+//최상위 가장 중요한 요소이자 가장 중요한 객체는 document 이다. 
+// li<ul<body<html<document 
+//콘솔에 document 를 입력하면 html 소스를 볼수있다
+//console.dir(document) 를 입력하면 js객체가 나옴.  디렉토리의 dir로 문서객체구조를 출력함
+//열어보면 어마어마한 js객체가 있는데 건드리지않아야될 내용도 있으니 되도록 안건드는게 낫다.
+// 웹페이지의 모든콘텐츠를 객체로 나타낸다.
 
 
 //GetElementById  document에 쓰이며 뒤에 (문자열)을 입력하면 일치하는 Id를가진 요소를

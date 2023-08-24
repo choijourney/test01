@@ -8,16 +8,20 @@
 // greet1('"Hello','Barry')
 //이렇게 "Hello,Barry!" 나왔음 
 
-const user = {
-    email: 'harvey@gmail.com',
-    password: 'ssssss333',
-    firstName: 'Harvey',
-    lastName: 'milk',
-    born: 1930,
-    died: 1978,
-    bio: 'Harvey Bernard Milk was an American politician',
-    city: 'San Francisco',
-    state: 'California'
+const movie = [
+    {
+        title: 'Amadeus',
+        score: 99,
+        year: 1984
+    },
+    {
+        title: 'Stand By Me',
+        score: 85,
+        year: 2013
+    }, {
+        title: 'parasite',
+        score: 95,
+        year: 2019
+    }
 
-}
-const { bio, state, city } = user
+]
