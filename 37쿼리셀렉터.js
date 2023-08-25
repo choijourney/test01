@@ -62,13 +62,13 @@ for (let link of allLinks) {
 //innerHTML 
 document.querySelector('h1').innerText = '<i>change</i>'
     - "<i>change</i>"
-//이탤릭체로 만드는 요소인 i 요소를 입력하면 텍스트로 <i>까지 그대로출력한다.
-//그냥 텍스트를 설정한거라서 i를 인식하지못하고 이렇게됨.
+//이탤릭체로 만드는 요소인 i 요소를 입력하면  <i>가 텍스트로 출력된다.
+//innerText는 텍스트를 바꾸는거라서 i를 인식하지못하고 이렇게됨.
 document.querySelector('h1').innerHTML = '<i>change</i>'
 //이럴때 innerHTML을 쓰면 i를 태그요소로 보고 이탤릭체로 바꿔줌
 //또, 콘솔에 document.querySelector('p').innerHTML을 쓰면 요소,텍스트를 포함한
-//모든 내용이 나온다. 
-document.querySelector('h1').innerHTML += '<sup>Flash</sup>' //윗첨자가 생겼다
+//모든 내용이 나온다. html 코드가 나오는거다.
+document.querySelector('h1').innerHTML += '<sup>Flash</sup>' //이부분이 추가됐다 sup-윗첨자
 //=는 안에있는 모든걸 덮어쓰고 +=는 추가한다   
 
 //태그 <p></p> 열기닫기를 태그라고부름   //요소 <p>내용들</p>  는내용들까지포함한게요소
@@ -76,7 +76,7 @@ document.querySelector('h1').innerHTML += '<sup>Flash</sup>' //윗첨자가 생�
 
 //attribute 속성
 document.querySelector('#banner').id = 'whoops'
-//원래 id가 banner였는데 whoops로 바꿨더니 css에서 설정한 width=100%이 'whoops'한텐
+//원래 id가 banner였는데 whoops로 바꿨더니 css에서 설정한 width=100%가 'whoops'한텐
 //적용되지 않으니까 너비가 부모해당하는 body크기로 맞춰져 사진크기가 커졌다.
 //어쨌든 id를 변경해서 이미지 자체의 id속성에 영향을 준거다. 
 document.querySelector('#whoops').id = 'banner'
