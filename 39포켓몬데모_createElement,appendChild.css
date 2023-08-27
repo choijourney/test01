@@ -1,0 +1,21 @@
+.pokemon {
+    /* div 클래스이름 */
+    display: inline-block;
+    /* 디브는 블록이니까 인라인블록으로 바꿔 인라인형태로 나열되게함 */
+    text-align: center;
+    /*  span숫자를 가운데로 옮기고 싶어서 text-align을 쓴다 (text-align은 블록만 적용가능하다.   */
+}
+
+.pokemon img {
+    display: block;
+}
+
+/*
+   div를 블록정렬말고 가로세로로 바둑판정렬을 하고싶어서 display를 inline-block으로 했더니
+   div안에 img,span이 인라인으로 같이 있어서 text-align으로 center정렬이 안된다
+   img는 왼쪽에있고 span은 오른쪽에있다. 이때 img를 display:block 으로 바꿔줘야
+   span이 다음줄로 가고 혼자 오롯이 center를 받는다. 
+
+inline-block -  내부적으로는 block 의 규칙을 따르면서 (패딩,마진,width다가능)
+외부적으로 inline  규칙을 따르게 되는 것. 
+   */

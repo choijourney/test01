@@ -8,20 +8,27 @@
 // greet1('"Hello','Barry')
 //이렇게 "Hello,Barry!" 나왔음 
 
-const movie = [
-    {
-        title: 'Amadeus',
-        score: 99,
-        year: 1984
-    },
-    {
-        title: 'Stand By Me',
-        score: 85,
-        year: 2013
-    }, {
-        title: 'parasite',
-        score: 95,
-        year: 2019
-    }
+const day = 2;
+switch (day) {
+    case 1:
+        console.log("monday");
 
-]
+    case 2:
+        console.log("tuesday");
+
+    case 3:
+        console.log("wednesday");
+
+    case 4:
+        console.log("thursday");
+
+    case 5:
+        console.log("friday");
+
+    case 6:
+    case 7:
+        console.log("Weekend!!")
+
+    default:
+        console.log("I don't know that.")
+}

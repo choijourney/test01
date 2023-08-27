@@ -3,3 +3,11 @@ h1~p {
 }
 
 /* 인접형제선택자 -  형제일때 h1다음의 p는 모두선택 */
+
+.h2 {
+    color: blue;
+}
+
+.border {
+    border: 1px solid greenyellow;
+}
