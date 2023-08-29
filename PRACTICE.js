@@ -45,7 +45,10 @@ tweetForm.addEventListener('submit', function (e) {
 //0:input  1:input  2:button length:3  tweet:input username:input
 //그래서 name을 이용해 tweetform.elements.tweet.value 입력값을 찾을수있다.class를 tweet으로 정하고
 //입력값을 찾아봤는데 안됐다. 
-
+const lis = document.querySelectorAll('li');
+for (let li of lis) {
+    li.addEventListener('click', function () { li.remove() })
+}
 
 
 

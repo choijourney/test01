@@ -163,8 +163,8 @@ const tweetsContainer1 = document.querySelector('#evts');
 tweetForm1.addEventListener('submit', function (e) {
     e.preventDefault();
 
-    // const usernameInput = document.querySelectorAll('input')[0];
-    // const tweetInput = document.querySelectorAll('input')[1];
+    // const usernameInput = document.querySelectorAll('input')[0]; 
+    // const tweetInput = document.querySelectorAll('input')[1]; 
     const usernameInput = tweetForm1.elements.user;
     const tweetInput = tweetForm1.elements.tweett;
     addTweet1(usernameInput.value, tweetInput.value)
@@ -181,10 +181,16 @@ const addTweet1 = (username, tweet) => {
     tweetsContainer1.append(newTweet1);
 }
 
-newTweet1.addEventListener('click', function () {
-    newTweet1.classList.toggle('hide')
-})
-
+const lis = document.querySelectorAll('li');
+for (let li of lis) {
+    li.addEventListener('click', function () { li.remove() })  //li를 클릭하면 없어짐
+} //그러나 html에 원래 있던 li만 없어지고 새로 트윗해서 생긴 li한텐 적용이안됨 
+//이럴때 새li한테도 이벤트를 적용되게 하는 이벤트위임이 있다.
+// 이벤트위임이란  li의 부모요소에 이벤트수신기(이벤트리스너)를 추가 하는거다
+//콘솔에 포인터이벤트(마우스이벤트) 객체를 보면 target이라는 특성이 있다
+//이 target이 클릭했을때 눌려진 요소를 뜻한다.
+//만약 ul에 이벤트리스너로 'click'을 추가하고 li를 클릭하면
+//target:li 타깃은 li로 나온다
 
 
 
