@@ -123,8 +123,8 @@ bubblediv.addEventListener('click', function () {
 
 
 //폼이벤트 트윗만들기
-const tweetForm = document.querySelector('#tweetform');
-const tweetsContainer = document.querySelector('#tweets');
+const tweetForm = document.querySelector('#tweetform'); //form
+const tweetsContainer = document.querySelector('#tweets'); //ul
 tweetForm.addEventListener('submit', function (e) {
     e.preventDefault();
     //const usernameInput=document.querySelectorAll('input')[0]  이거보다 아래줄처럼쓰는게 좋다
@@ -154,48 +154,60 @@ const addTweet = (username, tweet) => { //매개변수에 (usernameInput.value,t
 // 코드를 적은 순서대로 요소들이 나오는데 (인덱스도포함) name에 적은 글자도 나온다.
 //0:input  1:input  2:button length:3  tweet:input username:input
 //그래서 name을 이용해 tweetform.elements.tweet.value 입력값을 찾을수있다.class를 tweet으로 정하고
-//입력값을 찾아봤는데 안됐다. 
+//입력값을 찾아봤는데 안됐다. elements에 name을 이용해야함.
 
 
 //이벤트위임  만들어놨던 트윗 수정하기
 const tweetForm1 = document.querySelector('#eventform');
-const tweetsContainer1 = document.querySelector('#evts');
+const tweetsContainer1 = document.querySelector('#tweet1');
 tweetForm1.addEventListener('submit', function (e) {
     e.preventDefault();
 
     // const usernameInput = document.querySelectorAll('input')[0]; 
     // const tweetInput = document.querySelectorAll('input')[1]; 
-    const usernameInput = tweetForm1.elements.user;
-    const tweetInput = tweetForm1.elements.tweett;
-    addTweet1(usernameInput.value, tweetInput.value)
-    usernameInput.value = '';
-    tweetInput.value = '';
+    const usernameInput1 = tweetForm1.elements.user;
+    const tweetInput1 = tweetForm1.elements.tweett;
+    addTweet1(usernameInput1.value, tweetInput1.value)
+    usernameInput1.value = '';
+    tweetInput1.value = '';
 });
 
 const addTweet1 = (username, tweet) => {
     const newTweet1 = document.createElement('li');
-    const bTag = document.createElement('b');
-    bTag.append(username)
-    newTweet1.append(bTag);
+    const bTag1 = document.createElement('b');
+    bTag1.append(username)
+    newTweet1.append(bTag1);
     newTweet1.append(`- ${tweet}`)
     tweetsContainer1.append(newTweet1);
 }
 
-const lis = document.querySelectorAll('li');
-for (let li of lis) {
-    li.addEventListener('click', function () { li.remove() })  //li를 클릭하면 없어짐
-} //그러나 html에 원래 있던 li만 없어지고 새로 트윗해서 생긴 li한텐 적용이안됨 
+// const lis = document.querySelectorAll('li');
+// for (let li of lis) {
+//     li.addEventListener('click', function () { li.remove() })  //li를 클릭하면 없어짐
+// } //그러나 html에 원래 있던 li만 없어지고 새로 트윗해서 생긴 li한텐 적용이안됨 
 //이럴때 새li한테도 이벤트를 적용되게 하는 이벤트위임이 있다.
 // 이벤트위임이란  li의 부모요소에 이벤트수신기(이벤트리스너)를 추가 하는거다
 //콘솔에 포인터이벤트(마우스이벤트) 객체를 보면 target이라는 특성이 있다
-//이 target이 클릭했을때 눌려진 요소를 뜻한다.
-//만약 ul에 이벤트리스너로 'click'을 추가하고 li를 클릭하면
-//target:li 타깃은 li로 나온다
+//이 target이, 클릭했을때 눌려진 요소를 뜻한다.
+//만약 ul에 이벤트리스너로 'click'을 추가하고 li를 클릭하면 ul에 이벤트리스너를 썼지만 
+//클릭되는건 li니까 target:li 타깃은 li로 나온다
+
+// tweetsContainer1.addEventListener('click', function (e) {    //부모인 ul에 이벤트리스너
+//     e.target.remove();                             // 타깃제거(클릭하는요소제거)
+// })  이렇게만 써도 새로트윗한 li까지 제거된다 그러나 혹시 버튼이나 다른 요소가  ul안에 있을때 
+//버튼은 지우지않고 li만 지우고싶다면 아래처럼 쓰면된다
+
+tweetsContainer1.addEventListener('click', function (e) {  //ul에 이벤트리스너
+    e.target.nodeName === 'LI' && e.target.remove();   //타깃의 노드네임이 'LI'와같다면 제거
+})
+//console.dir(e.target) 을 콘솔에서보면 nodeName='LI' 로나옴  nodename을 이용하거나
+// e.target.localName === 'li' && e.target.remove();   localName'li' 를 이용해도된다
+//대소문자 잘보기 nodeName'LI' 때문에 고생함..
 
 
 
 
-//이벤트위임  만들어놨던 트윗 수정하기  원본
+//이벤트위임  트윗  원본
 // const tweetForm1 = document.querySelector('#eventform');
 // const tweetsContainer1 = document.querySelector('#evts');
 // tweetForm1.addEventListener('submit', function (e) {
@@ -218,3 +230,6 @@ for (let li of lis) {
 //     newTweet.append(`- ${tweet}`)
 //     tweetsContainer1.append(newTweet);
 // }
+// tweetsContainer1.addEventListener('click', function (e) {
+//     e.target.remove();
+// })
