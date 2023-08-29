@@ -5,9 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>prevent default</title>
+    <style>
+        .hide {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
+    <!-- 폼이벤트 쉬운버전 -->
     <h1>my form</h1>
     <form action="/google" id="formcat">
         <!-- action 폼을 전송하면 폼에 담겨있는 데이터를 action에 작성한 위치로 전송됨  -->
@@ -15,9 +21,39 @@
         <button>Submit</button>
         <h2>cats</h2>
         <ul id="cats"></ul>
+    </form>
 
-        <h1 id="h11">Type Below:</h1>
-        <input type="text" id="input2">
+    <!-- 버블이벤트 -->
+    <h1 id="h11">Type Below:</h1>
+    <input type="text" id="input2">
+
+    <section onclick="alert('section clicked')">
+        <p onclick="alert('paragraph clicked')">I am a paragraph
+            <button onclick="alert('button clicked')">bubble</button>
+        </p>
+        <!-- 버블이벤트  물속에서 올라오는 공기방울처럼 맨아래 요소부터 높은레벨까지 올라가는 것을 버블이라한다.
+버튼을 클릭하면 버튼작동-> p작동 ->섹션작동    p를클릭하면 p작동-> 섹션작동   -->
+    </section>
+    <div id="bubblediv">Click to hide
+        <button id="bubblebtn">Change Color</button>
+    </div>
+
+    <!-- 폼이벤트 어려운버전 트윗 -->
+    <form action="/google" id="tweetform">
+        <section id="tweets">
+            <input type="text" class="username" name="username">
+            <input type="text" class="tweet" name="tweet">
+            <button>submit</button>
+        </section>
+    </form>
+
+    <!-- 여기부턴 이벤트위임  -->
+    <form action="/google" id="eventform">
+        <section id="evts">
+            <input type="text" name="user">
+            <input type="text" name="tweett">
+            <button>submit</button>
+        </section>
     </form>
     <script src="43폼이벤트,preventDefault,.value.js"></script>
 </body>
