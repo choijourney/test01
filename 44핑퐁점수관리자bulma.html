@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <!-- bulma 링크 -->
+
+</head>
+
+<body>
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-half is-offset-one-quarter">
+                    <!-- 그리드시스템 너비를 조정하고 센터로 이동 / columns,column이라서 헷갈렸는데 제대로쓴거맞음 -->
+                    <div class="card">
+                        <div class="card-image">
+                            <figure class="image is-2by1">
+                                <img src="https://images.unsplash.com/photo-1630610280030-da8fbc7ca25a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fCVFRCU4MyU4MSVFQSVCNSVBQ3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                                    alt="">
+                            </figure>
+                        </div>
+                        <header class="card-header">
+                            <p class="card-header-title">
+                                탁구 점수 내기
+                            </p>
+                        </header>
+                        <div class="card-content">
+                            <div class="content">
+                                <h1 class="title is-1"><span id="play1"> 0</span> to <span id="play2"> 0</span></h1>
+                                <p class="subtitle">버튼을 눌러 스코어를 올리세요</p>
+                                <label for="winningScoreSelect" class="label is-large is-inline">Playing to</label>
+                                <div class="select is-rounded">
+                                    <select name="scorenum" id="winningScoreSelect">
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <footer class="card-footer">
+                            <button id="btn1" class="is-primary button card-footer-item is-large">player1</button>
+                            <button id="btn2" class="is-info button card-footer-item is-large">player2</button>
+                            <button id="rebtn" class="is-danger button card-footer-item is-large">reset</button>
+
+                        </footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="44핑퐁점수관리자addEventListener.js"></script>
+</body>
+
+</html>
+
+<!-- bulma - css프레임워크 부트스트랩처럼 사용 
+그리드시스템은 bulma사이트에서 colomn 을 눌러보면 클래스이름이 있는데 사용하면된다
+타이포그래피, color 는 helpers를 클릭하면 볼수있다
+title크기는 elements를 클릭하면 title목록이 있다 h1에 쓰면된다
+<section class="section">를 쓰면 맨위에 여백이 조금생김 더이뻐보임
+    
+-->
