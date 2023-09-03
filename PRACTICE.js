@@ -1,3 +1,4 @@
+//axios import@  <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
 
 // const greet = (arg) => {
 //     return `'Hey ${arg}!'`
@@ -10,7 +11,18 @@
 
 
 
-
+function sum (x, y) {
+    if (typeof x !== 'number' || typeof y !== 'number') {
+      throw "숫자를 입력하세요"
+    }
+    return x + y; 
+  }
+  
+  try {
+    sum("abc", 1)
+  } catch (e) {
+    console.log(e); // "숫자를 입력하세요"
+  }
 
 
 

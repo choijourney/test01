@@ -1,6 +1,7 @@
-//promises 어떤연산,비동기 연산이 최종적으로 완료 혹은 성공했는지 실패했는지 알려주는 객체이다.
-//최종값이나 작동여부에 대한 약속이다.  값이 3개이고  
+//promise   어떤연산,비동기 연산이 최종적으로 완료 혹은 성공했는지 실패했는지 알려주는 객체이다.
+//최종값이나 작동여부에 대한 약속이다. ie에서 작동안됨    값이 3개이고  
 //  pending은 기다리는상태 , fullfiled는(calt쌤강의에선 resolved) 성공 , rejacted는 실패 를 뜻한다.
+// reject를 사용하지 않을때 생략할수있다. 리턴 값이 중요하지 않을때, 중괄호 또한 생략할수있다.
 
 // THE CALLBACK VERSION
 const fakeRequestCallback = (url, success, failure) => {  //success,failure는 콜백을 넣을거다
@@ -54,14 +55,15 @@ const fakeRequestPromise = (url) => {
 
 
 
-//then은 성공하면이라는뜻 fullfiled(resolved)와 같은뜻. catch는 실패하면이라는뜻.rejected와 같다.
-// fakeRequestPromise('yelp.com/api/coffee/page1')
-//     .then(() => {                
-//         console.log("IT WORKED!!!!!! (page1)")
-//         fakeRequestPromise('yelp.com/api/coffee/page2')
-//             .then(() => {
-//                 console.log("IT WORKED!!!!!! (page2)")
-//                 fakeRequestPromise('yelp.com/api/coffee/page3')
+
+//then은 성공하면이라는뜻 fullfiled(resolved)와 같은뜻. catch는 실패하면이라는뜻 rejected와 같다.
+// fakeRequestPromise('yelp.com/api/coffee/page1')    매개변수에 url을 넣어 promise를 작동시킨다
+//     .then(() => {                           성공하면 (4초이하인 난수가나오면)
+//         console.log("IT WORKED!!!!!! (page1)")     it worked 출력   
+//         fakeRequestPromise('yelp.com/api/coffee/page2')  한후 한번더 실행
+//             .then(() => {                             성공하면 itworked 2 출력
+//                 console.log("IT WORKED!!!!!! (page2)") 
+//                 fakeRequestPromise('yelp.com/api/coffee/page3') 
 //                     .then(() => {
 //                         console.log("IT WORKED!!!!!! (page3)")
 //                     })
@@ -78,27 +80,43 @@ const fakeRequestPromise = (url) => {
 //     })
 
 
-// THE CLEANEST OPTION WITH THEN/CATCH
+
+
+// THE CLEANEST OPTION WITH THEN/CATCH           promise는 이렇게 쓰면된다!!
 // RETURN A PROMISE FROM .THEN() CALLBACK SO WE CAN CHAIN!
-fakeRequestPromise('yelp.com/api/coffee/page1')
-    .then((data) => {
+fakeRequestPromise('yelp.com/api/coffee/page1')  //url을 넣고 promise를 작동시킨다
+    .then((data) => {                      //성공하면 콘솔로그를 출력시키고
         console.log("IT WORKED!!!!!! (page1)")
-        console.log(data)
-        return fakeRequestPromise('yelp.com/api/coffee/page2')
+        console.log(data)   //data인수자리에 (`Here is your fake data from ${url}`) 들어감 
+        return fakeRequestPromise('yelp.com/api/coffee/page2') // fakeRequestPromise(url)을 리턴한다
     })
-    .then((data) => {
+    .then((data) => {                                //성공하면 콘솔로그를 출력시키고 
         console.log("IT WORKED!!!!!! (page2)")
         console.log(data)
-        return fakeRequestPromise('yelp.com/api/coffee/page3')
+        return fakeRequestPromise('yelp.com/api/coffee/page3') //fakeRequestPromise을 리턴한다 
     })
     .then((data) => {
         console.log("IT WORKED!!!!!! (page3)")
         console.log(data)
     })
-    .catch((err) => {
-        console.log("OH NO, A REQUEST FAILED!!!")
-        console.log(err)
+    .catch((err) => {          //실패일경우 위에 then들을 무시하고 catch로와서  
+        console.log("OH NO, A REQUEST FAILED!!!")  //콘솔로그출력을한다.
+        console.log(err)    //err인수자리에 'Connection Timeout :(' 들어감
+    })  //catch는 한번만 써도 된다 
+
+//첫번째 then이 성공하면 두번째로, 두번째가 성공하면 세번째로 이어진다. 만약 첫번째부터 실패하면
+//바로 맨아래 catch로가서 함수를 실행시킨다. 
+
+
+
+//promise만들기
+const fakeRequest = (url) => {        // ↓첫번째매개변수는 resolve자리 , 두번째매개변수는 reject자리
+    return new Promise((resolve, reject) => {   //매개변수에 다른이름을 쓸수있지만 거의 resolve,reject씀
+        setTimeout(() => {
+            if (rand < 0.7) {
+                resolve('your fake data here');
+            } reject('request error');
+        }, 1000)
     })
-
-
-
+}
+//reject를 사용하지 않을때 생략할수있다. 리턴 값이 중요하지 않을때, 중괄호 또한 생략할수있다.

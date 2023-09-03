@@ -56,7 +56,7 @@ isRightTriangle(3, 4, 5)
 //     }, 1000)
 // }, 1000)
 
-//중첩하면 복잡하니까 함수로 짧게 만들어본다
+// 함수로 짧게 만들어본다
 // const delayedColorChange = (newColor, delay) => {      괄호는 매개변수자리
 //     setTimeout(() => {
 //         document.body.style.backgroundColor = newColor;   
@@ -66,24 +66,43 @@ isRightTriangle(3, 4, 5)
 // delayedColorChange('teal', 1000)  //중첩을 시키던가. 나는 콜백으로 할거다.
 
 
-const delayedColorChange = (newColor, delay, donext) => { //매개변수하나더추가 donext엔 함수가들어갈거다
-    setTimeout(() => {
-        document.body.style.backgroundColor = newColor;
-        donext();  //함수가들어갈건데 어떤함수가와도 되지만 여기선 delayedColorChange를 써서 
-    }, delay)       //색깔을 더추가할거다
-}
+// const delayedColorChange = (newColor, delay, donext) => { //매개변수하나더추가 donext엔 함수가들어갈거다
+//     setTimeout(() => {
+//         document.body.style.backgroundColor = newColor;
+//         donext();  //함수가들어갈건데 어떤함수가와도 되지만 여기선 delayedColorChange를 써서 
+//     }, delay)       //색깔을 더추가할거다
+// }
 
-delayedColorChange('red', 1000, () => {       //매개변수가 3개인..3번째매개변수는 함수인 중첩된 식.
-    delayedColorChange('orange', 1000, () => {
-        delayedColorChange('yellow', 1000, () => {
-            delayedColorChange('green', 1000, () => {
-                delayedColorChange('blue', 1000, () => {
+// delayedColorChange('red', 1000, () => {       //매개변수가 3개인..3번째매개변수는 함수인 중첩된 식.
+//     delayedColorChange('orange', 1000, () => {
+//         delayedColorChange('yellow', 1000, () => {
+//             delayedColorChange('green', 1000, () => {
+//                 delayedColorChange('blue', 1000, () => {
 
-                })
-            })
-        })
-    })
-})
+//                 })
+//             })
+//         })
+//     })
+// })
 
 //콜백을 써서 중첩이 많이되고 가독성이 안좋을 수 있다.콜백지옥.. 다음에 promises와 비동기식으로
 //깔끔하게 코드를 작성하는것을 배울거다
+
+//promise를 써서 위식을 보기쉽게 써본다.
+
+const delayedColorChange1 = (color, delay) => {     // 필요한 매개변수들을 적는다 
+    return new Promise((resolve, reject) => {    //promise를 리턴한다 항상 resolve,reject 인수를갖는다
+        setTimeout(() => {            //setTimeout(함수,몇초연기할지) 적는다
+            document.body.style.backgroundColor = color;  //배경색을 바꾸는데 
+            resolve();         //resolve시킨다 (성공시킨다는뜻. then과이어져있어서 then이 실행된다)
+        }, delay)
+    })
+}
+
+delayedColorChange1('black', 1000)   //color와 delay에 'black'과 1000을 대입시켜 promise를 실행시킨다
+    .then(() => delayedColorChange1('pink', 1000))  //암시적반환으로 return을 지운상태
+    .then(() => delayedColorChange1('skyblue', 1000))
+    .then(() => delayedColorChange1('rgb(252, 252, 106)', 1000))
+    .then(() => delayedColorChange1('hotpink', 1000))
+    .then(() => delayedColorChange1('purple', 1000))
+    //1초마다 색깔이 바뀐다
