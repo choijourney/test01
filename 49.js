@@ -79,3 +79,67 @@ const makeImages = (showimg) => {
 //이렇게 쓰는게 이해가 잘안되는데 외우기
 
 //비동기함수는 try,catch를 써서 오류잡기
+
+
+//배열은 js에서 객체이다
+
+// prototype          js객체가 서로기능을 상속하는 방식
+// const arr= [1,2,3].push(4)
+// [1,2,3,4] 출력   펼쳐보면 push메서드가 바로보이진않고
+// [[prototype]]을 펼쳐보면 있다. [[prototype]]은 참조일뿐이라 건드릴 일은 없을거다.
+
+// 배열에 메서드를 내가 만들수 있다. 
+// arr.sing= function () {console.log('la la la')}
+// arr.sing() 입력  la la la 출력   
+// 펼쳐보면 인덱스 밑에 sing: ƒ ()   sing만든메서드가 있고 prototype에 추가돼있다.
+//mdn을 보니 성능을 고려하여 [[prototype]]을 권장하지않는다고 적혀있다..
+
+Array.prototype
+//콘솔에 이렇게 입력하면 내장메서드가 나온다.
+Array.prototype.grey = () => document.body.style.backgroundColor = 'grey'
+//[3,4].grey()  배경색 그레이로바뀜
+// Array.prototype      다시 배열의 프로토타입을 보면 내장메서드와 함께 맨위에 내가 만든 메서드가 있다.
+// [grey: ƒ, constructor: ƒ, at: ƒ, concat: ƒ, copyWithin: ƒ, …]
+String.prototype   //String도 배열과 똑같이 프로토타입에 내장메서드가 있다
+String.prototype.alarm = () => alert('go away')  //내장메서드에 내가 만든 알람메서드가 추가된다
+// 'red'.alarm()   // 문자열을 적고 메서드를 쓰면 실행된다 
+//만든 메서드는 모든 배열이나 문자열에 사용가능하다
+String.prototype.yell = function () {
+    console.log(this.toUpperCase())
+}
+// 'hi'.yell()   / HI 출력    this를 쓰면 .왼쪽을 참조해서 'hi'를 출력한다
+// 프로토타입의 작동방식에대해 배운거지 그다지 좋은 방법은 아니라고 했다.
+
+Array.prototype.pop = function () {
+    console.log('SORRY I WANT THAT ELEMENT, I WILL NEVER POP IT OFF')
+}
+//pop을 실행해보면 원래있던 pop메서드는 작동안하고 새로만든 pop이 작동된다. 그닥 좋은방법은 아니다.
+
+
+
+//색상전환하기
+// 'hsl(180,50%,30%)' 맨앞숫자180이 색조데이터이다 만약 반대색으로 색전환을 하고싶으면 
+// 180에 180을 더하면 된다. 뒤엔 채도와 명도이다. rgb는 세가지 색으로 돼있어서 반대색을 계산하기 복잡하다
+
+//팩토리함수로 색상전환 
+
+function makeColor(r, g, b) {
+    const color = {};  //빈객체를 만듦
+    color.r = r;       //객체에 값을 추가
+    color.g = g;       //메서드는 함수임 이값은 메서드가 될수없음
+    color.b = b;
+    color.rgb= function(){    //rgb 메서드 만들기 
+     const {r,g,b} = this;  // ${this.r},${this.g},${this.b} 이렇게쓰기 불편하니 this를 구조분해 
+      return `rgb(${r},${g},${b})`;}  //this로부터 r,g,b를 추출함   // 'rgb(35,255,150)'
+    color.hex= function() {  //rgb값을 넣으면 16진수 hex로 변환해줌
+      const {r,g,b} = this;
+        return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+  }; return color; 
+  }
+  //this는 color객체를 참조하는데 지금까지 추가한 이 전체 객체를 참조함
+  const firstColor=makeColor(35,255,150);
+  firstColor.rgb();     //'rgb(35,255,150)'
+  firstColor.hex();     //'#23ff96'
+  // firstColor.r=255  r의값을 변경할수도있다   firstColor.rgb() // 'rgb(255,255,150)'
+  
+  //문제는없지만 이상적인 방법은 아니다
