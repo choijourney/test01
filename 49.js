@@ -128,18 +128,53 @@ function makeColor(r, g, b) {
     color.r = r;       //객체에 값을 추가
     color.g = g;       //메서드는 함수임 이값은 메서드가 될수없음
     color.b = b;
-    color.rgb= function(){    //rgb 메서드 만들기 
-     const {r,g,b} = this;  // ${this.r},${this.g},${this.b} 이렇게쓰기 불편하니 this를 구조분해 
-      return `rgb(${r},${g},${b})`;}  //this로부터 r,g,b를 추출함   // 'rgb(35,255,150)'
-    color.hex= function() {  //rgb값을 넣으면 16진수 hex로 변환해줌
-      const {r,g,b} = this;
+    color.rgb = function () {    //rgb 메서드 만들기 
+        const { r, g, b } = this;  // ${this.r},${this.g},${this.b} 이렇게쓰기 불편하니 this를 구조분해 
+        return `rgb(${r},${g},${b})`;
+    }  //this로부터 r,g,b를 추출함   // 'rgb(35,255,150)'
+    color.hex = function () {  //rgb값을 넣으면 16진수 hex로 변환해줌
+        const { r, g, b } = this;
         return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
-  }; return color; 
-  }
-  //this는 color객체를 참조하는데 지금까지 추가한 이 전체 객체를 참조함
-  const firstColor=makeColor(35,255,150);
-  firstColor.rgb();     //'rgb(35,255,150)'
-  firstColor.hex();     //'#23ff96'
-  // firstColor.r=255  r의값을 변경할수도있다   firstColor.rgb() // 'rgb(255,255,150)'
-  
-  //문제는없지만 이상적인 방법은 아니다
+    }; return color;
+}
+//this는 color객체를 참조하는데 지금까지 추가한 이 전체 객체를 참조함
+const firstColor = makeColor(35, 255, 150);
+firstColor.rgb();     //'rgb(35,255,150)'
+firstColor.hex();     //'#23ff96'
+// firstColor.r=255  r의값을 변경할수도있다   firstColor.rgb() // 'rgb(255,255,150)'
+
+//문제는없지만 이상적인 방법은 아니다
+
+
+//생성자 함수와 new
+function Color(r, g, b) {    //앞글자를 대문자로 쓰면 생성자함수, 객체를 만든다 
+    this.r = r;          //객체를 만들고 값 추가
+    this.g = g;
+    this.b = b;
+    //console.log(this)
+} // new키워드를 쓰기전엔 this가 window객체를 참조한다
+// new를 쓰면 this가 새로만들어진 객체를 참조한다
+
+Color.prototype.rgb = function () {    //prototype에 rgb메서드를 만든다  
+    const { r, g, b } = this;     // ${this.r},${this.g},${this.b} 이렇게쓰기 복잡하니 this를 구조분해 
+    return `rgb(${r},${g},${b})`  //this로부터 r,g,b를 추출함 
+};
+
+Color.prototype.hex = function () {
+    const { r, g, b } = this;
+    return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+}
+// this키워드 쓸때 화살표함수 쓰면 오류남
+
+Color.prototype.rgba = function (a = 1.0) {  //기본값을 불투명으로. 숫자가낮을수록투명
+    const { r, g, b } = this;
+    return `rgba(${r},${g},${b},${a})`  //rgb값에 인수a를 추가
+}
+
+const black = new Color(0, 0, 0)
+black.rgb()    //'rgb(0,0,0)'   rgb메서드가 prototype에 추가됐다
+const color2 = new Color(50, 50, 50)
+color2.rgba(0.5)  //'rgba(50,50,50,0.5)'
+
+// black.hex===color2.hex  // true   hex메서드가 prototype의 내장메서드에서 와서 같다는뜻
+// black.rgb===color2.rgb  // true   prototype을 보면 hex메서드와 rgb메서드가 있다 

@@ -10,23 +10,6 @@
 //이렇게 "Hello,Barry!" 나왔음 
 
 
-function hex(r, g, b) {
-  return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
-}  //rgb값을 넣으면 16진수 hex로 변환해줌  
-
-function makeColor(r, g, b) {
-  const color = {};
-  color.r = r;
-  color.g = g;
-  color.b = b;
-  color.rgb= function(){
-   const {r,g,b} = this;  // ${this.r},${this.g},${this.b} 이렇게쓰기 불편하니 this를 구조분해 
-    return `rgb(${r},${g},${b})`
-}; return color; 
-}
-
-const firstColor=makeColor(35,255,150);
-firstColor.rgb();
 
 
 
