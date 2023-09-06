@@ -119,15 +119,17 @@ document.body.style.backgroundColor = c1.rgba(0.5);
 //     bark(){
 //         return 'woofwhoof!!'
 //     }
-// }         
+// }          extends를 써서 위코드를 짧게쓸수있다 
 
 
 
-// extends를 써서 위코드를 짧게쓸수있다
+//extends는 부모코드를 상속받는다. construnctor는 class를 실행시키면 자동실행된다
+//super는 
 class Pet {             //Cat과 Dog에서 겹치는 코드를 따로빼서 Pet에 쓰고
     constructor(name, age) {
         this.name = name;
         this.age = age;
+        console.log('working?')
     }
     eat() {
         return `${this.name} is eating!`;
@@ -135,18 +137,30 @@ class Pet {             //Cat과 Dog에서 겹치는 코드를 따로빼서 Pet�
 }
 
 class Cat extends Pet {         //extends Pet을 쓰면 Pet의코드를 상속받는다. 객체,메서드 다 받음
+    constructor(name, age, livesLeft = 9) {  //상속받았지만 인수를추가할때는 constructor를 씀
+        super(name, age);         //인수를 추가할때 super를 써서 상속을 안전하게 받는다.            
+        this.livesLeft = livesLeft;  //livesLeft 값을 객체에 추가
+        console.log('hohoho')   //콘솔을 보면 'working?'과'hohoho'가 나온다  
+    }            // Pet코드를 상속받고 Pet함수가 실행될때 constructor도 자동실행됐기때문
     meow() {                    //Cat을 펼쳐보면 eat,meow메서드가 있다 
         return 'meowwww!!'
     }
 }
 class Dog extends Pet {      //Dog에 constructor가 없으면 Pet에 있는지 확인하고
     bark() {                 //Pet에서 constructor를 상속받는다
-        return 'woofwhoof!!' //Dog를 펼쳐보면 eat,bark메서드가 있다
+        return 'woofwhoof!!'
     }
-    eat() {                 //
+    eat() {           //상속받은 Pet에도 eat이 있고 Dog에도 있으면 Dog eat을 쓴다
         return `${this.name} is eating now!`
         //   dang.eat() 콘솔입력 // 'dang is eating now!'
     }
 }
 const moo = new Cat('moo', 5)
 const dang = new Dog('dang', 5)
+
+//super
+// 부모 클래스에게 extends로 상속받았는데 자식클래스에서 인수를 추가하려고 할때 constructor를
+// 자식클래스에서 재정의를 해야한다. 이러한 과정에서 중복되는 코드가 발생해 에러 발생확률이 증가하며
+// 메모리 낭비 등 비효율적인 낭비가 생긴다. 이 문제를 super로 해결할 수 있다.
+//extends를 쓰고 자식클래스에서 인수를 추가할때 super를 써서 상속을 안전하게 받는다.
+//super를 먼저 쓰고 this를 써야함.  super를 나중에쓰면 오류가뜬다

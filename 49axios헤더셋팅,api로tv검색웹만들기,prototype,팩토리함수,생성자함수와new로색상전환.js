@@ -80,8 +80,8 @@ const makeImages = (showimg) => {
 
 //비동기함수는 try,catch를 써서 오류잡기
 
-
 //배열은 js에서 객체이다
+
 
 // prototype          js객체가 서로기능을 상속하는 방식
 // const arr= [1,2,3].push(4)

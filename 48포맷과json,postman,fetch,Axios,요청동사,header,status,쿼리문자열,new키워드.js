@@ -107,7 +107,7 @@
 //아재개그를 보내준다.
 
 
-// 생성자 new키워드   함수 앞에 new를 붙이면 그 return 값은 객체가 된다. 
+// 생성자와 new키워드   함수 앞에 new를 붙이면 그 return 값은 객체가 된다. 
 const person1 = {
     'name': '도날드 트럼프',
     'introduce': function () {
@@ -122,8 +122,8 @@ const person2 = {
     }
 }
 //조 바이든이 아닌 다른이름을 담고싶으면 객체를 이런방식으로 찍어낼수도 있지만 변경할 경우가 생긴다면
-//객체마다 하나하나 찾아서 바꿔줘야 하기때문에 유지보수가 어렵다. 그리고  코드의양이 너무많다.
-//이런 코드 중복을 피하기 위해 나온것이 생성자 new 이다.
+//객체마다 하나하나 찾아서 바꿔줘야 하기때문에 유지보수가 어렵다. 그리고 코드의양이 너무많다.
+//이런 코드 중복을 피하기 위해 나온것이 생성자와 new 이다.
 // let p = new person();     여기선 함수를 정의한게 없어서 작동하진않는다
 // console.log(p);
 // 위와 같이 new를 앞에 붙이고, 함수를 호출하면, 이 함수를 그냥 함수라고 하지 않고, 생성자라고 부른다.
@@ -131,13 +131,13 @@ const person2 = {
 // 예제에서 생성자는 person() 베이스로 만든 객체를 return한다.
 // 함수 앞에 new를 붙이면 그 return 값은 객체가 된다.
 
-function Person(name) {
+function Person(name) {               //생성자함수는 함수이름 첫글자를 대문자로쓴다
     this.name = name;         //this.name은 키  , name은 값
     this.introduce = function () {   //this.introduce는 키, 함수는 값
         return 'My name is ' + this.name;
     }
 }
-let p1 = new Person('조은길');  //객채를 생성 매개변수name에 '조은길' 입력
+let p1 = new Person('조은길');  // new를 써서 객체를 생성한다  
 console.log(p1.introduce());     //p1객체에서 introduce값 출력    My name is 조은길
 
 let p2 = new Person('트럼프');
