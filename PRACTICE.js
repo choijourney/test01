@@ -10,7 +10,9 @@
 //이렇게 "Hello,Barry!" 나왔음 
 
 
-
+for (let i=0; i<10; i++){
+    console.log('hello node js')
+  }
 
 
 
