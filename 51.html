@@ -28,7 +28,8 @@
 - rm : 파일삭제 rm 50.html 입력하면 휴지통으로 가지않고 완전히삭제
 - rmdir  , rm -d   : 빈폴더삭제  폴더안에 파일이있으면 삭제안됨
    - rm -rf : 폴더안에 파일이 있어도 삭제 강제삭제  
-- rm -r : 폴더안에 파일이 있어도 삭제 
+- rm -r : 폴더안에 파일이 있어도 삭제  삭제할때 무조건 전디렉토리에 있어야함 /Desktop/here에서
+          here을 지우고싶다면 /Desktop디렉토리에서 here을 지울수있음 
 - clear : 코드를 모두 지움  단축기 컨트롤+l
 
 
@@ -103,6 +104,7 @@ I COME AFTER MKDIR IN THE FILE 출력
 in the callback
 확인해보면 tiger폴더도 잘만들어져있다.
 
+
 동기식으로 폴더만들기 = 순차적으로 작업실행
 fs.mkdirSync('Cats');      Cats폴더를 만들고
 console.log('I COME AFTER MKDIR IN THE FILE') 출력
@@ -117,10 +119,40 @@ $ node goat.js 인수를 안적으면 기본값으로 설정한 project폴더 �
 
 writeFile : 기존파일이 없다면 새파일 생성. 파일에 데이터를 기록하거나 기존파일을 대체함 
 
+동기식으로 파일만들기
+const folderName =process.argv[2] || 'project'
+try{
 fs.mkdirSync(folderName);
-fs.writeFileSync(`${folderName}/index.html`)
-fs.writeFileSync(`${folderName}/app.js`)
-fs.writeFileSync(`${folderName}/styles.css`)
+fs.writeFileSync(`${folderName}/index.html`,`is it right?`)
+fs.writeFileSync(`${folderName}/app.js`,`is it right?`)
+fs.writeFileSync(`${folderName}/styles.css`,`is it right?`)
+} catch (e) {
+  console.log ('something wrong' , e );
+}
+writeFileSync를 쓸때 인수에 두값이 꼭 필요하다 첫번째인수는 파일경로, 
+두번째인수는 텍스트,숫자등 내용 아무거나. 세번째 선택적인수도 있는데 안써도된다
+
+node goat.js goat 입력하면 goat폴더생성후 그안에 파일 3개 생성. 파일내용에  is it right? 이들어있다
+동기라서 코드가 순서대로 실행된다
+
+만약 현디렉토리와 goat.js디렉토리가 다를때 현디렉토리에서 goat.js디렉토리까지 가는 경로를 쓰고나서 인수를 씀
+$ node ../newew/goat.js elephant       그러면 현재디렉토리에 폴더혹은파일이 생긴다
+
+비동기식으로 파일만들기
+
+fs.writeile('index1.html', 'what?', 'utf8', (err) => {      (파일경로,텍스트내용,인코딩생략가능,함수)
+console.log('done');
+if (err) { console.log('it is error') }
+})
+console.log('first saying') 
+fs.writeile 이라고 F를 빼고 일부러 오류를 냈는데 콘솔에 it is error가 뜨지않는다
+코드가 실행되기도전에 오류가 나서 함수실행까지 가지않아서 인것같다
+여기 if문에서 잡아주는 오류는 다른 오류인것 같다.
+반면 try,catch로 fs.writeile부터 감싸주면 catch에 적은 문구가 콘솔출력된다
+
+파일만들기를 요청하고 기다리는동안 first saying 먼저출력되고 파일생성후 done 출력.
+
+
 
 
 동기 (Synchronous)와 비동기(Asynchronous)
@@ -128,6 +160,7 @@ fs.writeFileSync(`${folderName}/styles.css`)
 즉 A작업이 모두 진행 될때까지 B작업은 대기해야한다.
 비동기 방식은 반대로 요청을 보냈을 때 응답 상태와 상관없이 다음 동작을 수행 할 수 있다. 
 즉 A작업이 시작하면 동시에 B작업이 실행된다. A작업은 결과값이 나오는대로 출력된다.
+
 
 
 로컬 디렉토리에서는 삭제하지 않고 git에서만 삭제
