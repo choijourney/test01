@@ -8,12 +8,12 @@
 // console.log(`${msg},${person}!"`)
 // greet1('"Hello','Barry')
 //이렇게 "Hello,Barry!" 나왔음 
-
-
-for (let i=0; i<10; i++){
-    console.log('hello node js')
-  }
-
+const fs= require('fs');
+fs.mkdir('tigers',{recursive:true},(err)=>{
+  console.log('in the callback')
+  if (err) throw err;
+});    
+console.log('I COME AFTER MKDIR IN THE FILE')
 
 
 

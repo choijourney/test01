@@ -82,10 +82,52 @@ crypto  : 데이터를 암호화하거나 해독할때 쓰는 메서드
 http  : http요청을 보낼때 쓰는 메서드
 
 fs : 는 file system.  메서드 객체이다. fs안에 많은 메서드가 있고 fs.mkdir 이런형태로 사용한다
-const fs= require('fs');    fs는 내장돼있지만 범위내에 없어서 자동으로 가져올수 없기에
-    노드에게 사용한다고 요청을 보낸다. require메서드에 fs를 넣고 변수로 저장함
-    
+const fs= require('fs');   fs.메서드를 쓸때는 fs를 사용한다고 요청을 보낸다. fs는 내장돼있지만 
+범위내에 없어서 자동으로 가져올수 없기에 노드에게 사용한다고 요청을 보낸다.
+require메서드에 fs를 넣고 변수로 저장.
 
+비동기식으로 폴더만들기
+const fs= require('fs');
+fs.mkdir('tigers',{recursive:true},(err)=>{        비동기로 tiger폴더를 만듦
+  console.log('in the callback')            
+  if (err) throw err;                인수에 err가 들어가면 err가 뜨게함
+});    
+console.log('I COME AFTER MKDIR IN THE FILE')  
+
+bash에서 node PRACTICE.js 를 입력하면 위식이 작동하는데,
+비동기라서 tiger폴더를 만들어달라고 요청을 보내놓고 I COME AFTER MKDIR IN THE FILE 콘솔출력 후에
+tiger폴더를 만들면 in the callback 콘솔출력
+
+$ node PRACICE.js     bash입력
+I COME AFTER MKDIR IN THE FILE 출력  
+in the callback
+확인해보면 tiger폴더도 잘만들어져있다.
+
+동기식으로 폴더만들기 = 순차적으로 작업실행
+fs.mkdirSync('Cats');      Cats폴더를 만들고
+console.log('I COME AFTER MKDIR IN THE FILE') 출력
+확인해보면 Cats폴더가 만들져있다  
+
+const folderName =process.argv[2] || 'project'  폴더이름을 인수로 함 || 기본값은 project
+fs.mkdirSync(folderName);
+
+$ node goat.js bear 입력하면 bear폴더생성 
+$ node goat.js 인수를 안적으면 기본값으로 설정한 project폴더 생성
+
+
+writeFile : 기존파일이 없다면 새파일 생성. 파일에 데이터를 기록하거나 기존파일을 대체함 
+
+fs.mkdirSync(folderName);
+fs.writeFileSync(`${folderName}/index.html`)
+fs.writeFileSync(`${folderName}/app.js`)
+fs.writeFileSync(`${folderName}/styles.css`)
+
+
+동기 (Synchronous)와 비동기(Asynchronous)
+동기 방식은 서버에서 요청을 보냈을 때 응답이 돌아와야 다음 동작을 수행할 수 있다. 
+즉 A작업이 모두 진행 될때까지 B작업은 대기해야한다.
+비동기 방식은 반대로 요청을 보냈을 때 응답 상태와 상관없이 다음 동작을 수행 할 수 있다. 
+즉 A작업이 시작하면 동시에 B작업이 실행된다. A작업은 결과값이 나오는대로 출력된다.
 
 
 로컬 디렉토리에서는 삭제하지 않고 git에서만 삭제
