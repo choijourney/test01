@@ -1,0 +1,218 @@
+<!--  module.exports  다른파일로 내용보내기 require('/경로') 와같이씀
+
+const math = require('./goat');    goat.js파일을 가져올때 js를 빼고 이렇게쓴다 
+goat디렉토리에 있다고 ./ 를 써서 명시해준다 .이 이디렉토리라는뜻이고 뒤에 /goat가 오는것
+같은디렉토리에 있어서 ./goat라고 쓴거고 다른 디렉토리에 있으면 정확한경로를 써줘야한다 ./test1/goat
+console.log(math)      변수math 
+$ node sheep.js 입력하면 기본값인 빈객체 출력
+{ }
+  
+module.exports = 'HELLOO'    goat.js에 왼쪽내용을 추가하고 node sheep.js 입력하면  
+콘솔에 HELLOO 출력된다   const math = require('./goat'); 썼을때 
+goat.js의 모든내용이 아닌  module.exports안의 내용을 불러오라고 한거다. 
+
+const add = (x, y) => x + y;    goat.js에 입력
+const PI = 3.14159;          
+const square = x => x * x;    
+module.exports.add = add;     객체를 만든다 add를 키로, 함수add를 값으로 지정한다
+module.exports.PI = PI;
+module.exports.square = square;
+
+$ node sheep.js   콘솔입력
+{ add: [Function: add], PI: 3.14159, square: [Function: square] } 출력
+
+console.log(math.PI)      sheep.js에서 math.PI 를 메서드로 쓸수있다
+console.log(math.square(9))    9제곱
+$ node sheep.js
+3.14159          PI값 불러옴
+81               9제곱 연산값출력 
+
+
+const {PI,square} = require('./goat');
+math를 안쓰기위해 구조분해해서 객체{}중괄호에 PI,square만 따로뺐다
+console.log(PI)       square랑 PI만 참조하게되고 math를 안적어도된다
+console.log(square(9))
+
+
+const math = {           goat.js에 입력  math 객체를 만들고   
+add: add,                  add는 add함수 이렇게 키,값을 만들고
+PI: PI,
+square: square
+}
+module.exports = math;     module.exports를 쓰면 math객체를 참조할것이다 
+
+
+module.exports.add = (x, y) => x + y;    이렇게쓰는방법도 있다
+module.exports.PI = 3.14159;              결과는 위방법들 모두같다
+module.exports.square = x => x * x;
+
+
+단축기로 exports.square= square; 이렇게 메서드를 붙여서 쓸수있지만
+exports='hello' 이렇게 쓸수는없다 
+
+
+
+//다른파일,폴더를 가져오기
+module.exports = {    이렇게 goat,sheep,elephant의 이름과 컬러가 담긴  
+name: 'ppul',         객체를 3개 만들었다 (각자 다른 js파일에) 
+color: 'black'
+}                    이 3객체를 모두모아 together라는 파일에 배열로 만드려고한다
+
+const elephant = require('./elephant')  그래서 together.js에서 3파일을 요청한다
+const goat = require('./goat')
+const sheep = require('./sheep')
+
+const together = [elephant, goat, sheep]  변수에 저장한 3파일을  배열안에 넣는다 
+console.log(together);                   
+
+$ node together.js         콘솔에입력하면
+[                          배열에 담긴 3개의 객체가 나온다
+{ name: 'janet', color: 'grey' },   
+{ name: 'ppul', color: 'black' },
+{ name: 'meh', color: 'beige' }
+]
+
+위와같이 goat폴더전체를 goat디렉토리(현재디렉토리) 밖에서 불러올수있다
+goat폴더에 index.js 가있어야하고 index.js에 elephant,goats,sheep의 객체를 모아야한다
+const elephant = require('./elephant')
+const goats = require('./goats')
+const sheep = require('./sheep')
+
+const together = [elephant, goats, sheep]
+module.exports = together;     
+
+그리고 goat와 같은 디렉토리에있는 파일이 필요하다 test1에 goat가 있길래 test1에
+dolphin.js라는 파일을 만들었다  다른디렉토리에있는 파일을 시도해봤는데 오류난다 
+const allTogether = require('./goat')    dolphin.js에서 ./goat 폴더 요청
+console.log(allTogether)
+
+$ node dolphin.js           콘솔입력
+[                하면 goat폴더의 핵심내용을 모아둔 index.js의 내용이 나온다.  
+{ name: 'janet', color: 'grey' },     
+{ name: 'ppul', color: 'black' },      
+{ name: 'meh', color: 'beige' }      
+
+goat폴더를 가져온다고 요청했지만 사실은 그안에 index.js를 불러오는거다. 
+index.js를 안만들고 핵심파일의 이름을 together.js로 했을경우
+require('./goat/together') 이렇게적으면된다
+
+
+
+// NPM : 패키지는 다른사람이 쓴 코드인데 우리가 가져다가 쓸수있게 쓰여진 코드이다
+NPM은 그런 노드 패키지를 위한 저장소로 노드 패키지 매니저를 뜻하며,
+node는 NPM 명령줄 도구와 같이 제공되어서 손쉽게 패키지들을 설치할수있게 해줌
+ 
+npm install 하는방법 - 인스톨할 노드 패키지를 고른다 
+react,request,express,babble,style-components등 패키지를 사용하기 위해서 
+이름을 기호까지 정확히 복사해야한다 모든 패키지는 등록된 이름으로 작동되기 때문이다
+그 다음 패키지를 설치할 디렉토리를 만든다 만든 디렉토리에서 git에 입력한다
+npm i give-me-a-joke   i는 install 단축키. 그럼 give-me-a-joke 패키지 설치가 완료
+돼고 디렉토리를 열어보면 node_modules 라는 폴더가있는데 핵심코드가 들어있어서 
+건드리지않는게좋다 package-lock.json 파일 역시 마찬가지다 
+같은디렉토리안에 index.js를 만든후 패키지이름을 요청한다 (경로요청이아니고 이름만)
+const jokes = require('give-me-a-joke');  
+jokes.getRandomDadJoke(function (joke) {     give-me-a-joke  npm설명에서 
+console.log(joke);                           코드를 가져와서 쓴다
+});                                          여기까지 아재개그npm 
+
+$ node index.js   입력해보면
+Why is it so windy inside an arena? All those fans. 아재개그출력
+
+
+$ npm install colors  터미널에 색깔있는 텍스트를 출력해줌
+const jokes = require('give-me-a-joke'); 무지개색 아재개그를 출력할거다
+const colors = require('colors');      npm이름인 'color' 요청
+jokes.getRandomDadJoke(function (joke) {   
+console.log(joke.rainbow);        문자열에 .rainbow  .green 메서드를 써주면 됨
+});  
+
+
+
+지역설치와 전역설치 
+npm을 위 방법대로 설치하면 지역범위라 그 폴더밖에서 불러오기가 어렵다
+대부분 지역설치를 하는데, 왜냐면 진행하는 프로젝트에 따라 다른버전이 필요할수도 있기때문
+react나 express 같은 패키지는 서로 다른 버전마다 차이가 상당해서 오래된 코드는 
+최신버전에서 작동하지 않는다 그래서 어떤 버전을 쓰는지 잘관리해야한다
+그래도 가끔 전역설치가 필요하고 가끔은 문서에서 그렇게 하라고 나오기도한다
+
+
+전역npm설치하기  $ npm i -g cowsay   전역은 -g를 붙여주면됨 global의 g
+컴퓨터의 전역 node_modules 디렉토리에 설치가된다
+말하는 소 패키지를 다운받았다 그런데 다운받는 도중 오류가 나는경우가있다
+전역 node_modules는 상위디렉토리인데
+쓰기권한이 없어서 그렇다고..Missing write access to /usr/local/lib/node_moules
+그럴때 sudo chown-R $USER /usr/local/lib/nod_modules  로 오류를 해결할수있다
+이렇게 쓰면 node_modules 디렉토리에 대한 권한이 변경된다
+그다음 콘솔에 cowsay hi  입력하면 소가 나타난다  어떤디렉토리에서도 작동이된다 
+
+
+
+// package.json  패키지에대한 정보를 담고 있고 모든 노드앱에 포함돼있다
+json객체로 데이터가 나오는데 그중 dependencies: 버전정보 를 나타낸다 
+
+파일을 만들 디렉토리를 만든다 그디렉토리에서 git으로 명령어를 입력한다
+보통 package.json파일은 npm명령어를 통해 만들어진다
+$ npm init    이명령어를 입력하면된다 
+{
+"name": "artster",    처음에 기본값name이 뜨고 엔터를 입력하면
+"version": "1.0.0",    version으로 넘어간다 기본값엔터
+"description": "",     설명은 아무것도 안적어서 빈칸이고
+"main": "index.js",     기본값 엔터 
+"scripts": {            기본값 엔터
+"test": "echo \"Error: no test specified\" && exit 1"    기본값 엔터
+},
+"author": "stone",      이름 stone을 내가입력했고
+"license": "ISC"       기본값 엔터
+} 
+
+Is this OK? (yes)      엔터 하면 package.json 이 만들어진다   
+
+다음으로 이 폴더에 패키지를 설치한다  npm i figlet (대시기호로 글자만드는 패키지)
+"dependencies": {      설치하면 한줄이 더생긴다 
+"figlet": "^1.6.0"     
+}
+
+가끔 npm을 설치할때 package.json이 어쩌고 오류날때가 있는데 그럴때 위방법처럼
+package.json을 만들고 설치하면 해결된다
+
+figlet을 설치하고 같은디렉토리에 index.js를 만든후 npm사이트에 readme에 써있는 
+실행코드를 가져와서 붙여넣기한다 
+
+$ node index.js
+   _ _
+ __| | _____ _(_) |(_)_ _ __| | __ _ ___
+ / _` |/ _ \ \ / / | || | | | |/ _` |/ _` |/ _ \
+ | (_| | __/\ V /| | || | |_| | (_| | (_| | __/
+ \__,_|\___| \_/ |_|_|/ |\__,_|\__,_|\__, |\___|
+
+figlet과 colors 패키지를 같이 쓰기위해 현디렉토리에 colors를 설치했다
+"dependencies": {       설치하니까 colors가 package.json의 디펜던시에 추가됐다 
+"colors": "^1.4.0",
+const colors=require('colors'); colors패키지를 요청하고 
+console.log(data.rainbow);   figlet마지막줄 콘솔로그에 메서드추가하면된다
+
+npm init 으로 package.json을 만들고 내용엔 우리가 입력하는 답변들로 채워진다(패키지,앱의 정보들)
+다 만들고나선 프로젝트의 루트 디렉토리에 넣는다
+어떤 디렉토리에 package.json이 있고 디펜던시(패키지)를 설치하면 package.json의 dependencies섹션에 추가된다
+
+
+
+// 필요한 디펜던시 한번에 설치하기
+
+코드를 처음 다운받고 git에서 node index.js 를 입력해 실행해보면 실행되지않는다
+package.json에 dependencies항목에있는 디펜던시들이 내 폴더에 없기때문이다
+그래서 디펜던시들을 다운받아줘야 실행이 되는데 하나씩 npm에서 다운받을필요없이,
+git에서 npm install 이나 npm i 를 입력하면  디펜던시들이 한번에 다운받아진다
+디펜던시목록이 포함돼있는 package.json이 있는 디렉토리에서 npm i를 써야함
+
+그러고나면 node_modules가 생긴다  <336번강의자료에 있는 깃허브 코드를 다운받았다> 실시간 채팅앱이다 
+github같은 곳에서 다른사람의 코드를 다운받을때 보통 node_modules는 포함돼있지않다.공간을 많이 차지하기때문.
+코드를 다운받고 npm i를 쓰면 생긴다.
+
+$ node index.js  
+listening on *:8080  이렇게 출력되는데 새탭을열고 주소창에 
+local:8080 입력하면 연결된다
+
+더이상 쓰지않는 디펜던시면 삭제해야한다. 안그러면 누군가 그코드를 가져가서 디펜던시를 다운받을때
+불필요한 디펜던시가 포함돼있는데도 npm install할때 다 설치돼버린다.
+-->

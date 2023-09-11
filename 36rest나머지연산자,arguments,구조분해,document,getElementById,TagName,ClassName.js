@@ -107,6 +107,7 @@ const lastName = user.lastName;
 const { email, city, state, password } = user;
 //한번에 변수 네개를 만들었다. user객체는 그대로있고 따로 새변수를 만든것.
 //중괄호 안에는 개별 특성을 넣어줘야함  배열과는 달리 순서는 상관없다
+//콘솔에 city 입력하면 San Francisco 출력  
 
 //값을 객체에서 꺼내서 새이름도 지을수 있다.
 const { born: birthYear, died: deathYear } = user;
