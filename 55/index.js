@@ -65,10 +65,95 @@ app1.listen(4000, () =>
 
 
 
-// ejs 태그 <%= EJS %>
+// ejs 태그 <%= LION %>  태그사이의 값이 출력됨 LION 
 // ejs 사이트를 보면 Tags 라는 설명섹션이있다 <%  <%_ <%= 이런 태그들이 있고
 //HTML이 아니니 HTML로 취급하지 말라는 뜻의 태그들이다
 // 처음 배울 태그는 <%=  %>  태그사이에 코드를 넣으면 그안의 값은 템플릿으로 출력됨
 
-//Node.js 에서는 템플릿이란 어떤 의미일까 ? 그건 바로 HTML 태그로 이루어진 기초 문서를 의미한다.
+//Node.js 에서는 템플릿이란 어떤 의미일까 ?  HTML 태그로 이루어진 기초 문서를 의미한다.
 //그 중 일부를 필요한 정보로 채워넣는 것.
+
+//<h1>the home page <%= 4+5+1 %>  </h1 >    home.ejs HTML파일에 ejs태그를 썼다
+// 여기 4+5+1 은 js로 취급되고 계산해서 10이 돼서 출력된다
+// localhost:4000 을 보면  the home page 10  출력
+// <h1>the home page <%= 'helloworld' .toUpperCase() %> </h1>
+// the home page HELLOWORLD 출력
+
+//ejs language support 확장자 설치
+// ejs파일에서 <%= ejs태그를 썼을때 구문에 하이라이트가 들어가서 js라고 표시해준다
+
+
+
+//템플릿에 변수 전달하기
+const app2 = express(); //위에const express = require('express') 썼으니 또쓰면안됨
+
+app2.set('view engine', 'ejs');
+app2.get('/rand', (req, res) => // localhost:5000/rand 입력하면 
+    res.render('random'));   // random.ejs 페이지로 응답
+app2.listen(5000, () =>
+    console.log('LISTENING TO PORT 5000'));
+
+// <h1><%= Math.floor(Math.random() * 10) + 1 %></h1 >  random.ejs 내용
+// localhost:5000 입력하면  h1크기로 랜덤숫자 나옴
+
+//하지만. 템플릿에서 로직을 최대한 제거해서 쓰는게좋다. 숫자를 먼저 만들어 변수에 저장한뒤 템플릿에게
+//전달하는거다.
+const app3 = express();
+app3.set('view engine', 'ejs');
+app3.get('/rand', (req, res) => {
+    const num = Math.floor(Math.random() * 10) + 1;  //랜덤숫자를 먼저만들고 num변수에 저장
+    res.render('random', { rand: num })  //두번째 인수에 키-값 객체를 넣는다. rand키,num값
+})  //두번째인수에 { num: num }키와값을 동일하게 { num } 이렇게써도됨
+
+//res.render 첫번째인수=파일이름 , 두번째인수={사용할변수이름:값}  이렇게쓰면 연결된 random.ejs파일에서
+//rand를 변수로 사용할수있다.  <%= rand %>       
+//localhost:8080 보면 랜덤숫자 출력.
+
+app3.listen(8080, () => {        //포트번호 조심 .. 6000쓰지말기 8080은 잘작동
+    console.log('LISTENING TO PORT 8080')
+})
+
+// 포트에대해서..※   구글이 가끔 특정포트를 막아놓는경우가 있다고한다  6000포트 막혀있어서 한참 애먹었다
+
+
+//subreddit 템플릿 데모
+//const express=require('express')
+const app4 = express();
+// const path = require('path');
+
+app4.set('view engine', 'ejs');
+app4.set('views', path.join(__dirname, '/views')); //상위디렉토리에서도 파일에 접근할수있게 경로를만듦
+
+app4.get('/r/:subreddit', (req, res) => {
+    const { subreddit } = req.params;
+    res.render('subreddit', { subreddit });
+})
+//const { subreddit } = req.params;     :subreddit이 매개변수이고 그값이 req.params에 저장됨
+//그래서 구조분해를 통해 {subreddit:req.params } subreddit을 키로, 매개변수 값을 사용할수있음  
+app4.listen(2000, () =>
+    console.log('LISTENING TO PORT 2000'))
+
+//그리고 subreddit.ejs파일에  <h1>Browsing The <%= subreddit %> subreddit </h1>  랜더링함
+//localhost:2000/r/dully  엔터치면 Browsing The dully subreddit 응답
+
+
+
+//ejs 태그 <% %> 태그 사이 코드 출력되지않고 js 로직으로 취급 / 템플릿에 추가하지않는 구문.
+//     < h1 >  <%= rand %>  </h1 >      rand값 출력
+//     <% if (rand % 2 === 0) { %>    이 태그는 출력되지않고 js 로직으로 취급
+//         <h2>That is an even number!</h2>    얘는 HTML이라 태그 필요없음
+//         <% } else { %>              js로직을 한줄한줄 <%   %> 태그로 감싸줘야함
+//             <h2>That is an odd number!</h2>
+//             <% } %>
+//     <h3> That number is : <%= rand%2===0 ? 'even' : 'odd' %></h3>     출력되니까 <%= 이태그씀
+//    삼항연산자 rand가 짝수가 true면 첫번째 출력 'even'  , false면 두번째 출력 'odd'
+ 
+
+//삼항연산자  rand%2===0 ? 'even' : 'odd'
+// 불리언이 true면 첫번째 문자열 출력, false면 두번째 문자열 출력. 불리언뒤에 ? 물음표 필요
+
+
+//if (rand%2 ==0){       ejs태그 쓸때, 일반 js구문이라고 생각하고 양옆에 <% %> 태그로 감싸주기만하면됨
+//    }
+
+
