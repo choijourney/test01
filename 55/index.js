@@ -147,7 +147,7 @@ app4.listen(2000, () =>
 //             <% } %>
 //     <h3> That number is : <%= rand%2===0 ? 'even' : 'odd' %></h3>     출력되니까 <%= 이태그씀
 //    삼항연산자 rand가 짝수가 true면 첫번째 출력 'even'  , false면 두번째 출력 'odd'
- 
+
 
 //삼항연산자  rand%2===0 ? 'even' : 'odd'
 // 불리언이 true면 첫번째 문자열 출력, false면 두번째 문자열 출력. 불리언뒤에 ? 물음표 필요
@@ -157,3 +157,30 @@ app4.listen(2000, () =>
 //    }
 
 
+
+// EJS 루프
+app4.get('/cats', (req, res) => {
+    const cats = ['blue', 'red', 'navi', 'ming', 'myo'];
+    res.render('cat', { cats })   //'cat'= cat.ejs 
+})          // { allcat: cats } 이렇게써도됨 대신 ejs파일엔 allcat을 변수로써야함
+//배열을 만들고 forof루프로 반복해줄거다
+// < ul >                         cat.ejs 에 js를 쓰고 ejs태그로 감싸줌
+//     <% for (let cat of cats) { %>
+//         <li>
+//             <%= cat %>
+//         </li>
+//         <% } %>
+// </ul >           localhost:2000/cats 에 blue,red,navi,ming,myo 리스트가 생김
+
+
+//index.js를 깔끔하게 하려면 데이터는 다른 json파일에 적는게 좋다  data.json파일만듦
+const app5 = express()
+const redditData = require('./data.json')  //data.json 불러오면 js객체로로 변환됨
+//console.log(redditData) 
+app5.get('/r/:subreddit', (req, res) => {
+    const { subreddit } = req.params;
+    const data = redditData[subreddit];  //redditData객체의 키로subreddit을써서 값얻음 
+    res.render('subreddit', { ...data })   //스프레드구문 객체를복사해서 새객체를만듦
+
+})
+//{...data}  name , subscribers 같은 각특성에 접근할수 있다.  {name:soccer, subscribers: 800000} 
