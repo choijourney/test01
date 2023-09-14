@@ -173,14 +173,40 @@ app4.get('/cats', (req, res) => {
 // </ul >           localhost:2000/cats 에 blue,red,navi,ming,myo 리스트가 생김
 
 
+
+//subreddiet 데이터객체와 연결하기   /essets에셋연결하기
 //index.js를 깔끔하게 하려면 데이터는 다른 json파일에 적는게 좋다  data.json파일만듦
 const app5 = express()
 const redditData = require('./data.json')  //data.json 불러오면 js객체로로 변환됨
-//console.log(redditData) 
+//console.log(redditData)
+app5.use(express.static(path.join(__dirname, 'public')));
+// 정적에셋파일 전달.  상위디렉토리에서도 nodemon 55/index.js 써서 실행할수있게 경로를 설정함 
+app5.set('view engine', 'ejs');
+app5.set('views', path.join(__dirname, '/views'));
 app5.get('/r/:subreddit', (req, res) => {
-    const { subreddit } = req.params;
+    const { subreddit } = req.params;     // subreddit 매개변수값을 저장 /cat /soccer 같은값 
     const data = redditData[subreddit];  //redditData객체의 키로subreddit을써서 값얻음 
-    res.render('subreddit', { ...data })   //스프레드구문 객체를복사해서 새객체를만듦
-
+    if (data) { //만약 data객체에 없는 /dog를 요청하면 오류가나온다. 그래서 if문을 써서 if data가있으면
+        res.render('subreddit', { ...data }) //랜더링한다/  ...스프레드구문 객체를복사해서 새객체를만듦
+    } else {
+        res.render('notfound', { subreddit })  //data에없으면 'notfound'파일 랜더링
+    }
 })
 //{...data}  name , subscribers 같은 각특성에 접근할수 있다.  {name:soccer, subscribers: 800000} 
+app5.listen(8000, () =>
+    console.log('LISTENING TO PORT 8000'))
+
+
+
+//정적에셋파일을 (css나js파일) subreddit.ejs 파일에 제공하기
+//정적 파일을 제공한다는것은  클라이언트 요청에 따라 이미지나 CSS나 JavaScript와 같은 파일을 제공하는것.
+//정적파일 제공하는 방법  app.use(express.static('public'))
+//app.use의기능, 코드를 넣으면 실행해줌. 정적파일을 제공하기위해 express.static을 쓰고
+//제공하고싶은 애셋폴더를 인수로 전달 'public' 다른이름을 써도됨
+//public폴더를 만들고 그안에 app.css를 만든다
+//여러개를 전달하고싶으면 app.use(express.static('css')) app.use(express.static('js')) 이렇게써도된다
+//app.css에 body{background - color: aquamarine;} 스타일시트를 만든다
+//그다음 subreddit.ejs 로가서 <head>안에 링크를 넣는다
+// <link rel="stylesheet" href="/app.css">  href에 파일명을 쓴다 경로는 필요없다 /슬래시는필요
+
+//localhost:8000/r/soccer 확인해보면 배경색 하늘색으로 바뀌어있다

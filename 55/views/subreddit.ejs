@@ -4,12 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>subreddit</title>
+    <title>
+        <%= name %>
+    </title>
+    <link rel="stylesheet" href="/app.css">
 </head>
 
 <body>
-    <h1>Browsing The <%= subreddit %> subreddit </h1>
+    <h1>Browsing The <%= name %> subreddit </h1>
+    <h2>
+        <!-- data.json을 js객체로 바꾼뒤 name,description을 특성으로 씀 
+        localhost:8000/r/soccer 엔터치면 name에 soccer가 출력되고 description 문장이나온다 -->
+        <%= description%>
+    </h2>
+    <p>
+        <%= subscribers %> Total subscribers
+    </p>
+    <!-- hr은 수평가로선 -->
+    <hr>
 
+    <% for (let post of posts){ %>
+        <!--data객체에서 posts특성을 쓰고싶은데 배열객체라 배열을 벗기고 객체로 쓰려고 for of 씀  -->
+        <article>
+            <p>
+                <%= post.title %> - <b>
+                        <%= post.author %>
+                    </b>
+                    <!-- posts특성에서 타이틀,작가 값 가져옴 -->
+            </p>
+
+            <% if(post.img){ %>
+                <img src="<%= post.img %>" alt="">
+                <% } %>
+                    <!-- img없는 특성도있어서 if문을써서 img있을때 img소스로 img출력되게끔.  alt는 스크린리더용-->
+        </article>
+        <% } %>
 </body>
 
 </html>
