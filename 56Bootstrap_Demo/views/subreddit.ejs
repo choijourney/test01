@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= name %>
+    </title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.js"></script>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-secondary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Express Boots Demo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link " aria-current="page" href="/">Home</a>
+                    <!-- home을 누르면 / 베이스주소와 연결 -->
+                    <a class="nav-link" href="/rand">Random</a>
+                    <a class="nav-link" href="/r/chickens">Chickens</a>
+                    <a class="nav-link" href="/r/soccer">Soccer</a>
+                    <a class="nav-link" href="/r/mightyharvest">mightyharvest</a>
+                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Browsing The <%= name %> subreddit </h1>
+        <h2>
+            <!-- data.json을 js객체로 바꾼뒤 name,description을 특성으로 씀 
+        localhost:8000/r/soccer 엔터치면 name에 soccer가 출력되고 description 문장이나온다 -->
+            <%= description%>
+        </h2>
+        <p>
+            <%= subscribers %> Total subscribers
+        </p>
+        <!-- hr은 수평가로선 -->
+        <hr>
+
+        <% for (let post of posts){ %>
+            <!--data객체에서 posts특성을 쓰고싶은데 배열객체라 배열을 벗기고 객체로 쓰려고 for of 씀  -->
+            <article>
+                <p>
+                    <%= post.title %> - <b>
+                            <%= post.author %>
+                        </b>
+                        <!-- posts특성에서 타이틀,작가 값 가져옴 -->
+                </p>
+
+                <% if(post.img){ %>
+                    <img src="<%= post.img %>" alt="">
+                    <% } %>
+                        <!-- img없는 특성도있어서 if문을써서 img있을때 img소스로 img출력되게끔.  alt는 스크린리더용-->
+            </article>
+            <% } %>
+    </div>
+</body>
+
+</html>

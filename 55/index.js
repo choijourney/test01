@@ -53,7 +53,7 @@ app1.set('views', path.join(__dirname, '/views')) //app1.set을 쓰고  path에 
 //그러니까 이 index.js라는 파일이 있는 현재디렉토리를 가져와서 /views 를 붙여주는거다
 //아직 이해가 안되니 그냥 외우는걸로..
 app1.get('/', (req, res) => {
-    res.render('home')  //viwe엔진을 ejs로 설정하면 .ejs파일을 찾고있다는걸 알아서 'home.ejs' 쓸필요없다
+    res.render('home') //view engin에 ejs를 쓴다고 요청해놔서 home.ejs쓸필요없이 home만 써도됨
 })
 app1.listen(4000, () =>
     console.log('LISTENING ON PORT 4000'));
