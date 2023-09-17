@@ -1,0 +1,302 @@
+데이터베이스는 크게 두종류로 나눌수있다 SQL데이터베이스와 NOSQL 데이터베이스이다
+SQL을 쓰는것을 빼고는 전부 NOSQL 데이터베이스로 분류된다
+SQL에선 모든일이 테이블표에서 이루어진다 MySQL,Oracle Microsoft,Postgres 등이있다
+하지만 최근에 NOSQL 이 등장했다 SQL의 구조화된 궈리 언어를 쓰지않고 많은 요소를 몽땅 포괄하는 방식이다
+데이터를 그대로 가져와 데이터베이스의 한 인스턴스(객체) 안에 저장하면 된다
+유형도 다양한데 문서데이터저장소, 키값저장소,그래프저장소 등이있고 대중적인것은 MongoDB,CouchDB,
+Cassandra,Redis 등이있다
+
+
+MongoDB shell
+Mongo에도 Node REPL 같은 MongDB shell이 있다
+MongDB, MongDB shell 모두 환경변수 evn을 왼쪽아래 찾기에서 검색해서 path에 C:\mongodb\bin
+새로 추가해야한다
+shell을 실행하려면 mongod를 실행하고있어야한다
+help 엔터치면 도움말이 나온다
+그리고 모든js코드를 다쓸수있는건 아니지만 js코드도 입력할수있다
+
+db를 입력하면 디폴트면서 현재 db인 test가 나온다
+여기서 새 데이터베이스를 만드려면 use 와 데이터베이스 이름을 쓰면된다
+use plantShelter
+그러면 현재 db가 test였던게 plantShelter로 바뀐다
+이상태에서 ctrl+c를 눌러 나가기를 했다가 다시 shell을 키면 plantShelter는 사라져있다
+왜냐면 아무런 데이터가 없었기 때문이다.
+
+mongodb는 bson을 사용해 데이터를 입력한다
+bson은 json을 이진법으로 저장한거다 json이 더 공간을 많이 차지해서 이진법으로 변환해서 쓰는거다
+
+mongodb 사이트에 Docs - server 를 클릭하면 mongodb CRUD Operations 문서를 만들거나 읽거나
+업데이트,삭제하는 방법이 설명된 참고서가 있다
+
+
+mongodb 문서삽입 insert
+insertOne을 사용하면 객체 하나만 추가할수있다
+insertMany는 다수의 값을 삽입할수있다
+insert를 쓰면 하나의 값, 다수의 값을 삽입할수도있어서 insert를 주로사용할거다
+
+plantShelter> db.plants.insertOne({name:'rose', age:1, giveSomeWater:true})
+plantShelter db에서 insertOne을 작성한다
+주의할것은 name:'rose' 따옴표를 써야한다는것
+작성후 show collections plants 를 입력하면 plants 가 출력되고
+db.plants.find() 를 입력하면
+[
+{
+_id: ObjectId("65069693900125a1ffe141f8"),
+name: 'rose',
+age: 1,
+giveSomeWater: true
+}
+]
+이런 배열객체가 나온다. 우리가 작성한 정보가 나오고 _id가 mongo에 의해 자동생성이 됐다
+우리가 _id를 만들수있지만 빼놓고 작성하면 ObjectId를 자동생성한다. 대부분은 ObjectId 를 쓸거다
+
+insert로 다수의 값을 삽입해봤다
+plantShelter> db.plants.insert({name:'brownie', age:20, giveSomeWater:true},{name:'edge',
+age:3, giveSomeWater:false})
+일관된 구조를 쓰지않아도 된다 예를들어 brownie가 age를 썼다고 뒤에 객체가 age를 꼭쓰지않아도 된다는거다
+그런데.! 실험해봤더니 특성 하나를 안적었을때 한번은 데이터객체가 제대로 완성됐고
+한번은 특성을 안적은 객체한개를 누락시키고 완성됐다..
+
+데이터베이스에서 나가려면 show dbs 입력하면 db들이 나오는데
+use local 을 써서 local db로 접속할수있다
+local db에서 db.dogs.find()를 입력하면 아무것도 나오지않는다
+다시 use plantShelter로 돌아가서 db.dogs.find()입력하면 dogs데이터객체가 나온다
+
+show collections 입력하면 만든 데이터 이름이 나온다 plants , dogs
+
+
+mongodb에서 찾기 find
+find()안에 키값을 이용해 원하는 데이터만 골라 볼수있다 대소문자 구분해야함
+plantShelter> db.plants.find({age:20})
+[
+{
+_id: ObjectId("65069a40900125a1ffe141fa"),
+name: 'brownie',
+age: 20,
+giveSomeWater: true
+},
+{ _id: ObjectId("65069a9b900125a1ffe141fb"), name: 'parky', age: 20 }
+]
+parky는 giveSomeWater특성을 적지않았다
+
+
+findOne을 이용해 원하는 데이터 중 한개만 실제문서를 반환받을수 있다
+find를 쓰면 실제문서가 아닌 커서를 반환한다 커서는 결과의 참조이다
+plantShelter> db.plants.findOne({age:20})
+{
+_id: ObjectId("65069a40900125a1ffe141fa"),
+name: 'brownie',
+age: 20,
+giveSomeWater: true
+}
+
+find() 중괄호에 특성을 여러개 써서 찾을수 있다
+plantShelter> db.plants.find({age:20, giveSomeWater:true})
+[
+{
+_id: ObjectId("65069a40900125a1ffe141fa"),
+name: 'brownie',
+age: 20,
+giveSomeWater: true
+}
+]
+
+
+mongodb에서 업데이트하기 $set 연산자
+updateOne은 매치되는 첫항목만 업데이트한다
+
+plantShelter> db.plants.updateOne({name:'grud'},{$set:{giveSomeWater:true}})
+첫째 중괄호에 name,id등 업데이트하려는 데이터 정보중 하나를 쓰고,
+둘째 중괄호에 $set: 을 쓴후 중괄호에 바꿀 새값을 쓴다
+
+plantShelter> db.plants.find({name:'grud'}) 다시 grud를 찾아보면
+[
+{
+_id: ObjectId("650699c3900125a1ffe141f9"),
+name: 'grud',
+age: 16,
+giveSomeWater: true} 원래값 false였는데 true로 바뀌어있다
+]
+
+원래있던 특성이 아닌 특성을 $set 하면 추가된다
+plantShelter> db.plants.updateOne({name:'grud'},{$set:{tall:'2m'}})
+
+plantShelter> db.plants.find({name:'grud'}) grud를 찾아보면 tall특성이 추가돼있다
+[
+{
+_id: ObjectId("650699c3900125a1ffe141f9"),
+name: 'grud',
+age: 16,
+giveSomeWater: true,
+giveSomeWate: true,
+tall: '2m'
+}
+]
+
+updateMany는 모두를 업데이트한다
+
+plantShelter> db.plants.updateMany({ giveSomeWater: true }, { $set: { area:' goyang' } } )
+plants에 있는 객체들은 모두 giveSomeWater:true라 모든객체에 area:'goyang'이 추가됐다
+[
+{
+_id: ObjectId("65069693900125a1ffe141f8"),
+name: 'rose',
+age: 1,
+giveSomeWater: true,
+area: ' goyang'
+}
+]
+
+$currentDate 로 마지막수정한시간을 추가할수있다
+$set, $currentDate 을 같이 업데이트 할수있다
+plantShelter> db.dogs.updateOne({age:1},{$set:{color:'brown'},$currentDate:{lastModified:true}})
+find해보면
+[
+{
+_id: ObjectId("65069c6a900125a1ffe141fc"),
+name: 'dwanJang',
+age: 1,
+catFrendly: true,
+lastModified: ISODate("2023-09-17T08:04:40.631Z"), 마지막수정시간과
+color: 'brown' 특성이 추가돼있다
+}
+] lastModified말고 다른이름을 써도된다 lastChanged currentTime
+currentDate는 json엔 없고 bson에만 있는 기능이다
+
+
+replaceOne은 문서의 내용을 완전히 대체한다
+예를들어 dogs객체에 dwanJang의 id는 유지하면서 값을 추가하거나 수정하지않고 모든것을 대체하고싶을때 쓴다
+
+
+mongodb에서 삭제하기 deleteOne한개삭제 deleteMany다수삭제
+
+plantShelter> db.dogs.deleteOne({name:'dwanJang'})
+plantShelter> db.dogs.find()
+
+dogs에서 된장을 삭제했더니 데이터가 없어서 아무것도 안나온다
+
+인수에 중괄호 여러개를 쓸수있다
+plantShelter> db.plants.deleteMany({age:20},{tall:'2m'})
+
+전체집합 지우기
+db.plants.deleteMany({}) 객체가 50개든 모조리지워진다
+
+$or , $it 연산자를 이용해 나이가 20살 이상인 항목을 지울수 있다
+
+
+mongodb 중첩된 특성 찾기
+dogs db에 새 데이터객체를 추가했다
+plantsShelter> db.dogs.insert ([{name:'rusty', breed:'mutt', age:3, personality:{catFriendly:true,
+childFriendly:true}},{name:'chungus', breed:'husky', age:3, personality:{catFriendly:false,
+childFriendly:true}}, {name:'bella', breed:'chihuahua', age:8, personality:{catFriendly:false,
+childFriendly:false}}, {name:'malakai',breed:'greate pyrenees', age:2, personality:{catFriendly:false
+,childFriendly:true}},{name:'dodger',breed:'corgi',age:10,personality:{catFriendly:true,
+childFriendly:true}}])
+
+
+childFriendly가 true인 개를 찾고싶은데 personality에 중첩이 돼있는데 중첩된 특성을 찾으려면
+'personality.childFriendly' 이렇게 써야한다.
+
+plantsShelter> db.dogs.findOne({'personality.childFriendly':true, age:10})
+{
+_id: ObjectId("6506cb37aa5d910d25e1f3e6"),
+name: 'dodger',
+breed: 'corgi',
+age: 10,
+personality: { catFriendly: true, childFriendly: true }
+}
+
+
+mongodb 연산자
+mongodb사이트에 reference의 Operator의 쿼리연산자를 보면 비교연산자,논리,지리공간,배열 연산자등이 있다
+
+비교연산자
+8살 초과한 개를 찾을거다. $gt 초과 연산자 Greater Than 을 쓴다.
+plantsShelter> db.dogs.find({age:{$gt:8}})
+[
+{
+_id: ObjectId("6506cb37aa5d910d25e1f3e6"),
+name: 'dodger',
+breed: 'corgi',
+age: 10,
+personality: { catFriendly: true, childFriendly: true }
+}
+]
+
+8살 이상인 개를 찾을땐 $gte 를 쓴다. Greater Than or Equal
+plantsShelter> db.dogs.find({age:{$gte:8}})
+[
+{
+_id: ObjectId("6506cb37aa5d910d25e1f3e4"),
+name: 'bella',
+breed: 'chihuahua',
+age: 8,
+personality: { catFriendly: false, childFriendly: false }
+},
+{
+_id: ObjectId("6506cb37aa5d910d25e1f3e6"),
+name: 'dodger',
+breed: 'corgi',
+age: 10,
+personality: { catFriendly: true, childFriendly: true }
+}
+]
+
+미만 연산자는 $lt (Less Than) 이하 연산자는 $lte (Less Than or Equal) 도있다
+
+
+$in 연산자 한특성에 여러값을 입력할수있다 $in을 입력하고 배열을 쓰면된다
+plantsShelter> db.dogs.find({breed:{$in:['mutt','corgi']}})
+
+[
+{
+_id: ObjectId("6506cb37aa5d910d25e1f3e2"),
+name: 'rusty',
+breed: 'mutt',
+age: 3,
+personality: { catFriendly: true, childFriendly: true }
+},
+{
+_id: ObjectId("6506cb37aa5d910d25e1f3e6"),
+name: 'dodger',
+breed: 'corgi',
+age: 10,
+personality: { catFriendly: true, childFriendly: true }
+}
+]
+
+$in 과 $lt 를 같이 쓸수 있다
+plantsShelter> db.dogs.find({breed:{$in:['mutt','corgi']},age:{$lt:10}})
+품종이 mutt와 corgi 면서 나이가 10살 미만인 개를 찾는다
+
+$nin 안에없음이라는뜻 in과 반대. 예를들면 'mutt','corgi'의 반대인 품종을 찾는다
+plantsShelter> db.dogs.find({breed:{$nin:['mutt','corgi']}})
+
+
+$ne 연산자 Not Equals
+비교적 비효율적일수있다 같지않은것을 모두 찾아준다 하지만 다른연산자와 결합해 사용하면 괜찮을수있다
+plantsShelter> db.dogs.find({breed:{$ne:'mutt'}})
+
+
+$or 둘중 하나만 true여도 출력
+plantsShelter> db.dogs.find({$or: [{'personality.catFriendly':true},{age:{$lte:2}}]})
+[
+{
+_id: ObjectId("6506cb37aa5d910d25e1f3e2"),
+name: 'rusty',
+breed: 'mutt',
+age: 3,
+personality: { catFriendly: true, childFriendly: true }
+},
+{
+_id: ObjectId("6506cb37aa5d910d25e1f3e5"),
+name: 'malakai',
+breed: 'greate pyrenees',
+age: 2,
+personality: { catFriendly: false, childFriendly: true }
+}
+]
+
+$and 둘다 true여야 출력
+plantsShelter> db.dogs.find({$and: [{'personality.catFriendly':true},{age:{$lte:2}}]})
+둘다 true인 값이없어서 아무값도출력안됨

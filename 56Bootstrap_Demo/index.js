@@ -1,5 +1,5 @@
 // subreddit.ejs파일에 부트스트랩 전달해서 사용하기
-
+//app5.use(express.static(path.join(__dirname, 'public'))); 에셋전달하는 코드
 const express = require('express');
 const path = require('path');
 const app5 = express();
@@ -11,11 +11,12 @@ app5.set('view engine', 'ejs');
 app5.set('views', path.join(__dirname, '/views'));
 
 app5.get('/', (req, res) => {  // 베이스주소 localhost:8000/  엔터치면 home.ejs파일 랜더링
-    res.render('home')
-})
+    res.render('home', { name: 'home' })
+})   //head.ejs로 헤드부분파일을 따로 만들었는데 <title> <%=name%> </title> 이렇게 변수때문에
+//name을 찾을수 없다고 오류가나서 render에 {name:'home'} 객체를 추가제공.
 app5.get('/rand', (req, res) => {
     const num = Math.floor(Math.random() * 10) + 1;
-    res.render('random', { rand: num })
+    res.render('random', { rand: num, name: 'random' })
 })
 app5.get('/r/:subreddit', (req, res) => {
     const { subreddit } = req.params;     //  /chickens /soccer 같은값 
@@ -23,7 +24,7 @@ app5.get('/r/:subreddit', (req, res) => {
     if (data) {
         res.render('subreddit', { ...data })  // ...스프레드구문 객체를복사해서 새객체를만듦
     } else {
-        res.render('notfound', { subreddit })
+        res.render('notfound', { subreddit, name: 'NOT FOUND' })
     }
 })
 //{...data}  name , subscribers 같은 각특성에 접근할수 있다.  {name:soccer, subscribers: 800000} 
@@ -40,3 +41,18 @@ app5.listen(8000, () =>
 //j쿼리 사이트에 가서 압축된버전을 다운받는다 download the compressed 클릭하고 ctrl+s 눌러
 //아까만든 public폴더안의 js폴더에 저장한다. 파일명을 바꿔서 저장해도된다.
 //부트스트랩 링크 순서가 중요하다 css,j쿼리,js 순이어야한다. j쿼리가 js보다 먼저.!
+
+
+
+//ejs와 파일분할 include
+//<%- include('partials/head') %> ejs파일 헤드에 붙여넣기하면 부트스트랩링크 등을 계속쓰지않아도 됨
+//<!DOCTYPE html> 부터 시작해서 부트스트랩 링크들을 포함 </head> 부분까지,
+//따로 파일만들어서 저장함 이번엔 partials라는 폴더에 head.ejs를 만들어 저장함
+//다른 ejs파일을 작성할때 맨위 헤드부분에  <%- include('partials/head') %> 이한줄을 쓰면됨
+// ejs태그 <%- 를쓰고 include쓰고 경로/파일이름쓰면됨
+
+//<%- include('partials/navbar') %> 네브바코드를 따로파일만듦
+//네브바코드를 partials/head에 넣어서써도됨
+
+// <%- %>  주로 include와 같이 사용됨. 태그사이 내용을 html로 취급함.
+

@@ -1,26 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('partials/head') %>
+    <%- include('partials/navbar') %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>random</title>
-</head>
+        <body>
+            <h1>
+                <%= rand %>
+                    <!-- ↑ ejs태그 rand값 출력 -->
+            </h1>
+            <!-- ↓ 이 태그는 출력되지않고 js 로직으로 취급 -->
+            <% if (rand%2===0){ %>
+                <h2>That is an even number!</h2>
+                <% } else { %>
+                    <h2>That is an odd number!</h2>
+                    <% } %>
+                        <h3> That number is : <%= rand%2===0 ? 'even' : 'odd' %>
+                                <!-- 삼항연산자 rand가 짝수가 true면 첫번째 출력 'even'  , false면 두번째 출력 'odd' -->
+                        </h3>
+        </body>
 
-<body>
-    <h1>
-        <%= rand %>
-            <!-- ↑ ejs태그 rand값 출력 -->
-    </h1>
-    <!-- ↓ 이 태그는 출력되지않고 js 로직으로 취급 -->
-    <% if (rand%2===0){ %>
-        <h2>That is an even number!</h2>
-        <% } else { %>
-            <h2>That is an odd number!</h2>
-            <% } %>
-                <h3> That number is : <%= rand%2===0 ? 'even' : 'odd' %>
-                        <!-- 삼항연산자 rand가 짝수가 true면 첫번째 출력 'even'  , false면 두번째 출력 'odd' -->
-                </h3>
-</body>
-
-</html>
+        </html>

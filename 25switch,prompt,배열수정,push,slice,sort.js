@@ -399,3 +399,10 @@ gameBoard[1][1]
 null
 // indexOf 를이용해 대괄호 1의 1위치인 null
 
+
+// 배열 메서드 find   조건을만족하는 첫번째 요소의 값을 반환. 그런요소가 없다면 undefined반환.
+const array = [5, 12, 8, 130, 44];
+
+const found = array.find((element) => element > 10);
+
+console.log(found);  //12 출력

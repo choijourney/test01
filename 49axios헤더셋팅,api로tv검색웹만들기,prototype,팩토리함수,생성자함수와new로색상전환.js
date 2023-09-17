@@ -2,7 +2,7 @@
 //http://icanhazdadjoke.com 아재개그사이트는 header를 보내줘야 json으로 반환한다 
 //사이트를 보면 headers에 application/json 을 써서 요청하라고 돼있다 (API사이트마다 다르니 자세히 읽어봐야함)
 const getDadJoke = async () => {
-    const config = { headers: { Accept: 'application/json' } }  //headers객채를 변수에 저장
+    const config = { headers: { Accept: 'application/json' } }  //headers객체를 변수에 저장
     const res = await axios.get('http://icanhazdadjoke.com/', config) //axios 인수에 url과 헤더를써서
     console.log(res.data.joke)  //요청하면 아재개그가 적혀있는 data객체를 준다
     //axios를 썼기땜에 json을 파싱해서 js객체로 준다

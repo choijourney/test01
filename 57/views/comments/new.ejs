@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New comment</title>
+</head>
+
+<body>
+    <h1>Make a new comment</h1>
+    <form action="/comments" method="post">
+        <section>
+            <label for="username">Enter username:</label>
+            <input type="text" id="username" placeholder="username" name="username">
+        </section>
+        <section>
+            <label for="comment">Comment text</label>
+            <br>
+            <textarea name="comment" id="comment" cols="30" rows="5"></textarea>
+        </section>
+        <button>Submit</button>
+    </form>
+    <a href="/comments">Back to index</a>
+    <!-- index.ejs로 연결되는 링크. 댓글리스트사이트임 -->
+</body>
+
+</html>
