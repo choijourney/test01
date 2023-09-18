@@ -68,20 +68,21 @@ const dduckBokKki = new Food({ name: 'dduck bok kki', year: 1800, nutritionInfor
 
 //mongoose.connect('mongodb://127.0.0.1:27017/foodApp') 헤맸던이유는 경로를 /test로 해놨기때문.
 
+//.save()는 promise랑 비슷하다 await과 .then을 쓸수있다
 
 
-//mongodb에 데이터 대량 삽입하기  insertMany 때문에 오류남?
-// Food.insertMany([   //insertMany를 호출하면 mongdb에 바로 연결되어 한번에 많이 입력할수있다.
-//     { name: 'bananaKick', year: 1988, nutritionInformation: 'carbo,fat', from: 'korea' },
-//     { name: 'gamjaKkang', year: 1988, nutritionInformation: 'carbo,fat', from: 'korea' },
-//     { name: 'pizza', year: 1700, nutritionInformation: 'carbo,fat', from: 'italy' },
-//     { name: 'taco', year: 1800, nutritionInformation: 'fat', from: 'mexico' },
-//     { name: 'magDonald', year: 1970, nutritionInformation: 'fat', from: 'america' }
-// ])
-//     .then(data => {              //insertMany로 데이터를 mongdb에 저장한후
-//         console.log('IT WORKED!');  //콘솔에 출력
-//         console.log(data)
-//     })
+//mongodb에 데이터 대량 삽입하기  
+Food.insertMany([   //insertMany를 호출하면 mongdb에 바로 연결되어 한번에 많이 입력할수있다.
+    { name: 'bananaKick', year: 1988, nutritionInformation: 'carbo,fat', from: 'korea' },
+    { name: 'gamjaKkang', year: 1988, nutritionInformation: 'carbo,fat', from: 'korea' },
+    { name: 'pizza', year: 1700, nutritionInformation: 'carbo,fat', from: 'italy' },
+    { name: 'taco', year: 1800, nutritionInformation: 'fat', from: 'mexico' },
+    { name: 'magDonald', year: 1970, nutritionInformation: 'fat', from: 'america' }
+])
+    .then(data => {              //insertMany로 데이터를 mongdb에 저장한후
+        console.log('IT WORKED!');  //콘솔에 출력
+        console.log(data)
+    })
 //모델이름은 모두 첫문자가 대문자여야함
 //모델의 인스턴스를 한개만 만들때는  .save()로 저장을해야한다.
 //하지만 insertMany를 호출하면 mongdb에 바로 연결되어 한번에 많이 입력할수있다.save가필요없다
@@ -140,8 +141,7 @@ const dduckBokKki = new Food({ name: 'dduck bok kki', year: 1800, nutritionInfor
 
 
 //mongoose로 업데이트하기 updateOne  updateMany
-//mongo,mongoose는 몇가지가 업데이트됐는지 알려줄뿐 업데이트된 데이터를 보여주진않는다.
-//그래도 쓰다보면 업데이트된 데이터를 바로 보고싶을때가있다.
+
 //노드 REPL에 pizza인 객체를 찾아서 year을 바꾼다
 //Food.updateOne({name:'pizza'},{year:1940}).then(res=>console.log(res))
 //{
@@ -153,16 +153,62 @@ const dduckBokKki = new Food({ name: 'dduck bok kki', year: 1800, nutritionInfor
 // }
 //mongosh에서 db.foods.find({name:'pizza'}) 를 찾아보면 업데이트가 돼있다.
 
+// updateMany 로 여러개 업데이트하기  띄어쓰기중요
+//foodApp> db.foods.find({name: {$in: ['taco', 'pizza']}})  일단 mongoose에서 변경할것들을 찾은다음에
+//Food.updateMany({name: {$in: ['taco', 'pizza']}}, {year: 1890}).then(res=> con
+//sole.log(res))        node REPL에서 쓴다. 띄어쓰기.
+//mongosh에서 db.foods.find() 하면 변경된 내용이 나온다
+//mongosh에 find로 찾았을때 자꾸 객체가 늘어나서 한참헤맸는데 node를 나갔다가 .load index.js 할때마다
+//맨위에쓴 insertMany가 호출돼서 객체가 계속 추가된것같다
+//new Food로 추가한 dducBokKki는 한번삭제하니까 .load index.js 해도 다시 추가가 안되는데 (왜냐면 save를
+//따로 해줘야하니까) insertMany는 자동으로 저장이되니까 객체가 늘어난듯.
+
+
+//findOndAndUpdate
+//updateOne, updateMany는 몇개가 업데이트됐는지 알려줄뿐 업데이트된 데이터를 보여주진않는다.
+//그래도 쓰다보면 업데이트된 데이터를 바로 보고싶을때가 있는데 findOndAndUpdate를 쓰면 된다.
+
+//한개를 업데이트하면서 업데이트하는 데이터의 기존정보를 출력 node REPL에 입력
+// Food.findOneAndUpdate({name: 'taco'}, {year: 1808}).then(m => console.log(m))
+//그게 디폴트고 새버전이 반환되게 하려면 세번째 인수에 {new:true} 를 넣는다.  이게더일반적임
+// Food.findOneAndUpdate({name: 'taco'}, {year: 1808},{new:true}).then(m => console.log(m))
+// name이 taco인 객체를 찾아서 year를 1808로 변경
+
+
+//findByIdAndUpdate
+//Food.findByIdAndUpdate({_id:"6508233eac129d3d9a66ef59"}, {year: 1844}, {new:tr
+//ue}).then(m => console.log(m))
+// 해당id객체를 찾아서 year를 1844로 변경
 
 
 
 //mongoose로 삭제하기  deleteOne   deleteMany
-// deleteOne 하나만삭제  삭제된갯수반환
+// deleteOne 하나만삭제  삭제된갯수출력      nodeREPL입력
 // Food.deleteOne({ _id: "65080beb235d2006ab6ccddf" }).then(msg => console.log(msg))
 // Promise {
 //     <pending>,
 //         [Symbol(async_id_symbol)]: 1393,
 //         [Symbol(trigger_async_id_symbol)]: 1389
 // }
-// > {acknowledged: true, deletedCount: 1 }
+// > {acknowledged: true, deletedCount: 1 }   mongosh에 db.foods.find()입력하면 지워져있음
 
+
+//deleteMany 여러개삭제 삭제된갯수출력    nodeREPL입력
+// Food.deleteMany({year: {$gt: 1950}}).then(m=> console.log(m))
+// mongosh에 db.foods.find()로 찾아보면 지워져있음
+// $gt 1950보다 초과인 데이터는 삭제
+
+
+//findOneAndDelete  삭제된 데이터를 출력
+// Food.findOneAndDelete({name: 'taco'}).then(m=> console.log(m))
+//{
+// _id: new ObjectId("6508233eac129d3d9a66ef5a"),
+//     name: 'taco',
+//     year: 1808,
+//     nutritionInformation: 'fat',
+//      from: 'mexico',
+//        __v: 0
+// }
+
+//findByIdAndDelete 삭제된 데이터 출력
+//Food.findByIdAndDelete({_id:"6508233eac129d3d9a66ef59"}).then(m=>console.log(m))
