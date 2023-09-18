@@ -9,7 +9,7 @@ Cassandra,Redis 등이있다
 
 MongoDB shell
 Mongo에도 Node REPL 같은 MongDB shell이 있다
-MongDB, MongDB shell 모두 환경변수 evn을 왼쪽아래 찾기에서 검색해서 path에 C:\mongodb\bin
+MongDB, MongDB shell 모두 시스템환경변수 evn을 왼쪽아래 찾기에서 검색해서 path에 C:\mongodb\bin
 새로 추가해야한다
 shell을 실행하려면 mongod를 실행하고있어야한다
 help 엔터치면 도움말이 나온다
@@ -21,6 +21,8 @@ use plantShelter
 그러면 현재 db가 test였던게 plantShelter로 바뀐다
 이상태에서 ctrl+c를 눌러 나가기를 했다가 다시 shell을 키면 plantShelter는 사라져있다
 왜냐면 아무런 데이터가 없었기 때문이다.
+
+show dbs db를 모두보여준다
 
 mongodb는 bson을 사용해 데이터를 입력한다
 bson은 json을 이진법으로 저장한거다 json이 더 공간을 많이 차지해서 이진법으로 변환해서 쓰는거다
@@ -135,7 +137,7 @@ tall: '2m'
 
 updateMany는 모두를 업데이트한다
 
-plantShelter> db.plants.updateMany({ giveSomeWater: true }, { $set: { area:' goyang' } } )
+plantShelter> db.plants.updateMany({ giveSomeWater: true }, { $set: { area:'goyang' } } )
 plants에 있는 객체들은 모두 giveSomeWater:true라 모든객체에 area:'goyang'이 추가됐다
 [
 {

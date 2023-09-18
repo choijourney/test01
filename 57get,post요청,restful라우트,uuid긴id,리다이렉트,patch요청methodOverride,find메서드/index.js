@@ -134,7 +134,7 @@ app1.listen(4000, () => {
 
 
 
-// RESTful   new로 get요청,새댓글만들기위해 폼만듦  / /comments로 post요청 서버에 새댓글추가
+// RESTful   new로 get요청,새댓글만들기위해 폼만듦  /comments로 post요청 서버에 새댓글추가
 // CRUD 중 create 새로운 댓글 생성하는 방법.       위 댓글객체내용 반복.
 //new.ejs를 만든다. 보통 new를 쓴다. 
 app1.get('/comments/new', (req, res) => {  // 경로 localhost:4000/comments/new 를 주소창에입력하면
@@ -143,16 +143,13 @@ app1.get('/comments/new', (req, res) => {  // 경로 localhost:4000/comments/new
 app1.post('/comments', (req, res) => {
     const { username, comment } = req.body; //변수이름 comments, 객체키이름 comments 똑같았을때 오류남
     comments.push({ username, comment, id: uuid(), })  //그래서 객체키이름 comment로 바꿈
-    //res.send('It WORKED!')         
     res.redirect('/comments')   // /comments로 데려가라는 리다이렉트
 })
-//댓글을 작성해서 submit하면 /comments로 자동으로 제출되고 It WORKED! 출력
-// 그리고 새로고침하면  입력한 댓글들이 localhost:4000/comments 에 푸시되게 만듦
 
 //정리 ->  app1.get요청으로 localhost:4000/comments/new 에 접속하면
 // username,text 쓸수있는 댓글입력창이 뜬다(new.ejs파일)
 //댓글을 작성하고 submit하면 localhost:4000/comments로 자동위치되고 제출된다 (post요청)
-// It WORKED! 출력되고 새로고침하기위해 엔터치면 댓글리스트와 입력한 댓글이 추가된것을 볼수있다.
+// 새댓글은 push로 comments객체에 추가되게했고 리다이렉트로 새댓글이 추가된 /comments로 자동연결된다
 
 
 //express 리다이렉트
@@ -174,8 +171,8 @@ app1.post('/comments', (req, res) => {
 
 
 // show 라우트 (detail라우트)
-//특정한 하나의 리소스에 대한 디테일을 주로 확장된 보기 형식으로 보여줌 (예를들어
-// :id 변수를 써서)
+//특정한 하나의 리소스에 대한 디테일을 주로 확장된 보기 형식으로 보여줌 (예를들어 목록페이지에서
+// 디테일링크를 클릭하면 디테일한 페이지를 볼수있다)
 
 app1.get('/comments/:id', (req, res) => {
     const { id } = req.params;
@@ -183,7 +180,7 @@ app1.get('/comments/:id', (req, res) => {
     const comment1 = comments.find(co => co.id === id);  //parseInt를없애고 업데이트함
     //데이터객체에 uuid()를 사용해서 id를만들었고 uuid는 문자열을 반환한다 그래서 parseInt필요없이 id와비교함 
 
-    //const comment1 = comments.find(co => co.id === parseInt(id))
+    //const comment1 = comments.find(co => co.id === parseInt(id)) parseInt지우기전
     //댓글배열에서 id를 비교해 그id에 해당하는 객체 하나만 찾을거다. 그러려면 배열메서드 find를쓰는게좋다.
     //co.id 는 comments의 id니까 숫자로 1 이 반환된다 그런데
     //req.params에 저장한 id객체를 이용하면 문자열로 반환되니까 parseInt를 써서 비교. 
@@ -257,7 +254,7 @@ app1.get('/comments/:id/edit', (req, res) => {
 //form action 에 method로 patch요청을 보낼수 없으니 method-override 패키지를 쓴다
 //put,delete등 http동사를 쓸수있게 해주는 패키지이다. npm i method-override
 //const methodOverride = require('method-override'); 맨윗줄에 선언하고
-//html 헤드를 이용하는방법, 쿼리문자열을 이용하는방법이 있는데  쿼리문자열값을 이용할거니까
+//html 헤드를 이용하는방법, 쿼리문자열을 이용하는방법이 있는데  쿼리문자열값을 이용할때는
 // app1.use(methodOverride('_method'))  패키지를호출하는데 지금쓴 patch를위한 코드들 보다
 //앞에서 호출해야한다.
 //_method는 쿼리문자열에서 찾으려는 문자열을 담을 매개변수
@@ -270,7 +267,7 @@ app1.get('/comments/:id/edit', (req, res) => {
 // url뒤에 /edit 을 쓴다 그럼 편집페이지가 나오고  lol that is so funny! 기존댓글이 보인다
 // 기존댓글을 수정하고 save누르면 /comments 페이지로이동하고 바뀐 댓글을 볼수있다
 
-// /comments페이지에서 detail 클릭하면 댓글 나오는 페이지인 show.ejs에 편집페이지링크를 추가
+// /comments페이지에서 detail 클릭하면 나오는 댓글 상세페이지인 show.ejs에 편집페이지링크를 추가
 //<a href="/comments/<%= comment1.id %>/edit">Edit to Comment</a>
 
 
@@ -288,9 +285,10 @@ app1.delete('/comments/:id', (req, res) => {
     res.redirect('/comments')
 })
 // show.ejs(디테일페이지) 에 폼을만들어 post요청을하고 delete요청도함
+// <form method="post" action="/comments/<%= comment1.id %>?_method=DELETE">
 // method=post 를 써도 delete요청을 해준다길래 post는 아무기능을 안하는줄알고 지우니까 실행이안된다
 // post요청을 쓰고 delete요청도 쓰기 일단 요청을 보내야하니까 post요청을 쓰는듯..?
-// <form method="post" action="/comments/<%= comment1.id %>?_method=DELETE">
+
 
 // localhost:4000/comments 접속 - 아무댓글디테일 클릭 - delete 클릭 하면 /comments로 이동되고
 // 해당 댓글이 삭제돼있음
