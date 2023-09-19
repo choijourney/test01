@@ -109,17 +109,17 @@
 
 // 생성자와 new키워드   함수 앞에 new를 붙이면 그 return 값은 객체가 된다. 
 const person1 = {
-    'name': '도날드 트럼프',
-    'introduce': function () {
-        return 'My name is ' + this.name;
-    }
+  'name': '도날드 트럼프',
+  'introduce': function () {
+    return 'My name is ' + this.name;
+  }
 }
 
 const person2 = {
-    'name': '조 바이든',
-    'introduce': function () {
-        return 'My name is ' + this.name;
-    }
+  'name': '조 바이든',
+  'introduce': function () {
+    return 'My name is ' + this.name;
+  }
 }
 //조 바이든이 아닌 다른이름을 담고싶으면 객체를 이런방식으로 찍어낼수도 있지만 변경할 경우가 생긴다면
 //객체마다 하나하나 찾아서 바꿔줘야 하기때문에 유지보수가 어렵다. 그리고 코드의양이 너무많다.
@@ -127,15 +127,15 @@ const person2 = {
 // let p = new person();     여기선 함수를 정의한게 없어서 작동하진않는다
 // console.log(p);
 // 위와 같이 new를 앞에 붙이고, 함수를 호출하면, 이 함수를 그냥 함수라고 하지 않고, 생성자라고 부른다.
-// 더 정확하게는 객체의 생성자이다. 새로운 객체를 만들게 된다.
+// 더 정확하게는 객체의 생성자이다. 새로운 객체를 만들게 된다. 이것이 인스턴스이다.
 // 예제에서 생성자는 person() 베이스로 만든 객체를 return한다.
 // 함수 앞에 new를 붙이면 그 return 값은 객체가 된다.
 
 function Person(name) {               //생성자함수는 함수이름 첫글자를 대문자로쓴다
-    this.name = name;         //this.name은 키  , name은 값
-    this.introduce = function () {   //this.introduce는 키, 함수는 값
-        return 'My name is ' + this.name;
-    }
+  this.name = name;         //this.name은 키  , name은 값
+  this.introduce = function () {   //this.introduce는 키, 함수는 값
+    return 'My name is ' + this.name;
+  }
 }
 let p1 = new Person('조은길');  // new를 써서 객체를 생성한다  
 console.log(p1.introduce());     //p1객체에서 introduce값 출력    My name is 조은길
@@ -148,24 +148,24 @@ console.log(p2.introduce());
 //예전엔 XML HTTP request방법으로 js에서 요청을 했는데 구문이 어렵고 promise나 비동기함수를 지원하지않는다
 //fetch함수는 promise를 지원한다
 fetch("https://swapi.dev/api/people/1")       //fetch함수를 호출하면 promise반환됨
-    .then((res) => {
-        console.log('RESOLVED!', res)
-        return res.json();   //people1객체정보를 얻으려면 res.json()를 써야하고 res.json()는
-    })                       //promise를 반환해야해서 
-    .then((data) => {           //then이 필요하다
-        console.log(data)
-        return fetch("https://swapi.dev/api/people/2") //people2 정보를 반환한다
-    })
-    .then((res) => {                       //fetch는 promise를반환하니까 then을 쓴다
-        console.log('SECOND RESOLVED!', res)
-        return res.json();
-    })
-    .then((data) => {           //res.json()을써서 then이 필요하다
-        console.log(data)
-    })
-    .catch((e) => {           //오류가 나면 출력
-        console.log('ERROR', e);
-    });
+  .then((res) => {
+    console.log('RESOLVED!', res)
+    return res.json();   //people1객체정보를 얻으려면 res.json()를 써야하고 res.json()는
+  })                       //promise를 반환해야해서 
+  .then((data) => {           //then이 필요하다
+    console.log(data)
+    return fetch("https://swapi.dev/api/people/2") //people2 정보를 반환한다
+  })
+  .then((res) => {                       //fetch는 promise를반환하니까 then을 쓴다
+    console.log('SECOND RESOLVED!', res)
+    return res.json();
+  })
+  .then((data) => {           //res.json()을써서 then이 필요하다
+    console.log(data)
+  })
+  .catch((e) => {           //오류가 나면 출력
+    console.log('ERROR', e);
+  });
 // RESOLVED!  와 people1 인물정보가 출력된다
 // {name: 'Luke Skywalker', height: '172', mass: '77', hair_color: 'blond', skin_color: 'fair', …}
 //만약 people1이 처리가 안되면 2도 안된다 
@@ -176,16 +176,16 @@ fetch("https://swapi.dev/api/people/1")       //fetch함수를 호출하면 prom
 
 //비동기함수로 재작성
 const loadStarWarsPeople = async () => {
-    try {
-        const res3 = await fetch("https://swapi.dev/api/people/3");
-        const data3 = await res3.json();
-        console.log(data3);
-        const res4 = await fetch("https://swapi.dev/api/people/4");
-        const data4 = await res4.json();
-        console.log(data4);
-    } catch (e) {
-        console.log('ERROR!!', e)
-    }
+  try {
+    const res3 = await fetch("https://swapi.dev/api/people/3");
+    const data3 = await res3.json();
+    console.log(data3);
+    const res4 = await fetch("https://swapi.dev/api/people/4");
+    const data4 = await res4.json();
+    console.log(data4);
+  } catch (e) {
+    console.log('ERROR!!', e)
+  }
 }
 loadStarWarsPeople();
 
@@ -196,20 +196,20 @@ loadStarWarsPeople();
 // ↑ import해서 코드에 추가하면 연결된 js파일에서 axios를 쓸수있다
 //axios.get 을 쓰면 GET요청을 보낸다.
 axios.get("https://swapi.dev/api/people/5")
-    .then((res) => {
-        console.log('response', res)
-    })
-    .catch((e) => {            //catch 로 오류를 잡아줘서 오류가있어도 다음코드를 실행한다
-        console.log('ERRORR!', e)
-    })
+  .then((res) => {
+    console.log('response', res)
+  })
+  .catch((e) => {            //catch 로 오류를 잡아줘서 오류가있어도 다음코드를 실행한다
+    console.log('ERRORR!', e)
+  })
 
 //한번에 people5정보가 담긴 객체가 나온다 .json으로 구문분석을 할필요도 없다
 //객체안에 data: {name: 'Leia Organa', height: '150'}  data에 정보가 있다
 
 // 비동기함수로 리팩토링
 const getStarWarsPerson = async (id) => {
-    const resid = await axios.get(`https://swapi.dev/api/people/${id}`)
-    console.log(resid.data);   //data특성을 출력할거니까 .data 씀
+  const resid = await axios.get(`https://swapi.dev/api/people/${id}`)
+  console.log(resid.data);   //data특성을 출력할거니까 .data 씀
 }
 getStarWarsPerson(6);  //data객체 출력 {name: 'Owen Lars', height: '178'}
 getStarWarsPerson(7);

@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@woowacourse/mission-utils": "^1.0.7",
     "ejs": "^3.1.9"
   }
 }

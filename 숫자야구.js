@@ -1,80 +1,104 @@
+// const app = new App();
+// app.play();
+
 let firstMent = document.querySelector('h1');
 let btn = document.querySelector('#btn');
+let btn2 = document.querySelector('#btn2')
 let form = document.querySelector('form');
 let input = document.querySelector('input');
+let ul = document.querySelector('ul')
 let section = document.querySelector('section')
-firstMent.innerText = '숫자야구를 시작합니다 컴퓨터와의 대결!'
-// const pc =  random[0] === random[1] || random[0] === random[2] || random[1] === random[2]
-// let random = 
-while (true) {
-    let random = Math.floor(Math.random() * 900) + 100;
-    if (random[0] !== random[1] && random[0] !== random[2] && random[1] !== random[2])
-        break;
+btn2.style.display = 'none';
+
+let num = [];
+
+while (num.length < 3) {
+  const computerPick = MissionUtils.Random.pickNumberInRange(1, 9);
+  if (!num == num.includes(computerPick)) { num.push(computerPick) }
 }
-
-
-const computerPick = random.toString()
-console.log(computerPick)
-
-form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    firstMent.innerText = `숫자를 골랐습니다 맞춰보세요.~`
-    let guess = input.value;
-
-    let strikes = 0;
-    let balls = 0;
+let comPick = num.join('');
+console.log(comPick)
 
 
 
-    for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) {
-        if (computerPick[i] !== guess[j]) {
-            continue;
-        }
+const app = form.addEventListener('submit', function (e) {
+  e.preventDefault();
 
-        if (i === j) {
-            strikes++;
-        } else {
-            balls++;
-        }
+  let guess = input.value;
+  let strikes = 0;
+  let balls = 0;
+
+  for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) {
+    if (comPick[i] !== guess[j]) {
+      continue;
     }
-    if (balls && strikes) {
-        console.log(`${balls}볼, ${strikes}스트라이크 입니다~.`)
+
+    if (i === j) {
+      strikes++;
+    } else {
+      balls++;
     }
-    else if (balls) {
-        console.log(`${balls}볼 입니다~.`)
+  }
+  if (isNaN(guess)) {
+    alert(`숫자를 입력해주세요~!`)
+  }
+  else if (guess.length > 2) {
+    alert(`3자리 숫자 부탁드립니다.!`)
+  }
+
+  else if (balls && strikes) {
+    const li = document.createElement('li');
+    li.innerText = `${balls}볼, ${strikes}스트라이크 입니다~.`
+    ul.append(li)
+  }
+  else if (balls) {
+    const li = document.createElement('li');
+    li.innerText = `${balls}볼 입니다~.`
+    ul.append(li)
+
+  }
+  else if (strikes) {
+    const li = document.createElement('li');
+    li.innerText = `${strikes} 스트라이크 입니다!!`
+    ul.append(li)
+    if (strikes === 3) {
+      li.innerText = `${3}스트라잌!! 게임종료!! 한판더하시겠습니까?`
+      input = this.ariaDisabled
+      btn2.style.display = 'block';
+      btn2.addEventListener('click',
+        () => location.reload()
+      )
     }
-    else if (strikes) {
-        console.log(`${strikes} 스트라이크 입니다!!`)
-    } else { console.log(`낫싱`) }
-    input.value = '';
+  } else {
+    const li = document.createElement('li');
+    li.innerText = `낫싱`
+    ul.append(li)
+
+  }
+  //input.value = '';
 
 
-    // firstMent.innerHTML = '숫자를 골랐습니다 맞춰보세요.~'
+
 })
+
+
+
+
+
+
+
 
 
 // value[0] == !pc[0] && value[1] == !pc[1] && value[2] == !pc[2] &&
 //     [0] in pc || [1] in pc || [2] in pc
 
 
-// for (let i = 0; i < 3; i++){
-//     i[0]==!pc[0] &&
-// }
 
-// let strikes = 0;
-// let balls = 0;
 
-// for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) {
-//     if (computerPick[i] !== guess[j]) {
-//         continue;
-//     }
 
-//     if (i === j) {
-//         strikes++;
-//     } else {
-//         balls++;
-//     }
-// }
+
+
+
 
 // 자바스크립트 컨벤션 부분
 // else if는 if로! else를 지양하자(얼리 리턴)
@@ -99,7 +123,8 @@ form.addEventListener('submit', function (e) {
 // console.log(pets.includes('at'));    //false
 
 
-// join메서드  배열의 모든 요소를 연결해 하나의 문자열로 만듦
+
+// join메서드  배열의 모든 요소를 연결해 하나의 문자열로 만듦 배열빼고 ''문자열로만출력
 // const elements = ['Fire', 'Air', 'Water'];
 
 // console.log(elements.join());      //"Fire,Air,Water"
@@ -108,3 +133,19 @@ form.addEventListener('submit', function (e) {
 
 
 
+// while (num.length < 3) {     라이브러리없이 3자리숫자를 겹치는숫자없이만듦
+//     let random = Math.floor(Math.random() * 9) + 1;
+//     if (!num == num.includes(random)
+//     ) { num.push(random) }
+// }
+// let computerPick = num.join('');
+// console.log(computerPick)
+
+// const span = function () {
+//     document.createElement('span');
+//     section.append('span')
+// }
+
+
+
+// location.reload()  페이지를 새로고침
