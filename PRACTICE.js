@@ -7,20 +7,33 @@
 //어떻게 해야할까?
 // console.log(`${msg},${person}!"`)
 // greet1('"Hello','Barry')
-//이렇게 "Hello,Barry!" 나왔음 
-const user = {
-  email: 'harvey@gmail.com',
-  password: 'ssssss333',
-  firstName: 'Harvey',
-  lastName: 'milk',
-  born: 1930,
-  died: 1978,
-  bio: 'Harvey Bernard Milk was an American politician',
-  city: 'San Francisco',
-  state: 'California'
+//이렇게 "Hello,Barry!" 나왔음
 
+
+// 낫싱
+// 예3: 3스트라이크 3개의 숫자를 모두 맞히셨습니다! 게임 종료(3개의 숫자를 모두 맞힌 경우)
+// 예4: 숫자 야구 게임을 시작합니다
+
+
+const computerPick = Math.floor(Math.random() * 900) + 100;
+
+let strikes = 0;
+let balls = 0;
+
+for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) {
+  if (computerPick[i] !== guess[j]) {
+    continue;
+  }
+
+  if (i === j) {
+    strikes++;
+  } else {
+    balls++;
+  }
 }
-const { email, city, state, password } = user;
+
+
+
 
 // const input = document.querySelector('#catName')
 // const ulcat = document.querySelector('#cats')
