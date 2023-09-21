@@ -180,16 +180,21 @@ while (true) {                  //무한반복
     break;
 } console.log('ok you win!')
 //@ prompt에 사용자입력값이 뜨게 인수input을 넣고 이걸 다시 변수 input으로 저장한다
-//변수input이 실행된다 prompt사용자입력값을 출력하며 true를 받고 무한으로 실행된다 
+//변수input이 실행된다 prompt사용자입력값을 출력하며 true를 받고 무한으로 실행된다
 //if조건에 맞으면 break가 실행되고 콘솔로그 실행.
 
-//input.toLowerCase()믿고 prompt창에'sTop copying me' 입력하면 소문자로 바꿔서 break 
+//input.toLowerCase()믿고 prompt창에'sTop copying me' 입력하면 소문자로 바꿔서 break
 //실행할줄 알았는데 아님 why? 그럼 .toLowerCase를 왜씀?   input.value.toLowerCase()를써도 안됨
 //무튼 stop copying me 소문자로 입력하면 break 됨
 
 //또 하나 stop copying me를 처음에 치면 한번 따라하고 브레이크된다
 
-// {break;} 를 중괄호로 따로쓸수도 있고 위처럼 중괄호 없이 쓸수도 있다 
+// {break;} 를 중괄호로 따로쓸수도 있고 위처럼 중괄호 없이 쓸수도 있다
+
+for (let k = 0; k < 10; k += 1) {
+  k = 5
+  break;
+}
 
 
 

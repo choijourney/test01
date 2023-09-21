@@ -14,7 +14,7 @@ let num = [];
 
 while (num.length < 3) {
   const computerPick = MissionUtils.Random.pickNumberInRange(1, 9);
-  if (!num == num.includes(computerPick)) { num.push(computerPick) }
+  if (!num.includes(computerPick)) { num.push(computerPick) }
 }
 let comPick = num.join('');
 console.log(comPick)

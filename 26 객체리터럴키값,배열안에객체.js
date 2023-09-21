@@ -5,15 +5,15 @@
 // 값을 호출하려면 ['키']  or  .키  두가지를 쓸수있다. ex) [Num] .Num  
 //객체의 모든 키는 문자열로 반환
 const kitch = {
-    Num: 933993,
-    isFunny: true,
-    colors: ['red', 'orange']
+  Num: 933993,
+  isFunny: true,
+  colors: ['red', 'orange']
 }
 kitch['Num']            //문자열 따옴표
 933993
 // 콘솔에서 데이터를 찾으려면 []대괄호와 ''"" 작은따옴표,큰따옴표 둘다사용가능하다
 kitch.colors
-    (2)['red', 'orange']
+  (2)['red', 'orange']
 // 아니면 .colors 처럼 .을 이용할 수도 있다. 객체의 키는 숫자도 문자열로 바뀐다
 // 기호도 키로 사용할수있는데 기호만 기호상태로 남는다 
 //메서드와 똑같이 생겼지만 메서드는 아니다
@@ -43,15 +43,15 @@ years['19' + '99']
 
 //colt test 30 object access      restaurant변수에서 fullAddress변수를 새로만들기
 const restaurant = {
-    name: 'Ichiran Ramen',
-    address: `${Math.floor(Math.random() * 100) + 1} Johnson Ave`,
-    city: 'Brooklyn',
-    state: 'NY',
-    zipcode: '11206',
+  name: 'Ichiran Ramen',
+  address: `${Math.floor(Math.random() * 100) + 1} Johnson Ave`,
+  city: 'Brooklyn',
+  state: 'NY',
+  zipcode: '11206',
 }
 
 const fullAddress =
-    restaurant["address"] + ", " + restaurant["city"] + ", " + restaurant["state"] + " " + restaurant["zipcode"]
+  restaurant["address"] + ", " + restaurant["city"] + ", " + restaurant["state"] + " " + restaurant["zipcode"]
 
 fullAddress
 '37 Johnson Ave, Brooklyn, NY 11206'
@@ -75,7 +75,7 @@ midterms.thomas = 79;
 79
 // 원래 78점이었는데 79로 수정가능 여기서 .thomas가 키key
 midterms
-{ danielle: 96, thomas: 79 }    //수정되서 저장
+{ danielle: 96, thomas: 79 }    //수정돼서 저장
 midterms['thomas'] = 'C+'
 'C+'
 midterms['danielle'] = 'A'
@@ -92,8 +92,8 @@ midterms
 
 // 배열안에 객체    배열과 객체 네스트
 const comments = [
-    { username: 'Tammy', text: 'lololol', votes: 9 },         //쉼표쓰기
-    { username: 'FishBoi', text: 'glub glub', votes: 1999 }]
+  { username: 'Tammy', text: 'lololol', votes: 9 },         //쉼표쓰기
+  { username: 'FishBoi', text: 'glub glub', votes: 1999 }]
 // 'glub glub'을 값으로 얻으려면 어떻게해야할까?
 comments[1]['text']
 'glub glub'

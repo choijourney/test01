@@ -19,13 +19,15 @@ html.addEventListener('click', function () {
   form.style.display = 'block';
 
 })
-console.log(textInput.value)
-btn.addEventListener('click', function (e) {
-  e.preventDefault();
-  const li = document.createElement('li');
-  // li.innerText = form.value;
-  // console.log(form.value)
-  // ul.append(li)
-  // form.style.display = 'none';
-  // e.stopPropagation();
-})
+
+// btn.addEventListener('click', function (e) {
+//   e.preventDefault();
+//   const li = document.createElement('li');
+//   textInput.value = 'please'
+//   li.innerText = textInput.value;
+//   textInput.onchange
+//   console.log(textInput.value)
+//   ul.append(li)
+//   form.style.display = 'none';
+//   e.stopPropagation();  //버블링막기
+// })

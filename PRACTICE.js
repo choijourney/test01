@@ -8,26 +8,58 @@
 // console.log(`${msg},${person}!"`)
 // greet1('"Hello','Barry')
 //이렇게 "Hello,Barry!" 나왔음
+// let j = 1;
+// do {
+//    console.log(`j : ${j++}`);
+//  } while (j > 3);
 
 
-const testScores = {
-  keen: 80,
-  damon: 67,
-  kim: 89,
-  shawn: 91,
-  marlon: 72,
-  dwayne: 77,
-  nadia: 83,
-  elvi: 97,
-  diedre: 81,
-  vonni: 60
-}
-const testSc = Object.entries(testScores);
-console.log(testSc)
-// for (let testS of testSc) {
-//     console.log(tes)
+
+
+  // while (random.length < 7) {
+  //   const randomNum = Math.floor(Math.random() * 45) + 1
+
+  //   if (!random.includes(randomNum)) {
+  //     random.push(randomNum)
+  //   }
+  // }
+  // console.log(random)
+
+// function randomNum(lower, upper) {
+//   for (var i = 0; i < 10; i++) {
+//     let myRandom = Math.floor(Math.random() * (upper - lower + 1)) + lower;
+//     console.log(myRandom);
 //   }
+// } randomNum(1,45)
 
+
+
+
+let random = [];
+let total = 0;
+// const newNum = input.value / 1000
+
+while (random.length < 7) {
+  const randomNum = Math.floor(Math.random() * 45) + 1
+
+  for (let i = 0; i < 2; i += 1) {
+    if (!random.includes(randomNum)) {
+      random.push(randomNum)
+    }
+  }
+}
+let randomSort = random.sort((a, b) => a - b)
+console.log(randomSort)
+
+
+
+
+
+
+
+
+// const evens = [2, 4, 6, 8];
+// evens.reduce((sum, num) => sum + num, 100))
 
 // const input = document.querySelector('#catName')
 // const ulcat = document.querySelector('#cats')

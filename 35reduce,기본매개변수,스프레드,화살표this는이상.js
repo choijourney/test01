@@ -2,7 +2,7 @@
 //reduce는 두개의 인수를 갖는다. 첫번째 인수는 총합계이다. 두번째 인수는 개별 요소.
 //두개를 더해서 return으로 반환받은값은 다음번 첫번째인수 자리 즉, 총합 자리로 간다.
 [3, 5, 7, 9, 11].reduce((accumulator, currentValue) => {
-    return accumulator + currentValue;
+  return accumulator + currentValue;
 })
 //accumulator는 3에서시작, currentValue는5. 두개더하면 8 
 //8은 다시 accumulator 자리로 가서 8과 currentValue 7을 더하면 15
@@ -23,40 +23,40 @@ const total = prices.reduce((total, price) => total + price)
 //을 찾을수도 있다. 위 가격표에서 최소값을 찾아보자
 
 const min = prices.reduce((min, price) => {
-    if (price < min) {
-        return price
-    } else { return min }
+  if (price < min) {
+    return price
+  } else { return min }
 })
 //첫번째 인수이름은 최소값을 지니게 되므로 min,두번째 인수는 요소에서 가져올거니까 price
 //price가 min보다 작으면 price를 반환. 반환된 값이 다시 min자리로.. 반복하다보면 최소값.
 
 const movie4 = [
-    {
-        title: 'Amadeus',
-        score: 99,
-        year: 1984
-    },
-    {
-        title: 'Stand By Me',
-        score: 85,
-        year: 2013
-    }, {
-        title: 'parasite',
-        score: 95,
-        year: 2019
-    }
+  {
+    title: 'Amadeus',
+    score: 99,
+    year: 1984
+  },
+  {
+    title: 'Stand By Me',
+    score: 85,
+    year: 2013
+  }, {
+    title: 'parasite',
+    score: 95,
+    year: 2019
+  }
 
 ]
 const bestmovie = movie4.reduce((best, curr) => {
-    if (best.score < curr.score) {
-        return curr
-    } else { return best }
+  if (best.score < curr.score) {
+    return curr
+  } else { return best }
 })
 //bestmovie
 //{title: 'Amadeus', score: 99, year: 1984}  답 
 
 const evens = [2, 4, 6, 8];
-evens.reduce((sum, num) => sum + num, 100)
+const ev = evens.reduce((sum, num) => sum + num, 100)
 //reduce괄호안에 두번째 인수를 줄수있다. 함수식은 첫번째 인수,두번째 인수는 
 //sum에 대한 초기값으로 사용됨  첫째인수에 더하면됨
 //sum+num에 2,4,6,8을 대입하면 최종 20이나옴  거기에 100을 더함.
@@ -71,26 +71,26 @@ evens.reduce((sum, num) => sum + num, 'a')
 
 //화살표함수에서 this 는 이상하게 작동한다?..!
 const person = {
-    firstName: 'Viggo',
-    lastName: 'Mortensen',
-    fullName: function () {
-        return `${this.firstName} ${this.lastName}`
-    }
+  firstName: 'Viggo',
+  lastName: 'Mortensen',
+  fullName: function () {
+    return `${this.firstName} ${this.lastName}`
+  }
 }
 //이경우 this키워드가 왼쪽에있는 객체를 가리킨다. 'viggo mortensen' 바라던답을줌.
 const person1 = {
-    firstName: 'Viggo',
-    lastName: 'Mortensen',
-    fullName: () => {
-        console.log(this);    //콘솔에 this를 반환해보니 윈도우객체가 나옴
-        return `${this.firstName} ${this.lastName}`
-    },
-    shoutName: function () {
-        setTimeout(() => {
-            console.log(this)
-            console.log(this.fullName())
-        }, 3000)
-    }
+  firstName: 'Viggo',
+  lastName: 'Mortensen',
+  fullName: () => {
+    console.log(this);    //콘솔에 this를 반환해보니 윈도우객체가 나옴
+    return `${this.firstName} ${this.lastName}`
+  },
+  shoutName: function () {
+    setTimeout(() => {
+      console.log(this)
+      console.log(this.fullName())
+    }, 3000)
+  }
 }
 //fullName  같은식에서 function지우고 =>화살표만 썼을뿐인데 undefined가 뜸.
 //화살표함수로 바꾸니 this가 왼쪽객체가 아닌 window객체를 가리킴.
@@ -105,26 +105,26 @@ const person1 = {
 //기본 매개변수
 //매개변수가 있으면 그 값을 사용하고 없으면 디폴트 매개변수를 설정해서 그값을 사용함
 function rollDie(numsides) {
-    if (numsides === undefined) {     //rollDie()괄호안에 아무것도안적으면
-        numsides = 6                  //기본매개변수 6
-    }
-    return Math.floor(Math.random() * numsides) + 1
+  if (numsides === undefined) {     //rollDie()괄호안에 아무것도안적으면
+    numsides = 6                  //기본매개변수 6
+  }
+  return Math.floor(Math.random() * numsides) + 1
 }
 //콘솔에 rollDie(10) 괄호안에 10을쓰면 1부터 10까지 숫자를 랜덤으로 준다.
 //rollDie() 괄호안에 아무것도 적지않으면 기본매개변수인 6을 인수로 써서 1부터 6까지 랜덤숫자나옴
 //  여기까지는 옛날방식이고 매개변수가 여러개 있으면 좋은방법이 아니다. 새로운 방식을 써보면.
 
 function multiply(a, b = 1) {    //b=1 b만 기본매개변수 1로 정함
-    return a * b;
+  return a * b;
 }
 
 function rollDie1(numsides = 6) {
-    return Math.floor(Math.random() * numsides) + 1
+  return Math.floor(Math.random() * numsides) + 1
 }
 //롤다이 식을 새버전으로 다시써보면 numsides=6 으로 디폴트값 정하면됨.
 //이렇게 디폴트 매개변수를 여러개 쓸수있지만 순서를 조심해야한다.
 function greet1(person, msg = 'Hey there', punc = '!') {
-    console.log(`${msg},${person}${punc}`)
+  console.log(`${msg},${person}${punc}`)
 }
 // 기본매개변수가 앞에있으면 오류남 2번째자리부터있을수있다.
 //기호도 넣을수있다.
@@ -196,9 +196,9 @@ const 냥이강쥐 = { ...냥이, ...강쥐 }
 // {...'HIII'} 
 // {0: 'H', 1: 'I', 2: 'I', 3: 'I'}
 const dataFromForm = {
-    email: 'blue@gmail.com',
-    password: 'todfd123@',
-    username: 'asdfg'
+  email: 'blue@gmail.com',
+  password: 'todfd123@',
+  username: 'asdfg'
 }
 
 const newUser = { ...dataFromForm, id: 2345, isAdmin: false }

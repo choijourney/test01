@@ -6,27 +6,27 @@
 //switch문은 동등연산자(==)가 아닌, 일치연산자(===)로 비교한다
 const day = 2;
 switch (day) {
-    case 1:
-        console.log("monday");
-        break;
-    case 2:
-        console.log("tuesday");
-        break;
-    case 3:
-        console.log("wednesday");
-        break;
-    case 4:
-        console.log("thursday");
-        break;
-    case 5:
-        console.log("friday");
-        break;
-    case 6:
-    case 7:
-        console.log("Weekend!!")
-        break;
-    default:
-        console.log("I don't know that.")
+  case 1:
+    console.log("monday");
+    break;
+  case 2:
+    console.log("tuesday");
+    break;
+  case 3:
+    console.log("wednesday");
+    break;
+  case 4:
+    console.log("thursday");
+    break;
+  case 5:
+    console.log("friday");
+    break;
+  case 6:
+  case 7:
+    console.log("Weekend!!")
+    break;
+  default:
+    console.log("I don't know that.")
 }
 
 
@@ -86,28 +86,28 @@ switch (day) {
 
 
 switch (browser) {
-    case 'Edge':
-        alert("Edge를 사용하고 계시네요!");
-        break;
+  case 'Edge':
+    alert("Edge를 사용하고 계시네요!");
+    break;
 
-    case 'Chrome':
-    case 'Firefox':
-    case 'Safari':
-    case 'Opera':
-        alert('저희 서비스가 지원하는 브라우저를 사용하고 계시네요.');
-        break;
+  case 'Chrome':
+  case 'Firefox':
+  case 'Safari':
+  case 'Opera':
+    alert('저희 서비스가 지원하는 브라우저를 사용하고 계시네요.');
+    break;
 
-    default:
-        alert('현재 페이지가 괜찮아 보이길 바랍니다!');
+  default:
+    alert('현재 페이지가 괜찮아 보이길 바랍니다!');
 }
 //switch문을 if문으로 바꾸기  switch문이 가독성이더좋다.
 
 if (browser === 'Edge') {
-    alert('Edge를 사용하고 계시네요!');
+  alert('Edge를 사용하고 계시네요!');
 } else if (browser === 'Chrom' || browser === 'Firefox' || browser === 'Safari' || browser === 'Opera') {
-    alert('저희 서비스가 지원하는 브라우저를 사용하고 계시네요.');
+  alert('저희 서비스가 지원하는 브라우저를 사용하고 계시네요.');
 } else {
-    alert('현재 페이지가 괜찮아 보이길 바랍니다!');
+  alert('현재 페이지가 괜찮아 보이길 바랍니다!');
 }
 
 
@@ -132,13 +132,13 @@ let a = +prompt('a?', '숫자를입력해주세요');
 //두개의 인수는 생략가능.  prompt는 사용자가 입력한 값 모두를(숫자까지) 문자열로 반환해서
 // 사용자 입력 값을 숫자로 얻고 싶은 경우 타입을 변환해야한다.
 switch (a) {
-    case 0: alert(0);
-        break;
-    case 1: alert(1)
-        break;
-    case 2:
-    case 3:
-        alert('2,3')
+  case 0: alert(0);
+    break;
+  case 1: alert(1)
+    break;
+  case 2:
+  case 3:
+    alert('2,3')
 }//prompt 앞에 +를 입력해야 alert이 출력된다. +없으면 프롬프트창이 그냥 사라짐
 //아니면 Number(prompt()) 도 작동
 
@@ -147,7 +147,7 @@ let agePrompt = prompt('나이를 입력하세요.');
 let age = Number(agePrompt);  // Number를 함수로 사용하여 숫자 값으로 변환한다.
 
 if (age >= 20) {
-    console.log('통과');
+  console.log('통과');
 }
 //Number를 없애고 +prompt로 바꿔도 작동
 //만약에 Number를 없애고 agePrompt만 남겨도 이식은 작동한다 왜냐면
@@ -229,14 +229,14 @@ movieline - ['vip', 'oliver']
 let cats = ['blue', 'kitty']
 let dogs = ['rusty', 'wyatt']
 cats.concat(dogs)
-    - ["blue", "kitty", "rusty", "wyatt"]
+  - ["blue", "kitty", "rusty", "wyatt"]
 cats
 ["blue", "kitty"]
 dogs.concat(cats)
-    - ["rusty", "wyatt", "blue", "kitty"]
+  - ["rusty", "wyatt", "blue", "kitty"]
 let comboparty = dogs.concat(cats)
 comboparty
-    - ["rusty", "wyatt", "blue", "kitty"]
+  - ["rusty", "wyatt", "blue", "kitty"]
 
 //  includes 불리언 메서드의 예시로 true나 false로 응답.
 cats.includes('blue')
@@ -249,14 +249,14 @@ false
 "blue".indexOf('e')
 3
 "blue".indexOf('0')
-    - 1    //없는 문자면 -1을 출력
+  - 1    //없는 문자면 -1을 출력
 comboparty["rusty", "wyatt", "blue", "kitty"]
 comboparty.indexOf('rusty')
 0
 comboparty.indexOf('kitty')
 3
 comboparty.indexOf('uetett')
-    - 1
+  - 1
 // 어느위치에 있는지 알려주고 없는값이면 -1 을 내놓는다
 // 만약 같은이름이 두개가 있을때 맨앞에 1개만 알려준다 블루가 두개라면
 // 2개라는건 알려주지않는다
@@ -264,9 +264,9 @@ comboparty.indexOf('uetett')
 
 // reverse 배열의 앞뒤를 뒤집는다 ()빈괄호가 꼭필요하다
 comboparty.reverse()
-    - ["kitty", "blue", "wyatt", "rusty"]
+  - ["kitty", "blue", "wyatt", "rusty"]
 comboparty
-    - ["kitty", "blue", "wyatt", "rusty"]
+  - ["kitty", "blue", "wyatt", "rusty"]
 // reverse  원본을 깨고 저장된다
 
 
@@ -276,24 +276,24 @@ comboparty
 let colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
 
 colors.slice()
-    (7)['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
+  (7)['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
 let coolColors = colors.slice(3)
 undefined
 coolColors     //3의 green부터 끝까지 출력
 ['green', 'blue', 'indigo', 'violet']
 colors
-    - ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
+  - ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
 colors.slice(2, 4)
-    (2)['yellow', 'green']
+  (2)['yellow', 'green']
 // 2의 yellow 와 4인 blue 전인 green에서 끝난다
 let warmColors = colors.slice(0, 3)
 undefined
 warmColors
-    (3)['red', 'orange', 'yellow']
+  (3)['red', 'orange', 'yellow']
 colors
-    (7)['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
+  (7)['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
 colors.slice(-2)
-    (2)['indigo', 'violet']
+  (2)['indigo', 'violet']
 // -2 를 쓰면 마지막 2개가 나온다 "indigo","violet"
 
 
@@ -305,24 +305,24 @@ undefined
 colors.splice(5, 1)
 ['indigo']
 colors
-    (6)['red', 'orange', 'yellow', 'green', 'blue', 'violet']
+  (6)['red', 'orange', 'yellow', 'green', 'blue', 'violet']
 // indexOf 5 자리에있던 indigo가 1개 사라짐
 colors.splice(1, 0, 'red-orange')    //1번자리에 'red-orange'추가
 colors
-    (7)['red', 'red-orange', 'orange', 'yellow', 'green', 'blue', 'violet']
+  (7)['red', 'red-orange', 'orange', 'yellow', 'green', 'blue', 'violet']
 colors.splice(4, 0, 'yellow-green', 'forestgreen')
 colors
-    (9)['red', 'red-orange', 'orange', 'yellow', 'yellow-green', 'forestgreen', 'green', 'blue', 'violet']
+  (9)['red', 'red-orange', 'orange', 'yellow', 'yellow-green', 'forestgreen', 'green', 'blue', 'violet']
 colors.splice(2, 2, 'deleted!!')
-    (2)['orange', 'yellow']
+  (2)['orange', 'yellow']
 colors
-    (8)['red', 'red-orange', 'deleted!!', 'yellow-green', 'forestgreen', 'green', 'blue', 'violet']
+  (8)['red', 'red-orange', 'deleted!!', 'yellow-green', 'forestgreen', 'green', 'blue', 'violet']
 // 2위치의 2개인 orange, yellow 사라지고 'deleted'생김
 
 let days1 = ['monday', 'tuesday', 'wednesday']
 undefined
 days1.splice(1, 2)
-    (2)['tuesday', 'wednesday']
+  (2)['tuesday', 'wednesday']
 days1
 ['monday']
 // 1자리에 tuesday부터 2개가 사라짐 monday만남음
@@ -333,13 +333,17 @@ days1
 // .sort  배열의 항목을 적절한 위치에 정렬하고 저장. 
 // 실무에서 자주사용하는데 배열의 sort는 아님  정렬의 방법때문인데 
 //  작은숫자에서 큰숫자 순서로 정렬이아닌 첫번째자리숫자크기 순서대로 
-// 정렬한다 함수를 사용해서 배열방법을 오름차순, 내림차순으로 바꿀수있다.(나중에배움) 
+// 정렬한다 함수를 사용해서 배열방법을 오름차순, 내림차순으로 바꿀수있다.
 // .sort() 괄호안에 아무것도 안넣고 호출하면 모두 문자열로 반환
 //그리고 각문자열의 UTF 16코드 유닛값을 비교한다 이기초 코드넘버는 각문자열마다 주어짐
 
 let scores = [1, 70, 100, 2500, 9, -12, 9, 34]
 scores.sort()
-    (8)[-12, 1, 100, 2500, 34, 70, 9, 9]
+  (8)[-12, 1, 100, 2500, 34, 70, 9, 9]
+
+//제대로된 오름차순 방법
+let scoreSort = scores.sort((a, b) => a - b)   // 내림차순 b-a
+console.log(scoreSort)
 
 
 //toString 메서드  - 배열을 문자열로 변환
@@ -361,13 +365,13 @@ undefined
 let numsCopy = nums1;
 undefined
 numsCopy
-    (3)[1, 2, 3]
+  (3)[1, 2, 3]
 nums1.push(4)
 4
 nums1
-    (4)[1, 2, 3, 4]
+  (4)[1, 2, 3, 4]
 numsCopy
-    (4)[1, 2, 3, 4]
+  (4)[1, 2, 3, 4]
 nums1 === numsCopy
 true
 // 같은메모리에서 참조하게 let으로 연결해서 이제는 true가뜬다
@@ -382,7 +386,7 @@ const nums = [1, 2, 3]
 nums.push(4)
 4
 nums
-    - [1, 2, 3, 4]
+  - [1, 2, 3, 4]
 nums = 1
 error
 nums = [1, 2, 3, 4]   //같은숫자같아보여도 재지정은 안된다 다른메모리의배열로 보기때문
@@ -394,7 +398,7 @@ error
 const gameBoard = [['X', 'O', 'X'], ['0', null, 'X'], ['0', '0', 'X']]
 undefined
 gameBoard
-    (3)[Array(3), Array(3), Array(3)]0: (3)['X', 'O', 'X']1: (3)['0', null, 'X']2: (3)['0', '0', 'X']length: 3[[Prototype]]: Array(0)
+  (3)[Array(3), Array(3), Array(3)]0: (3)['X', 'O', 'X']1: (3)['0', null, 'X']2: (3)['0', '0', 'X']length: 3[[Prototype]]: Array(0)
 gameBoard[1][1]
 null
 // indexOf 를이용해 대괄호 1의 1위치인 null
