@@ -1,7 +1,7 @@
 // const app = new App();
 // app.play();
 
-let firstMent = document.querySelector('h1');
+
 let btn = document.querySelector('#btn');
 let btn2 = document.querySelector('#btn2')
 let form = document.querySelector('form');

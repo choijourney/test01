@@ -1,0 +1,14 @@
+{
+  "name": "jook100",
+  "version": "1.0.0",
+  "description": "jook ki jeon hal il 100 ",
+  "main": "사이드.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "j",
+  "license": "ISC",
+  "dependencies": {
+    "suneditor": "^2.45.1"
+  }
+}

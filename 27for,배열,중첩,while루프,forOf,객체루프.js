@@ -144,7 +144,7 @@ for (let i = 0; i < seatingChart.length; i++) {
 
 
 
-// while 루프    (i<10) 이 참이면 {}중괄호를 무한대로 실행한다  
+// while 루프    (i<10) 이 참 일동안 {}중괄호를 실행한다  
 let i = 0;
 while (i < 10) {
   console.log(i);
@@ -184,14 +184,11 @@ while (true) {                  //무한반복
 //if조건에 맞으면 break가 실행되고 콘솔로그 실행.
 
 //input.toLowerCase()믿고 prompt창에'sTop copying me' 입력하면 소문자로 바꿔서 break 
-//실행할줄 알았는데 아님 why? 그럼 .toLowerCase를 왜씀? 
+//실행할줄 알았는데 아님 why? 그럼 .toLowerCase를 왜씀?   input.value.toLowerCase()를써도 안됨
 //무튼 stop copying me 소문자로 입력하면 break 됨
 
 //또 하나 stop copying me를 처음에 치면 한번 따라하고 브레이크된다
 
-if (input.toLowerCase() === 'stop copying me') {
-  break;
-}
 // {break;} 를 중괄호로 따로쓸수도 있고 위처럼 중괄호 없이 쓸수도 있다 
 
 
@@ -207,19 +204,19 @@ for (let sub of subreddits) {
   console.log(`visit reddit.com/r/${sub}`)
 }
 
-const seatingChart = [
+const seatingChart1 = [
   ['kris', 'erik', 'nami'],
   ['geo', 'juan', 'anto', 'kev'],
   ['yumi', 'saku', 'jack', 'eri']
 ]
-for (let i = 0; i < seatingChart.length; i++) {
-  const row = seatingChart[i];
+for (let i = 0; i < seatingChart1.length; i++) {
+  const row = seatingChart1[i];
   for (let j = 0; j < row.length; j++) {
     console.log(row[j])
   }
 }
 // ↑ for루프중첩    /  ↓for of루프중첩   결과는같다
-for (let row of seatingChart) {
+for (let row of seatingChart1) {
   for (let student of row) {
     console.log(student);
   }
@@ -272,39 +269,40 @@ Object.keys(testScores)
 Object.values(testScores)
   - [80, 67, 89, 91, 72, 77, 83, 97, 81, 60]
 //.values를 붙이면 값이 나온다 
-Object.entries(testScores)
-  -
-  // (2)['keen', 80]
-  //     (2)['damon', 67]
-  //     (2)['kim', 89]
-  //     (2)['shawn', 91]
-  //     (2)['marlon', 72]
-  //     (2)['dwayne', 77]
-  //     (2)['nadia', 83]
-  //     (2)['elvi', 97]
-  //     (2)['diedre', 81]
-  //     (2)['vonni', 60]
-  //.entries 는 키-값 쌍으로 된 중첩배열을 띄운다
-  //이 Object메서드는 배열로 답을받아서 for of로 반복을 만들면 된다
+const entrie = Object.entries(testScores);
+console.log(entrie)
 
-  //for of로 Object.entries를 반복했는데 안된다   
-  // for (let testS of Object.entries(testScores)) {
-  //     for (let tes of tests){
-  //     console.log(tes)
-  //     }
-  // }     오류뜸
+// (2)['keen', 80]
+//     (2)['damon', 67]
+//     (2)['kim', 89]
+//     (2)['shawn', 91]
+//     (2)['marlon', 72]
+//     (2)['dwayne', 77]
+//     (2)['nadia', 83]
+//     (2)['elvi', 97]
+//     (2)['diedre', 81]
+//     (2)['vonni', 60]
+//.entries 는 키-값 쌍으로 된 중첩배열을 띄운다
+//이 Object메서드는 배열로 답을받아서 for of로 반복을 만들면 된다 오류난다안된다
 
-  //Object.entries를 반복하는 방법들
-  // for (const [key, value] of Object.entries(testScores)) {
-  //     console.log(`${key} ${value}`); 
-  //   }
+//for of로 Object.entries를 반복했는데 안된다   
+// for (let testS of Object.entries(testScores)) {
+//     for (let tes of tests){
+//     console.log(tes)
+//     }
+// }     오류뜸 
 
-  //   Object.entries(testScores).forEach(([key, value]) => {
-  //     console.log(`${key} ${value}`);})
+//Object.entries를 반복하는 방법들
+// for (const [key, value] of Object.entries(testScores)) {
+//     console.log(`${key} ${value}`); 
+//   }
+
+//   Object.entries(testScores).forEach(([key, value]) => {
+//     console.log(`${key} ${value}`);})
 
 
-  //testScores의 평균값내기
-  let total = 0;
+//testScores의 평균값내기
+let total = 0;
 let scores = Object.values(testScores)     //Object.values  값을 배열로 만든다
 for (let score of scores) {                //배열을 for of로 반복시킨다
   total += score;                        //total과 반복시킨 score를 더한다 

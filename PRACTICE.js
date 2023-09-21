@@ -10,29 +10,23 @@
 //이렇게 "Hello,Barry!" 나왔음
 
 
-// 낫싱
-// 예3: 3스트라이크 3개의 숫자를 모두 맞히셨습니다! 게임 종료(3개의 숫자를 모두 맞힌 경우)
-// 예4: 숫자 야구 게임을 시작합니다
-
-
-const computerPick = Math.floor(Math.random() * 900) + 100;
-
-let strikes = 0;
-let balls = 0;
-
-for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) {
-  if (computerPick[i] !== guess[j]) {
-    continue;
-  }
-
-  if (i === j) {
-    strikes++;
-  } else {
-    balls++;
-  }
+const testScores = {
+  keen: 80,
+  damon: 67,
+  kim: 89,
+  shawn: 91,
+  marlon: 72,
+  dwayne: 77,
+  nadia: 83,
+  elvi: 97,
+  diedre: 81,
+  vonni: 60
 }
-
-
+const testSc = Object.entries(testScores);
+console.log(testSc)
+// for (let testS of testSc) {
+//     console.log(tes)
+//   }
 
 
 // const input = document.querySelector('#catName')
