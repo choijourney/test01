@@ -1,5 +1,7 @@
 //axios import@  <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
 
+// import * as MissionUtils from "@woowacourse/mission-utils";
+
 // const greet = (arg) => {
 //     return `'Hey ${arg}!'`
 // }
@@ -12,51 +14,39 @@
 // do {
 //    console.log(`j : ${j++}`);
 //  } while (j > 3);
-
-
-
-
-  // while (random.length < 7) {
-  //   const randomNum = Math.floor(Math.random() * 45) + 1
-
-  //   if (!random.includes(randomNum)) {
-  //     random.push(randomNum)
-  //   }
-  // }
-  // console.log(random)
-
-// function randomNum(lower, upper) {
-//   for (var i = 0; i < 10; i++) {
-//     let myRandom = Math.floor(Math.random() * (upper - lower + 1)) + lower;
-//     console.log(myRandom);
+// let random = [];
+// for (let i = 0; i < 5; i += 1) {
+// const numbers=Random.pickUniqueNumbersInRange(1, 45, 6)  //사용이안돼서막힘
+//   if (!random.includes(numbers)) {
+//     random.push(numbers)
 //   }
-// } randomNum(1,45)
+// }
+// let randomSort = random.sort((a, b) => a - b)
+// console.log(randomSort)
 
 
 
-
-let random = [];
-let total = 0;
-// const newNum = input.value / 1000
-
-while (random.length < 7) {
-  const randomNum = Math.floor(Math.random() * 45) + 1
-
-  for (let i = 0; i < 2; i += 1) {
-    if (!random.includes(randomNum)) {
-      random.push(randomNum)
-    }
+class Monster {
+  constructor(color, name, favoriteFruit) {
+    this.color = color;
+    this.name = name;
+    this.favoriteFruit = favoriteFruit;
+    this.sayHi = () => (`hi my name is ${this.name}, my favorite fruite is ${favoriteFruit}`)
+    this.whatEver = () => (`Life is whatever `)
+    this.myColor = () => (`I am ${color}`)
   }
 }
-let randomSort = random.sort((a, b) => a - b)
-console.log(randomSort)
+
+let mons = new Monster('red', 'mui', 'blue berry');
+let gal = new Monster('green', 'gal', 'Orange')
+
+console.log(mons.sayHi())
+console.log(gal.whatEver(),gal.myColor())
 
 
+//mission-utils 사용법
 
-
-
-
-
+//정규표현식 외계어..? 
 
 // const evens = [2, 4, 6, 8];
 // evens.reduce((sum, num) => sum + num, 100))

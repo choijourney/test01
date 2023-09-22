@@ -127,4 +127,23 @@ for (let j = 0; j < 10; j += 1) {  //0~9까지 출력인데
 } console.log(empty)
 
 
-//
+// split  여러개의 문자열로 나눈다
+const str = 'The quick brown fox jumps over the lazy dog.';
+
+const words = str.split(' ');  //공백있는곳마다 문자열을 나눔
+console.log(words[3]);  // "fox" 출력
+console.log(words) //['The', 'quick', 'brown', 'fox', 'jumps', 'over', 'the', 'lazy', 'dog.']
+
+const chars = str.split('');   //한글자씩 문자열을나눔
+console.log(chars[0]);  // "T"
+
+const generic = str.split(',');   //배열따옴표 없이 평문 출력
+console.log(generic[0]);  // The quick brown fox jumps over the lazy dog.
+
+const strCopy = str.split(); //배열복사
+console.log(strCopy);  // Array ["The quick brown fox jumps over the lazy dog."]
+
+var myString = "Hello World. How are you doing?";
+var splits = myString.split(" ", 3);
+console.log(splits);
+//  ["Hello", "World.", "How"]   공백있는곳을 나누고 앞부터 문자열 3개를 출력한다.
