@@ -26,23 +26,85 @@
 
 
 
-class Monster {
-  constructor(color, name, favoriteFruit) {
-    this.color = color;
-    this.name = name;
-    this.favoriteFruit = favoriteFruit;
-    this.sayHi = () => (`hi my name is ${this.name}, my favorite fruite is ${favoriteFruit}`)
-    this.whatEver = () => (`Life is whatever `)
-    this.myColor = () => (`I am ${color}`)
-  }
+// class Monster {
+//   constructor(color, name, favoriteFruit) {
+//     this.color = color;
+//     this.name = name;
+//     this.favoriteFruit = favoriteFruit;
+//     this.sayHi = () => (`hi my name is ${this.name}, my favorite fruite is ${favoriteFruit}`)
+//     this.whatEver = () => (`Life is whatever `)
+//     this.myColor = () => (`I am ${color}`)
+//   }
+// }
+
+// let mons = new Monster('red', 'mui', 'blue berry');
+// let gal = new Monster('green', 'gal', 'Orange')
+
+// console.log(mons.sayHi())
+// console.log(gal.whatEver(),gal.myColor())
+
+// const login = async (username,password) => {
+//   if (!username || !password) throw'missing Credentials'
+//     if (password === 'corgi')
+//     return 'welcome'
+//   throw 'failed password'
+// }
+
+// login('dog', 'corgi')
+//   .then(msg => {
+//     console.log('hi')
+//     console.log(msg)
+// })
+//   .catch(err => {
+//   console.log(err)
+// })
+
+// const color = async (color, delay) => {
+//   return new Promise((resolve) => {
+//     setTimeout(() => {
+//       document.body.style.backgroundColor = color;
+//       resolve();
+//     }
+//       , delay)
+//   }) }
+// async function change ()
+//  {
+//   await color('red', 1000)
+//   await color('yellow', 1000)
+//   await color('purple', 1000)
+// } change()
+
+const sing = async () =>
+{return 'La LALA'
 }
+sing().then(msg => {
+  console.log(msg)
+})  
+  .catch(err => console.log('error!!!'))
 
-let mons = new Monster('red', 'mui', 'blue berry');
-let gal = new Monster('green', 'gal', 'Orange')
 
-console.log(mons.sayHi())
-console.log(gal.whatEver(),gal.myColor())
 
+ 
+
+
+
+// async function color(color, delay) {       //await인데 안기다리는이유는..?
+//   setTimeout(() => { document.body.style.backgroundColor = color }, delay)
+// }
+
+// color('red', 1000)
+//   .then(color('blue', 1000))
+//   .then(color('black', 1000))
+
+
+// async function color(color, delay) {       //await인데 안기다리는이유는..?
+//   setTimeout(() => { document.body.style.backgroundColor = color }, delay)
+// }
+// async function change() {
+//   await color('red', 1000)
+//   await color('blue', 1000)
+//   await color('black', 1000)
+// } change()
 
 //mission-utils 사용법
 

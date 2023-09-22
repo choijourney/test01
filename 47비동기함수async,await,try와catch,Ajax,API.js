@@ -5,7 +5,7 @@
 // 수행 할 수 있다. 즉 A작업이 시작하면 동시에 B작업이 실행된다. A작업은 결과값이 나오는대로 출력된다.
 console.log('123')         //예를들어 123이 출력되고
 setTimeout(function () {     //3초를 기다리는동안 
-    console.log('789');
+  console.log('789');
 }, 3000)
 console.log('456')        //456이 먼저 출력된다   3초후 789출력
 //비동기처리가 필요한 이유는 서버로 데이터 요청을 했을때 서버가 언제 요청을 받고 수행할지 모르기 때문
@@ -14,97 +14,106 @@ console.log('456')        //456이 먼저 출력된다   3초후 789출력
 //자동으로 promise를 반환.  async를 쓰면 기본값은 resolve된다.reject 상황을 만드려면 오류를 던지면된다.
 //async함수와 일반함수로 나뉘어진다는걸보면 async가 비동기함수 자체라고 봐도 무방하다?.? 
 const sing = async () => {
-    throw new Error('UH OH')   //throw 오류던져 reject만듦
-    return 'LA LA LA LA'   //오류를 던져서 실패한 promise라 return은 실행되지않는다
-}
+  throw new Error('UH OH')   //throw 오류던져 reject만듦  'UH OH'는 new Error에 저장된거라 
+  return 'LA LA LA LA'      //출력되지않는다 호출해야 출력됨
+}//오류를 던져서 실패한 promise라 return은 실행되지않는다
 
 sing().then((data) => {    //promise를 쓰지않아도 async를 썼기때문에 then을 쓸수있다
-    console.log('PROMISE RESOLVERD WITH:', data)
+  console.log('PROMISE RESOLVERD WITH:', data)
 })
-    .catch(err => {
-        console.log('OH NO, PROMISE REJECTED')  //throw때문에 reject되어 'OH NO, PROMISE REJECTED'
-        console.log(err)                       //출력되고   UH OH 가 출력된다 
-    })
+  .catch(err => {
+    console.log('OH NO, PROMISE REJECTED')  //throw때문에 reject되어 'OH NO, PROMISE REJECTED'
+    console.log(err)                       //출력되고   UH OH 가 출력된다 
+  })
+
+//promise를 안썼지만 asynd를 쓰면 자동으로 promise를 반환한다.  
+async function foo() {
+  return 1;
+}
+
+function foo() {             //이식은 위식과 같다.
+  return Promise.resolve(1);
+}
 
 //throw만 써도되고  그러면 'UH OH' 만 출력.
 //throw에 new Error를 붙여서 쓰는 경우가많은데 콘솔을보면
 //'UH OH' at sing(47.js:12) 에러위치까지 알려준다
 
 const login = async (username, password) => {   //username이나 password둘중 하나라도 없으면 
-    if (!username || !password) throw 'Missing Credentrials'  //에러메시지 출력 
-    if (password === 'corgifeetarecute') return 'WELCOME!'
-    throw 'Invalid Password'  //패스워드 틀릴경우 'Invalid Password'출력
+  if (!username || !password) throw 'Missing Credentials'  //에러메시지 출력 
+  if (password === 'corgifeetarecute') return 'WELCOME!'
+  throw 'Invalid Password'  //패스워드 틀릴경우 'Invalid Password'출력
 }
 login('fdfdf', 'corgifeetarecute')
-    .then(msg => {
-        console.log('Logged in!')
-        console.log(msg)
-    })
-    .catch(err => {
-        console.log('ERROR!')
-        console.log(err)
-    })
+  .then(msg => {
+    console.log('Logged in!')
+    console.log(msg)
+  })
+  .catch(err => {
+    console.log('ERROR!')
+    console.log(err)
+  })
 //login('fdfdf')만입력했을때 인수를 두개 입력해야하는데 한개만 입력했으니 'Missing Credentrials' 에러뜸.
 
 
 //await 키워드   비동기코드를 쓰면서 동기적으로 보이게해줌. 비동기함수를 일시정지시킨다.
-//혼자 개별로도 사용은가능하지만 비동기함수에서 쓰기 때문에 async와 await은 한쌍이다.
+//async 함수에서만 사용가능하다. async와 await은 한쌍이다.
 const delayedColorChange = (color, delay) => {
-    return new Promise((resolve) => {    //reject는안쓸거여서 지움
-        setTimeout(() => {
-            document.body.style.backgroundColor = color;
-            resolve();
-        }, delay)
-    })
+  return new Promise((resolve) => {    //reject는안쓸거여서 지움
+    setTimeout(() => {
+      document.body.style.backgroundColor = color;
+      resolve();
+    }, delay)
+  })
 }
 async function rainbow() {
-    delayedColorChange('red', 1000)  //await없이쓰면 red도 1초기다렸다가 나타나고 orange도 1초기다렸다가
-    delayedColorChange('orange', 1000)//나타나서 red는출력되지않고 orange만 출력된다
-    await delayedColorChange('yellow', 1000)
-    await delayedColorChange('green', 1000)
-    console.log('hey')                 //green이 출력된뒤 1초있다가 'hey'출력
-    await delayedColorChange('blue', 1000) //await을 쓰면 1초동안 기다려준다. yellow가 나타나고 
+  delayedColorChange('red', 1000)  //await없이쓰면 red도 1초기다렸다가 나타나고 orange도 1초기다렸다가
+  delayedColorChange('orange', 1000)//나타나서 red는출력되지않고 orange만 출력된다
+  await delayedColorChange('yellow', 1000)
+  await delayedColorChange('green', 1000)
+  console.log('hey')                 //green이 출력된뒤 1초있다가 'hey'출력
+  await delayedColorChange('blue', 1000) //await을 쓰면 1초동안 기다려준다. yellow가 나타나고 
 }       //1초기다리고 green이 나타나고 1초기다리고 blue가 나타난다
 rainbow() //await을 안쓴 줄과 await쓴줄을 섞어쓰니까 'red','orange'는 나타나지않고 yellow부터 나타난다
 
 async function printRainbow() {
-    await rainbow();    //rainbow함수를 실행할때까지 기다렸다가
-    console.log('end of rainbow!')  //출력
+  await rainbow();    //rainbow함수를 실행할때까지 기다렸다가
+  console.log('end of rainbow!')  //출력
 }
 printRainbow();
 
 //try , catch   에러를 발생시키지않고 에러를 다룬다.
 const fakeRequestPromise = (url) => {
-    return new Promise((resolve, reject) => {
-        const delay = Math.floor(Math.random() * (4500)) + 500;
-        setTimeout(() => {
-            if (delay > 2000) {
-                reject('Connection Timeout :(')
-            } else {
-                resolve(`Here is your fake data from ${url}`)
-            }
-        }, delay)
-    })
+  return new Promise((resolve, reject) => {
+    const delay = Math.floor(Math.random() * (4500)) + 500;
+    setTimeout(() => {
+      if (delay > 2000) {
+        reject('Connection Timeout :(')
+      } else {
+        resolve(`Here is your fake data from ${url}`)
+      }
+    }, delay)
+  })
 }
 
 async function makeTwoRequests() {  //새async함수 makeTwoRequests에 fakeRequestPromise를
-    let data1 = await fakeRequestPromise('/page1') //let변수로 저장할수있고 await을 써서 
-    console.log('hellooo!');  //함수가끝나길 기다렸다가 콘솔에 'hellooo'를 출력하게했다
+  let data1 = await fakeRequestPromise('/page1') //let변수로 저장할수있고 await을 써서 
+  console.log('hellooo!');  //함수가끝나길 기다렸다가 콘솔에 'hellooo'를 출력하게했다
 }   // 그러나 reject이 되면 'hellooo'가 출력되지않는 오류가생긴다. 이럴때 try,catch문을 쓴다.
 
 //try문에 오류가 될 코드를 적으면 catch에서 오류를 잡아서 어떻게 처리할지 정의한다. 
 //인수(e)는 reject메시지를 나타낸다. 
 
 async function makeTwoRequests() {
-    try {
-        let data1 = await fakeRequestPromise('/page1')
-        console.log(data1);
-        let data2 = await fakeRequestPromise('/page2')
-        console.log(data2);
-    } catch (e) {
-        console.log('CAUGHT AN ERROR!')
-        console.log('error is:', e) //error is: Connection Timeout :( 
-    } console.log('hellooo!')  //이제 'hellooo'까지 출력된다
+  try {
+    let data1 = await fakeRequestPromise('/page1')
+    console.log(data1);
+    let data2 = await fakeRequestPromise('/page2')
+    console.log(data2);
+  } catch (e) {
+    console.log('CAUGHT AN ERROR!')
+    console.log('error is:', e) //error is: Connection Timeout :( 
+  } console.log('hellooo!')  //이제 'hellooo'까지 출력된다
 }
 
 

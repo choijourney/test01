@@ -5,27 +5,27 @@
 
 // THE CALLBACK VERSION
 const fakeRequestCallback = (url, success, failure) => {  //success,failure는 콜백을 넣을거다
-    const delay = Math.floor(Math.random() * 4500) + 500; //500~4999ms까지 난수
-    setTimeout(() => {
-        if (delay > 4000) {     //만약 delay가 4초보다 길면
-            failure('Connection Timeout :(')  //세번째콜백함수를 실행 
-        } else {                          //아닐경우 두번째 콜백함수실행 
-            success(`Here is your fake data from ${url}`) //괄호는 인수
-        }
-    }, delay)  //0.5초~ 4.99초까지 난수
+  const delay = Math.floor(Math.random() * 4500) + 500; //500~4999ms까지 난수
+  setTimeout(() => {
+    if (delay > 4000) {     //만약 delay가 4초보다 길면
+      failure('Connection Timeout :(')  //세번째콜백함수를 실행 
+    } else {                          //아닐경우 두번째 콜백함수실행 
+      success(`Here is your fake data from ${url}`) //괄호는 인수
+    }
+  }, delay)  //0.5초~ 4.99초까지 난수
 }
 // THE PROMISE VERSION                //success,failure같은 콜백이 필요없고 url매개변수 하나만 필요하다
 const fakeRequestPromise = (url) => {
-    return new Promise((resolve, reject) => {
-        const delay = Math.floor(Math.random() * (4500)) + 500;
-        setTimeout(() => {
-            if (delay > 4000) {
-                reject('Connection Timeout :(')
-            } else {
-                resolve(`Here is your fake data from ${url}`)
-            }
-        }, delay)
-    })
+  return new Promise((resolve, reject) => {
+    const delay = Math.floor(Math.random() * (4500)) + 500;
+    setTimeout(() => {
+      if (delay > 4000) {
+        reject('Connection Timeout :(')
+      } else {
+        resolve(`Here is your fake data from ${url}`)
+      }
+    }, delay)
+  })
 }
 
 
@@ -85,24 +85,24 @@ const fakeRequestPromise = (url) => {
 // THE CLEANEST OPTION WITH THEN/CATCH           promise는 이렇게 쓰면된다!!
 // RETURN A PROMISE FROM .THEN() CALLBACK SO WE CAN CHAIN!
 fakeRequestPromise('yelp.com/api/coffee/page1')  //url을 넣고 promise를 작동시킨다
-    .then((data) => {                      //성공하면 콘솔로그를 출력시키고
-        console.log("IT WORKED!!!!!! (page1)")
-        console.log(data)   //data인수자리에 (`Here is your fake data from ${url}`) 들어감 
-        return fakeRequestPromise('yelp.com/api/coffee/page2') // fakeRequestPromise(url)을 리턴한다
-    })
-    .then((data) => {                                //성공하면 콘솔로그를 출력시키고 
-        console.log("IT WORKED!!!!!! (page2)")
-        console.log(data)
-        return fakeRequestPromise('yelp.com/api/coffee/page3') //fakeRequestPromise을 리턴한다 
-    })
-    .then((data) => {
-        console.log("IT WORKED!!!!!! (page3)")
-        console.log(data)
-    })
-    .catch((err) => {          //실패일경우 위에 then들을 무시하고 catch로와서  
-        console.log("OH NO, A REQUEST FAILED!!!")  //콘솔로그출력을한다.
-        console.log(err)    //err인수자리에 'Connection Timeout :(' 들어감
-    })  //catch는 한번만 써도 된다 
+  .then((data) => {                      //성공하면 콘솔로그를 출력시키고
+    console.log("IT WORKED!!!!!! (page1)")
+    console.log(data)   //data인수자리에 (`Here is your fake data from ${url}`) 들어감 
+    return fakeRequestPromise('yelp.com/api/coffee/page2') // fakeRequestPromise(url)을 리턴한다
+  })
+  .then((data) => {                                //성공하면 콘솔로그를 출력시키고 
+    console.log("IT WORKED!!!!!! (page2)")
+    console.log(data)
+    return fakeRequestPromise('yelp.com/api/coffee/page3') //fakeRequestPromise을 리턴한다 
+  })
+  .then((data) => {
+    console.log("IT WORKED!!!!!! (page3)")
+    console.log(data)
+  })
+  .catch((err) => {          //실패일경우 위에 then들을 무시하고 catch로와서  
+    console.log("OH NO, A REQUEST FAILED!!!")  //콘솔로그출력을한다.
+    console.log(err)    //err인수자리에 'Connection Timeout :(' 들어감
+  })  //catch는 한번만 써도 된다 
 
 //첫번째 then이 성공하면 두번째로, 두번째가 성공하면 세번째로 이어진다. 만약 첫번째부터 실패하면
 //바로 맨아래 catch로가서 함수를 실행시킨다. 
@@ -111,12 +111,12 @@ fakeRequestPromise('yelp.com/api/coffee/page1')  //url을 넣고 promise를 작�
 
 //promise만들기
 const fakeRequest = (url) => {        // ↓첫번째매개변수는 resolve자리 , 두번째매개변수는 reject자리
-    return new Promise((resolve, reject) => {   //매개변수에 다른이름을 쓸수있지만 거의 resolve,reject씀
-        setTimeout(() => {
-            if (rand < 0.7) {
-                resolve('your fake data here');
-            } reject('request error');
-        }, 1000)
-    })
+  return new Promise((resolve, reject) => {   //매개변수에 다른이름을 쓸수있지만 거의 resolve,reject씀
+    setTimeout(() => {
+      if (rand < 0.7) {
+        resolve('your fake data here');
+      } reject('request error');
+    }, 1000)
+  })
 }
 //reject를 사용하지 않을때 생략할수있다. 리턴 값이 중요하지 않을때, 중괄호 또한 생략할수있다.
