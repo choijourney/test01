@@ -74,7 +74,7 @@ switch (day) {
 
 // switch (+a) {
 //   case b + 1:
-//     alert("표현식 +a는 1, 표현식 b+1는 1이므로 이 코드가 실행됩니다.");
+//     alert("표현식 +a는 1, 표현식 b+1는 1이므로 1과1은 같다 이 코드가 실행됩니다.");
 //     break;
 
 //   default:
@@ -139,8 +139,8 @@ switch (a) {
   case 2:
   case 3:
     alert('2,3')
-}//prompt 앞에 +를 입력해야 alert이 출력된다. +없으면 프롬프트창이 그냥 사라짐
-//아니면 Number(prompt()) 도 작동
+}//prompt에서 숫자를 반환받고싶으면 앞에 +를 입력해야 alert이 출력된다. +없으면 프롬프트창이 사라짐
+//아니면 Number(prompt()) 도 작동  
 
 let agePrompt = prompt('나이를 입력하세요.');
 
@@ -150,8 +150,8 @@ if (age >= 20) {
   console.log('통과');
 }
 //Number를 없애고 +prompt로 바꿔도 작동
-//만약에 Number를 없애고 agePrompt만 남겨도 이식은 작동한다 왜냐면
-//if에서는 == , ===를 내가 선택해서 쓸수있다 여기서는 >=이니 '20'>=20 은 같게본다
+//만약에 Number를 없애고 agePrompt만 남겨도 이식은 작동한다
+
 
 
 

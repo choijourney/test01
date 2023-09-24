@@ -116,6 +116,22 @@ async function makeTwoRequests() {
   } console.log('hellooo!')  //이제 'hellooo'까지 출력된다
 }
 
+const chan = (ment, delay) => {
+  return new Promise((resolve) =>
+    setTimeout(() => {
+      document.write(ment)
+      resolve();
+    }, delay)
+  )
+}
+
+async function chcha() {
+  await chan(`안녕 `, 1500)
+  await chan('이게 되려나?', 1500)
+  await chan(' 됐다!!.', 1500)
+
+} chcha()
+
 
 // throw 문
 // throw 문은 사용자가 정의한 '예외'를 발생시킬 수 있다.

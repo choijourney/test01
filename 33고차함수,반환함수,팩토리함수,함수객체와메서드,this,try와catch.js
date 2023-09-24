@@ -4,14 +4,14 @@ let greet = function () { console.log('hiii') }
 //이 함수를 변수에 저장했으니 함수를 인수로 쓸수있음
 
 function callTwice(func) {  //(func)에는 함수가들어올것이라고 가정함
-    func();
-    func();
+  func();
+  func();
 }
 // func에 들어온 함수를 2번 실행하려고 괄호를 2번 추가했음 
 
 function rollDie() {
-    const roll = Math.floor(Math.random() * 6) + 1
-    console.log(roll)
+  const roll = Math.floor(Math.random() * 6) + 1
+  console.log(roll)
 }
 callTwice(rollDie)
 //숫자나 문자를 적는것처럼 callTwice()인수자리에 함수rollDie를 써보았다
@@ -20,41 +20,43 @@ callTwice(rollDie)
 //callTwice(rollDie) 적으면 func()을 적어놨기때문에 rollDie() 알아서 중괄호가 붙어서 rollDie()함수가 실행된다.
 //1,3 숫자 두개가 출력된다.
 function callTenTimes(f) {
-    for (let i = 0; i < 10; i++) {
-        f()
-    }
+  for (let i = 0; i < 10; i++) {
+    f()
+  }
 }
 //이번엔 10번실행시키기위해 for루프를 만든다 그다음 함수f가 전달하는 값을 실행시키게한다
 // callTenTimes(rollDie)를 입력하면  주사위 10번굴린 결과가 나온다.
 
+
 //반환함수 
 function makeMysteryFunc() {
-    const rand = Math.random();
-    if (rand > 0.5) {           //랜덤숫자가 0.5보다 큰지확인
-        return function () {      //함수반환 (숫자,문자,값을반환하듯 함수를반환)
-            console.log('CONGRATS, I AM A GOOD FUNCTION')
-            console.log('YOU WIN A MILLION DOLLARS!')
+  const rand = Math.random();
+  if (rand > 0.5) {           //랜덤숫자가 0.5보다 큰지확인
+    return function () {      //함수반환 (숫자,문자,값을반환하듯 함수를반환)
+      console.log('CONGRATS, I AM A GOOD FUNCTION')
+      console.log('YOU WIN A MILLION DOLLARS!')
 
-        }
-    } else {
-        return function () {
-            alert('YOU HAVE BEEN INFECTED BY A COMPUTER VIRUS')
-            alert('STOP TRYING TO CLOSE THIS WINDOW')
-            alert('STOP TRYING TO CLOSE THIS WINDOW')
-            alert('STOP TRYING TO CLOSE THIS WINDOW')
-            alert('STOP TRYING TO CLOSE THIS WINDOW')
-            alert('STOP TRYING TO CLOSE THIS WINDOW')
-        }
     }
+  } else {
+    return function () {
+      alert('YOU HAVE BEEN INFECTED BY A COMPUTER VIRUS')
+      alert('STOP TRYING TO CLOSE THIS WINDOW')
+      alert('STOP TRYING TO CLOSE THIS WINDOW')
+      alert('STOP TRYING TO CLOSE THIS WINDOW')
+      alert('STOP TRYING TO CLOSE THIS WINDOW')
+      alert('STOP TRYING TO CLOSE THIS WINDOW')
+    }
+  }
 }
 // 콘솔에서 makeMysteryFunc()을 입력하면 0.5보다 값이 큰지 비교후 함수반환
-//저장해서 쓰려고 const mystery= makeMysteryFunc() 
-// mystery()
+//makeMysteryFunc() 입력하면 f(){console.log(CONGRATS, IAM A GOOD FUNCTION) }  함수출력
+//저장해서 const mystery= makeMysteryFunc() 
+// mystery() 괄호까지 써야 따옴표벗은 글이나옴
 // CONGRATS, I AM A GOOD FUNCTION
-// YOU WIN A MILLION DOLLARS!     콘솔에써보니작동
+// YOU WIN A MILLION DOLLARS!     
 
 function isBetween(num) {
-    return num >= 50 && num <= 100   //불리언 출력
+  return num >= 50 && num <= 100   //불리언 출력
 }
 isBetween(50)  //true 
 isBetween(10)  //false
@@ -62,9 +64,9 @@ isBetween(10)  //false
 //정해놔서 다른숫자를 쓰고싶을때마다 식을 다시써야하는데 그럴필요없이 팩토리함수를 쓸수있다
 //팩토리함수는 함수를 만들어주는 함수이다
 function makeMysteryFunc(min, max) {
-    return function (num) {
-        return num >= min && num <= max;
-    }
+  return function (num) {
+    return num >= min && num <= max;
+  }
 }
 
 // makeMysteryFunc(1,10)
@@ -95,14 +97,14 @@ const isSenior = makeMysteryFunc(51, 120)
 //특성이나 객체값(value)으로 함수를 사용할수 있다. ↓처럼
 
 const MyMath = {
-    PI: 3.14159,
-    square: function (num) {
-        return num * num;
-    },
-    cube: function (num) {
-        return num ** 3
-    },
-    multiply: function (x, y) { return x * y; }
+  PI: 3.14159,
+  square: function (num) {
+    return num * num;
+  },
+  cube: function (num) {
+    return num ** 3
+  },
+  multiply: function (x, y) { return x * y; }
 }
 
 //MyMath 라는 객체리터럴을 만들었다 콘솔에서   
@@ -119,13 +121,13 @@ MyMath['cube'](4)
 //자주써서 js에서 단축키,속기법을 만들었다.
 //콜론과 function만 지우면된다
 const MyMath1 = {
-    PI: 3.14159,
-    square(num) {     //콜론과 function지운 속기법
-        return num * num;
-    },
-    cube(num) {
-        return num ** 3
-    }
+  PI: 3.14159,
+  square(num) {     //콜론과 function지운 속기법
+    return num * num;
+  },
+  cube(num) {
+    return num ** 3
+  }
 }
 // 객체안에 있으니 쉼표는 있어야함.
 
@@ -133,14 +135,14 @@ const MyMath1 = {
 // this 키워드           this키워드와 화살표함수를 같이쓰면 이상하게작동한다.!!
 //메서드에 있는 객체를 가리킬때 this키워드를 사용함 
 const cat = {
-    name: 'Blue Steele',
-    color: 'grey',
-    breed: 'scottish fold',
-    meow() {                //속기법으로 쓴 키값 함수객체
-        console.log(this.color)      //콘솔보면 grey 출력
-        console.log('THIS IS:', this)  //THIS IS: {name: 'Blue Steele', color: 'grey', breed: 'scottish fold', meow: ƒ}
-        console.log(`${this.name} says MEOW~~`); //Blue Steele says MEOW~~  
-    }
+  name: 'Blue Steele',
+  color: 'grey',
+  breed: 'scottish fold',
+  meow() {                //속기법으로 쓴 키값 함수객체
+    console.log(this.color)      //콘솔보면 grey 출력
+    console.log('THIS IS:', this)  //THIS IS: {name: 'Blue Steele', color: 'grey', breed: 'scottish fold', meow: ƒ}
+    console.log(`${this.name} says MEOW~~`); //Blue Steele says MEOW~~  
+  }
 }
 const meow2 = cat.meow;
 //console.log(color) this를 안붙이고 color만 쓰면 오류남. 값을 출력하려면 특성앞에 this 를 꼭붙여야함 
@@ -168,12 +170,12 @@ const meow2 = cat.meow;
 
 //alert같은객체도 윈도우 안에있다.
 function scream() {    //속기법 함수객체
-    console.log('Ahhh')
+  console.log('Ahhh')
 }
 scream()
-    - Ahhh
+  - Ahhh
 window.scream()   // 방금만든 함수객체 scream도 윈도우안에 객체로 있다
-    - Ahhh
+  - Ahhh
 
 window.alert('really?')
 // alert대신 window.alert 을써도 경고창나타남 아무도이렇게하진않지만
@@ -182,10 +184,10 @@ window.alert('really?')
 //Try/Catch 사용하기 -항상 함께일하고 오류및 예외를 처리한다
 //오류를 잡아내서 코드실행이 중단되지 않게하는 역할. 
 try {
-    hello.toUpperCase()
+  hello.toUpperCase()
 }
 catch {
-    console.log('error!!')
+  console.log('error!!')
 }
 console.log('after')
 //hello는  문자열인데''을안써서  오류가난다
@@ -196,15 +198,18 @@ console.log('after')
 //코드를 실행시키고 오류를 처리할수 있게된다.
 
 function yell(msg) {
-    try {
-        console.log(msg.toUpperCase().repeat(3));
-    }
-    catch (e) {
-        console.log(e);    //콘솔보면 TypeError가뜸
-        console.log('pleas pass a string next time!')
-    }
+  try {
+    console.log(msg.toUpperCase().repeat(3));
+  }
+  catch (e) {
+    console.log(e);    //콘솔보면 TypeError가뜸
+    console.log('pleas pass a string next time!')
+  }
 }
 //yell(135)숫자를 넣으면 toUpperCase땜에 오류가난다 이럴때 try와 catch를사용한다
 //msg가 문자열이 아닌 상황을 처리하기위한 방법중 하나이다.
 //colt쌤은 뭔가 잘못되면 catch에 오류뜬내용을 엑세스한다 그리고 console.log로 출력.
 //'문자열을넣으세요'라고 출력하는게 최선의방법은아니다 사실 앞뒤가 안맞지만 그냥 예시.
+
+
+

@@ -256,4 +256,33 @@ function allEvens(arr) {
   return arr.every(ar => ar % 2 === 0)
 }
 //숏버전     
-const allEvens = arr => arr.every(ar => ar % 2 === 0)   
+const allEvens = arr => arr.every(ar => ar % 2 === 0)
+
+
+
+
+// filter  forEach  map  every  some  차이
+const arrr = [3, 4, 5, 6, 7, 8, 9, 30]
+const ar = arrr.filter((e) => { return e < 9 })  //함수안의 조건에 맞는 요소를 배열로 반환
+
+const foreachh = arrr.forEach((e) => { return e })  // forEach는 원래 1회성인가보다. 변수저장 x
+const foreachh1 = arrr.forEach((e) => console.log(e))
+//forEach와 map은 비슷한기능이다 배열을 반복한다는건데 forEach는 변수저장이 안되고 1회성이다.
+//map은 변수저장해서 재사용이 가능하다
+const ma = arrr.map((e) => { return e })  //얘는 숫자배열반환.
+const ever = arrr.every((e) => e > 6)  //false반환  배열모든숫자가 6보다커야 true
+const som = arrr.some((e) => e > 6)  //true반환  배열에 6보다큰숫자가 하나라도있으면 true
+
+const movi = [
+  {
+    title: 'Amadeus',
+    score: 99
+  },
+  {
+    title: 'Jumper',
+    score: 100
+  }
+]
+const titles = movi.map((movi) => { return movi.title.toUpperCase() }) //title배열출력
+const fil = movi.filter((mo) => { return mo.score > 99 }) //Jumper객체배열출력
+movi.forEach((e) => console.log(`${e.title} - ${e.score} 입니다 `)) 

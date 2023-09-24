@@ -147,3 +147,38 @@ var myString = "Hello World. How are you doing?";
 var splits = myString.split(" ", 3);
 console.log(splits);
 //  ["Hello", "World.", "How"]   공백있는곳을 나누고 앞부터 문자열 3개를 출력한다.
+
+
+//location.reload() 페이지새로고침
+
+
+
+// find 메서드
+// find() 메서드는 제공된 배열에서 제공된 테스트 함수를 만족하는 첫 번째 요소를 반환
+// 테스트 함수를 만족하는 값이 없으면 undefined가 반환
+const rabbit0 = [1, 2, 3, 4, 5, 6];
+const fin0 = rabbit0.find((e) => e > 4)
+
+
+
+
+//메서드 정리 
+const rabbit = [1, 2, 3, 4, 5, 6];
+const fil = rabbit.filter((e) => e > 3)  //[4,5,6]출력
+rabbit.forEach((e) => console.log(e)) //1,2,3,4,5,6 출력
+const mapp = rabbit.map((e) => { return e }) //[1, 2, 3, 4, 5, 6]출력
+const inclu = rabbit.includes(3)  //true 
+const sor = rabbit.sort((a, b) => b - a)  //[6,5,4,3,2,1]
+//every와 some과 find는 비슷하다 
+const eve = rabbit.every((e) => e > 1) //false
+const som = rabbit.some((e) => e > 1)  //true  불리언출력
+const fin = rabbit.find((e) => e > 4) //5  테스트함수와 일치하는 1개값출력
+const findIndex = rabbit.findIndex((e) => e > 4)  //4  5의인덱스는4  일치하는 1개값출력
+const findlast = rabbit.findLast((e) => e > 4) // 6 테스트함수와 일치하는 값을 역방향으로 찾는다
+const findlastindex = rabbit.findLastIndex((e) => e > 4) //5   6의인덱스는5   일치하는값 1개값출력
+
+
+//const redu = rabbit.reduce((accumulator, current) => accumulator + current, 100) //121
+// ↑ current,100 을 같이 accumulator에 더하는것같다. return이있는 암시적반환식.
+//const redu1 = rabbit.reduce((accumulator, current) => { return accumulator + current, 100 })
+// ↑ 100출력. 왜 100인지 모르겠는.
